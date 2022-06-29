@@ -6,7 +6,8 @@
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha",
     "start": "node express_server.js",
-    "local": "./node_modules/.bin/nodemon -L --ignore public/"
+    "local": "./node_modules/.bin/nodemon -L --ignore public/",
+    "db:reset": "node bin/resetdb.js"
   },
   "repository": {
     "type": "git",
