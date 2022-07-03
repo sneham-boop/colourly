@@ -32,10 +32,20 @@ const { db } = database;
 
 // Show all existing colours
 app.get("/colours", (req, res) => {
-  const templateVars = {
-   
-  };
-  res.render("dash", templateVars);
+  database
+    .getAllCombinations()
+    .then((result) => {
+      console.log(result);
+      const { colours } = result;
+      const templateVars = {
+        colours,
+      };
+      res.send(templateVars);
+    })
+    .catch((e) => {
+      console.error(e);
+      res.send(e);
+    });
 });
 
 app.listen(PORT, () => {
