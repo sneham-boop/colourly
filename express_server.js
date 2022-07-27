@@ -31,6 +31,42 @@ const { db } = database;
 // ** Routes ** //
 
 
+// Show all existing colours
+app.get("/api/colours", (req, res) => {
+  database
+    .getAllColours()
+    .then((result) => {
+      const { colours } = result;
+      const templateVars = {
+        colours,
+      };
+      res.send(templateVars);
+    })
+    .catch((e) => {
+      console.error(e);
+      res.send(e);
+    });
+});
+
+// Show single colour
+app.get("/api/colours/:id", (req, res) => {
+  const { id } = req.params;
+  database
+    .getColour(id)
+    .then((result) => {
+      const { colour } = result;
+      const templateVars = {
+        colour,
+      };
+      res.send(templateVars);
+    })
+    .catch((e) => {
+      console.error(e);
+      res.send(e);
+    });
+});
+
+
 // Show all existing combinations
 app.get("/api/combinations", (req, res) => {
   database
