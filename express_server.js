@@ -30,17 +30,35 @@ const { db } = database;
 
 // ** Routes ** //
 
-// Show all existing colours
-app.get("/colours", (req, res) => {
+
+// Show all existing combinations
+app.get("/api/combinations", (req, res) => {
   database
     .getAllCombinations()
     .then((result) => {
-      console.log(result);
-      // const { colours } = result;
-      // const templateVars = {
-      //   result
-      // };
-      // res.send(templateVars);
+      const { combinations } = result;
+      const templateVars = {
+        combinations,
+      };
+      res.send(templateVars);
+    })
+    .catch((e) => {
+      console.error(e);
+      res.send(e);
+    });
+});
+
+// Show specific combinations based on combination id
+app.get("/api/combinations/:id", (req, res) => {
+  const { id } = req.params;
+  database
+    .getCombination(id)
+    .then((result) => {
+      const { combination } = result;
+      const templateVars = {
+        combination,
+      };
+      res.send(templateVars);
     })
     .catch((e) => {
       console.error(e);
