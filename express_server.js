@@ -36,11 +36,11 @@ app.get("/colours", (req, res) => {
     .getAllCombinations()
     .then((result) => {
       console.log(result);
-      const { colours } = result;
-      const templateVars = {
-        colours,
-      };
-      res.send(templateVars);
+      // const { colours } = result;
+      // const templateVars = {
+      //   result
+      // };
+      // res.send(templateVars);
     })
     .catch((e) => {
       console.error(e);
