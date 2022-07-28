@@ -28,7 +28,17 @@ app.use(
 const database = require("./lib/db");
 const { db } = database;
 
-// ** Routes ** //
+// ** User routes ** //
+
+// Show main page
+app.get("/colours", (req, res) => {
+  const templateVars = {
+
+  };
+  res.render("index", templateVars);
+});
+
+// ** API Routes ** //
 
 // Show all existing colours
 app.get("/api/colours", (req, res) => {
