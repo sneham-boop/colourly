@@ -2,16 +2,16 @@
 <%- include('partials/_head') %>
   <main id="main">
 
-    <% for (var i=1; i <5; i++ ) { %>
+    <% for (const id in combinations) { %>
       <section class="combination">
         <span class="colour colour1">
-          <%=colour1%>
+          <%=combinations[id].colours[0]%>
         </span>
         <span class="colour colour2">
-          <%=colour2%>
+          <%=combinations[id].colours[1]%>
         </span>
         <span class="colour colour3">
-          <%=colour3%>
+          <%=combinations[id].colours[2]%>
         </span>
       </section>
       <% } %>

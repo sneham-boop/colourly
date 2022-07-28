@@ -32,12 +32,19 @@ const { db } = database;
 
 // Show main page
 app.get("/colours", (req, res) => {
-  const templateVars = {
-    colour1: "#ffb5a7",
-    colour2: "#cbc0d3",
-    colour3: "#efd3d7"
-  };
-  res.render("index", templateVars);
+  database
+    .getAllCombinations()
+    .then((result) => {
+      const { combinations } = result;
+      const templateVars = {
+        combinations,
+      };
+      res.render("index", templateVars);
+    })
+    .catch((e) => {
+      console.error(e);
+      res.send(e);
+    });
 });
 
 // ** API Routes ** //
@@ -76,7 +83,6 @@ app.get("/api/colours/:id", (req, res) => {
       res.send(e);
     });
 });
-
 
 // Show all existing combinations
 app.get("/api/combinations", (req, res) => {
