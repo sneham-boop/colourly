@@ -5,18 +5,18 @@ VALUES ('sneha@sneha.com','sneha'),
 
 -- Add a colour
 INSERT INTO colours (value, user_id)
-VALUES ('reeeeeed', 1),
-('orange', 1),
-('blue', 1),
-('green', 1),
-('yellow', 1),
-('purple', 1),
-('white', 1),
-('dark green', 1),
-('light green', 1),
-('white', 2),
-('dark green', 2),
-('light green', 2);
+VALUES ('#001219', 1),
+('#005f73', 1),
+('#0a9396', 1),
+('#94d2bd', 1),
+('#e9d8a6', 1),
+('#ee9b00', 1),
+('#ca6702', 1),
+('#bb3e03', 1),
+('#ae2012', 1),
+('#9b2226', 2),
+('#8e9aaf', 2),
+('#cbc0d3', 2);
 
 -- Add a new combination
 INSERT INTO combinations (user_id)
