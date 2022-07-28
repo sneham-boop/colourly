@@ -1,0 +1,38 @@
+.combination {
+  display: flex;
+  flex-direction: row;
+  height: 100px;
+  width: 600px;
+  border: 1px solid gray;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 1em;
+}
+
+.colour {
+  width: 33.333%;
+  text-align: center;
+  padding: 35px 0;
+}
+
+.colour1 {
+  
+  border: 0px;
+  border-right: 1px;
+  border-color: gray;
+  border-style: solid;
+  background-color: #F57C00;
+  vertical-align: middle;
+}
+
+.colour2 {
+  background-color: #FF5252;
+}
+
+.colour3 {
+  border: 0px;
+  border-left: 1px;
+  border-color: gray;
+  border-style: solid;
+  background-color: #BDBDBD;
+}
