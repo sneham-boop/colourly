@@ -30,7 +30,6 @@ const { db } = database;
 
 // ** Routes ** //
 
-
 // Show all existing colours
 app.get("/api/colours", (req, res) => {
   database
@@ -93,6 +92,24 @@ app.get("/api/combinations/:id", (req, res) => {
       const { combination } = result;
       const templateVars = {
         combination,
+      };
+      res.send(templateVars);
+    })
+    .catch((e) => {
+      console.error(e);
+      res.send(e);
+    });
+});
+
+// Show combinations for a user
+app.get("/api/combinations/users/:id", (req, res) => {
+  const { id } = req.params;
+  database
+    .getCombinationsForUser(id)
+    .then((result) => {
+      const { combinations } = result;
+      const templateVars = {
+        combinations,
       };
       res.send(templateVars);
     })
