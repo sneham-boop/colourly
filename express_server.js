@@ -33,7 +33,9 @@ const { db } = database;
 // Show main page
 app.get("/colours", (req, res) => {
   const templateVars = {
-
+    colour1: "#ffb5a7",
+    colour2: "#cbc0d3",
+    colour3: "#efd3d7"
   };
   res.render("index", templateVars);
 });
