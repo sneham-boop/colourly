@@ -36,3 +36,7 @@
   border-style: solid;
   background-color: #BDBDBD;
 }
+
+.makeRed {
+  background-color: salmon;
+}
