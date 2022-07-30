@@ -1,42 +1,70 @@
+#combinations-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 3em;
+  flex-wrap: wrap;
+  padding: 1em;
+  width: 100%;
+}
+
+.single-combination {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
 .combination {
   display: flex;
   flex-direction: row;
-  height: 100px;
-  width: 600px;
-  border: 1px solid gray;
+  height: 8em;
+  width: 30em;
   border-radius: 20px;
   overflow: hidden;
-  margin: 1em;
+  box-shadow: 0 0 5px rgb(110, 110, 110);
 }
 
 .colour {
   width: 33.333%;
   text-align: center;
-  padding: 35px 0;
+  padding: 50px 0; /* to center text*/
+}
+
+.colour:hover {
+  width: 50%;
+  transition-duration: 0.3s;
 }
 
 .colour1 {
-  
   border: 0px;
-  border-right: 1px;
+  /* border-right: 1px;
   border-color: gray;
-  border-style: solid;
-  background-color: #F57C00;
+  border-style: solid; */
+  /* background-color: #f57c00; */
   vertical-align: middle;
 }
 
 .colour2 {
-  background-color: #FF5252;
+  /* background-color: #ff5252; */
 }
 
 .colour3 {
   border: 0px;
   border-left: 1px;
-  border-color: gray;
-  border-style: solid;
-  background-color: #BDBDBD;
+  /* border-color: gray;
+  border-style: solid; */
+  /* background-color: #bdbdbd; */
 }
 
-.makeRed {
-  background-color: salmon;
+.combination-info {
+  display: flex;
+  flex-direction: row;
+  justify-content:end;
+  gap: 1em;
+  margin-right: 1em;
+}
+
+.combination-info i {
+  padding-top: 4px;
+  /* margin-right: 4px; */
 }

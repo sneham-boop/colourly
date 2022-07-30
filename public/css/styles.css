@@ -1,3 +1,21 @@
 * {
   box-sizing: border-box;
 }
+
+#heading-container {
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#heading-container h1 {
+  font-size: 60px;
+  font-weight: bold;
+}
+
+#heading-container h3 {
+ color:rgb(112, 112, 103);
+ font-weight: lighter;
+}

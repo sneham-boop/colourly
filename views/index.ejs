@@ -1,21 +1,36 @@
 <!-- Main home page -->
 <%- include('partials/_head') %>
   <main id="main">
+    <div id="heading-container">
+      <h1 id="heading">Colour Palettes</h1>
+      <h3 id="sub-heading">Save your own favourite colour palette and vote on others!</h3>
+    </div>
+    <div id="combinations-container">
+      <% for (const id in combinations) { %>
+        <div class="single-combination">
+        <section class="combination">
+          <span class="colour colour1">
+            <%=combinations[id].colours[0]%>
+          </span>
+          <span class="colour colour2">
+            <%=combinations[id].colours[1]%>
+          </span>
+          <span class="colour colour3">
+            <%=combinations[id].colours[2]%>
+          </span>
+        </section>
+        <div class="combination-info">
+          <a href="#">
+            <i class="fa-solid fa-heart"></i>
+          </a>
+          <p>57</p>
+          <i class="fa-solid fa-ellipsis"></i>
+        </div>
+      </div>
+        <% } %>
 
-    <% for (const id in combinations) { %>
-      <section class="combination">
-        <span class="colour colour1">
-          <%=combinations[id].colours[0]%>
-        </span>
-        <span class="colour colour2">
-          <%=combinations[id].colours[1]%>
-        </span>
-        <span class="colour colour3">
-          <%=combinations[id].colours[2]%>
-        </span>
-      </section>
-      <% } %>
-        <%- include('partials/_bootstrap_scripts') %>
-          </body>
+    </div>
+    <%- include('partials/_bootstrap_scripts') %>
+      </body>
 
-          </html>
+      </html>
