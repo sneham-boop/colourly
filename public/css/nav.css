@@ -4,12 +4,12 @@ nav {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  padding: 1em;
+  padding: 1em 2em;
 }
 
 nav a {
   color: black;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
   font-weight: 700;
   font-size: 25px;
 }
@@ -17,7 +17,7 @@ nav a {
 nav div {
   display: flex;
   justify-content: space-between;
-  gap: 1em;
+  gap: 2em;
 }
 
 nav div i {
@@ -37,25 +37,46 @@ a:hover {
 .sign-up-button {
   background-color: #0066ff;
   color: white;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
   padding: 5px 10px;
   border-radius: 8px;
 }
 
 .sign-up-button:hover {
-  background-color:  #0055ff;
+  background-color: #0055ff;
   transition-duration: 0.2s;
   cursor: pointer;
 }
 
-.sign-in-link{
+.sign-in-link {
   color: black;
   padding: 5px 10px;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
 }
 
 .sign-in-link:hover {
-  color:  #0055ff;
+  color: #0055ff;
   transition-duration: 0.2s;
   cursor: pointer;
+}
+
+.menu {
+  display: none;
+  justify-content: end;
+  color: black;
+  list-style-type: none;
+  width: 100%;
+  text-align: end;
+  font-family: "Ubuntu", sans-serif;
+  padding: 0;
+  border: 0;
+}
+
+.menu:hover {
+  cursor: pointer;
+}
+
+.menu-item {
+  border-bottom: 1px solid rgb(198, 198, 198);
+  padding: 0 2em;
 }

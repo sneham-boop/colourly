@@ -1,4 +1,5 @@
 $(() => {
+  // Set value of colour as per text in span
   function checkDarkness(colour) {
     const c = colour.substring(1); // strip #
     const rgb = parseInt(c, 16); // convert rrggbb to decimal
@@ -10,7 +11,7 @@ $(() => {
     return false;
   }
 
-  function setColours () {
+  function setColours() {
     $(".combination")
       .children("span")
       .each(function () {
@@ -18,9 +19,10 @@ $(() => {
         $(this).css("color", colorValue);
         $(this).css("background-color", colorValue);
       });
-  };
+  }
   setColours();
 
+  // Display / hide the colour value
   function handlerIn() {
     const colorValue = "#" + $(this).text().trim();
     const isDark = checkDarkness(colorValue);
@@ -33,4 +35,9 @@ $(() => {
   }
 
   $(".colour").mouseenter(handlerIn).mouseleave(handlerOut);
+
+  // Toggles the collapsible menu
+  $("#collapsible-menu-icon").click(function () {
+    $("#something").slideToggle();
+  });
 });
