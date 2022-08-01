@@ -150,6 +150,25 @@ app.get("/api/combinations/users/:id", (req, res) => {
     });
 });
 
+// Update a like
+app.post("/api/likes/:id", (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  database
+    .updateLikes(id)
+    .then((result) => {
+      const { combination } = result;
+      const templateVars = {
+        combination,
+      };
+      res.send(templateVars);
+    })
+    .catch((e) => {
+      console.error(e);
+      res.send(e);
+    });
+});
+
 app.listen(PORT, () => {
   console.log(`ColourDB listening on port ${PORT}!`);
 });

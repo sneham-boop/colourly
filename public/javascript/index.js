@@ -40,4 +40,12 @@ $(() => {
   $("#collapsible-menu-icon").click(function () {
     $("#something").slideToggle();
   });
+
+  $(".likes-icon").click(function () {
+    const id = $(this).attr("id");
+    $.post(`/api/likes/${id}`, (data) => {
+      const { combination } = data;
+      console.log($(this).next().text());
+    });
+  });
 });

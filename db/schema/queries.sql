@@ -39,5 +39,6 @@
 
 -- -- Add a like
 -- UPDATE combinations
--- SET likes = 45
+-- SET likes = likes + 1
 -- WHERE combinations.id = 1;
+
