@@ -14,11 +14,48 @@ nav a {
   font-size: 25px;
 }
 
-nav i {
+nav div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+nav div i {
   padding-top: 15px;
+}
+
+i:hover {
+  cursor: pointer;
 }
 
 a:hover {
   text-decoration: none;
   color: black;
+  cursor: pointer;
+}
+
+.sign-up-button {
+  background-color: #0066ff;
+  color: white;
+  font-family: 'Ubuntu', sans-serif;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+
+.sign-up-button:hover {
+  background-color:  #0055ff;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+
+.sign-in-link{
+  color: black;
+  padding: 5px 10px;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.sign-in-link:hover {
+  color:  #0055ff;
+  transition-duration: 0.2s;
+  cursor: pointer;
 }
