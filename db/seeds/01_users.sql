@@ -19,13 +19,13 @@ VALUES ('#001219', 1),
 ('#cbc0d3', 2);
 
 -- Add a new combination
-INSERT INTO combinations (user_id)
-VALUES (1),
-(1),
-(1),
-(1),
-(2),
-(2);
+INSERT INTO combinations (user_id, likes)
+VALUES (1, 4567),
+(1, 34293),
+(1, 3234),
+(1, 4757),
+(2, 4882),
+(2, 4324);
 
 -- Add new colours_combinations
 INSERT INTO colours_combinations (colour_id, combination_id)

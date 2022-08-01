@@ -28,6 +28,15 @@ app.use(
 const database = require("./lib/db");
 const { db } = database;
 
+// Helper functions
+
+const formatLikes = (likes = 2345) => {
+  if (likes < 1000) return likes.toString();
+  const rounded = Math.round(likes / 100) / 10;
+  const formattedLikes = rounded + "k";
+  return formattedLikes;
+};
+
 // ** User routes ** //
 
 // Show main page
@@ -36,6 +45,10 @@ app.get("/colours", (req, res) => {
     .getAllCombinations()
     .then((result) => {
       const { combinations } = result;
+      for (const id in combinations) {
+        const likes = formatLikes(combinations[id].likes);
+        combinations[id].likes = likes;
+      }
       const templateVars = {
         combinations,
       };

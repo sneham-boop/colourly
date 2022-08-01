@@ -17,7 +17,7 @@ CREATE TABLE colours (
 
 CREATE TABLE combinations (
   id SERIAL PRIMARY KEY NOT NULL,
-  likes INTEGER,
+  likes INTEGER DEFAULT 0,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
 );
 
