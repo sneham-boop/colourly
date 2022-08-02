@@ -38,7 +38,7 @@ $(() => {
 
   // Toggles the collapsible menu
   $("#collapsible-menu-icon").click(function () {
-    $("#something").slideToggle();
+    $(".menu").slideToggle();
   });
 
   // Trigger likes update in the database and display them
@@ -57,15 +57,32 @@ $(() => {
     });
   });
 
-  // Sign in form hide
+  // Sign in form
   $("#sign-in-form i").click(function () {
-    // $("#sign-in-form").fadeOut();
     $("#opaque").fadeOut();
   });
 
-  // Sign in form show
-  $(".sign-in-link").click(function () {
+  $(".sign-in-link, #menu-sign-in").click(function () {
+    if ($(".menu").is(":visible")) {
+      $(".menu").slideToggle();
+    }
+
+    $("#sign-in-form").show();
     $("#opaque").fadeIn();
-    $("#sign-in-form").css("opacity", "1");
-  })
+    $("#sign-up-form").hide();
+  });
+
+  // Sign up form
+  $("#sign-up-form i").click(function () {
+    $("#opaque").fadeOut();
+  });
+
+  $(".sign-up-button, #menu-sign-up").click(function () {
+    if ($(".menu").is(":visible")) {
+      $(".menu").slideToggle();
+    }
+    $("#sign-up-form").show();
+    $("#opaque").fadeIn();
+    $("#sign-in-form").hide();
+  });
 });

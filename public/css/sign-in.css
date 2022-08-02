@@ -54,3 +54,7 @@
   background-color: #0055ff;
   color: white;
 }
+
+.form-container p {
+  text-align: center;
+}
