@@ -41,11 +41,19 @@ $(() => {
     $("#something").slideToggle();
   });
 
+  // Trigger likes update in the database and display them
   $(".likes-icon").click(function () {
     const id = $(this).attr("id");
     $.post(`/api/likes/${id}`, (data) => {
       const { combination } = data;
-      console.log($(this).next().text());
+      let formattedLikes = "";
+      if (combination.likes < 1000) {
+        formattedLikes = combination.likes.toString();
+      } else {
+        const rounded = Math.round(combination.likes / 100) / 10;
+        formattedLikes = rounded + "k";
+      }
+      $(this).next().html(formattedLikes);
     });
   });
 });
