@@ -16,7 +16,7 @@
               <% } %>
           </section>
           <div class="combination-info">
-            <a class="likes-icon" href="#" id="<%=combinations[id].id%>">
+            <a class="likes-icon" id="<%=combinations[id].id%>">
               <i class="fa-solid fa-heart"></i>
             </a>
             <p class="likes"><%=combinations[id].likes%></p>
@@ -24,7 +24,9 @@
           </div>
         </div>
         <% } %>
-
+    </div>
+    <div id="opaque">
+      <%- include('partials/_sign_in_form') %>
     </div>
     <%- include('partials/_bootstrap_scripts') %>
       </body>

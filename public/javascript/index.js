@@ -56,4 +56,16 @@ $(() => {
       $(this).next().html(formattedLikes);
     });
   });
+
+  // Sign in form hide
+  $("#sign-in-form i").click(function () {
+    // $("#sign-in-form").fadeOut();
+    $("#opaque").fadeOut();
+  });
+
+  // Sign in form show
+  $(".sign-in-link").click(function () {
+    $("#opaque").fadeIn();
+    $("#sign-in-form").css("opacity", "1");
+  })
 });
