@@ -7,7 +7,7 @@
   display: none;
 }
 #color-label {
-  height: 30px;
+  height: 300px;
   width: 50px;
   border-radius: 5px;
   box-shadow: 0 0 2px rgb(110, 110, 110);
@@ -41,4 +41,42 @@ canvas:hover {
   flex-direction: row;
   justify-content: space-between;
   gap: 20px;
+}
+
+#colour-selection-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.colour-selection {
+  height: 30px;
+  width: 50px;
+  border-radius: 5px;
+  box-shadow: 0 0 2px rgb(110, 110, 110);
+  text-align: center;
+  padding:3px;
+}
+
+.colour-selection:hover {
+  cursor: pointer;
+}
+
+#new-combination-container button {
+  border: none;
+  border-radius: 20px;
+  background-color: #0066ff;
+  width: 150px;
+  height: 100px;
+  /* font-weight: bold; */
+  color: white;
+  font-size: 20px;
+  font-family: "Ubuntu", sans-serif;
+  box-shadow: 0 0 2px rgb(110, 110, 110);
+}
+
+#new-combination-container button:hover {
+  cursor: pointer;
+  background-color: #0055ff;
 }

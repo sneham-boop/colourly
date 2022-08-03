@@ -168,6 +168,16 @@ app.post("/api/likes/:id", (req, res) => {
     });
 });
 
+// Add a new combination
+app.post("/api/combinations", (req, res) => {
+  const { combination } = req.body;
+
+  if (!combination) return res.send(400);
+  console.log(combination);
+  return;
+  database;
+});
+
 app.listen(PORT, () => {
   console.log(`ColourDB listening on port ${PORT}!`);
 });

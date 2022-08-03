@@ -1,85 +1,106 @@
-let colorBlock = document.getElementById('color-block');
-let ctx1 = colorBlock.getContext('2d');
-let width1 = colorBlock.width;
-let height1 = colorBlock.height;
+$(() => {
+  let colourAdjust = document.getElementById("color-block");
+  let context1 = colourAdjust.getContext("2d");
+  let width1 = colourAdjust.width;
+  let height1 = colourAdjust.height;
 
-let colorStrip = document.getElementById('color-strip');
-let ctx2 = colorStrip.getContext('2d');
-let width2 = colorStrip.width;
-let height2 = colorStrip.height;
+  let colorChange = document.getElementById("color-strip");
+  let context2 = colorChange.getContext("2d");
+  let width2 = colorChange.width;
+  let height2 = colorChange.height;
 
-let colorLabel = document.getElementById('color-label');
+  let selectedColour = document.getElementById("color-label");
 
-let x = 0;
-let y = 0;
-let drag = false;
-let rgbaColor = 'rgba(174,32,18,1)';
+  let x = 0;
+  let y = 0;
+  let drag = false;
+  let rgbaColor = "rgba(174,32,18,1)";
 
-ctx1.rect(0, 0, width1, height1);
-fillGradient();
-
-ctx2.rect(0, 0, width2, height2);
-let grd1 = ctx2.createLinearGradient(0, 0, 0, height1);
-grd1.addColorStop(0, 'rgba(255, 0, 0, 1)');
-grd1.addColorStop(0.17, 'rgba(255, 255, 0, 1)');
-grd1.addColorStop(0.34, 'rgba(0, 255, 0, 1)');
-grd1.addColorStop(0.51, 'rgba(0, 255, 255, 1)');
-grd1.addColorStop(0.68, 'rgba(0, 0, 255, 1)');
-grd1.addColorStop(0.85, 'rgba(255, 0, 255, 1)');
-grd1.addColorStop(1, 'rgba(255, 0, 0, 1)');
-ctx2.fillStyle = grd1;
-ctx2.fill();
-
-function click(e) {
-  x = e.offsetX;
-  y = e.offsetY;
-  let imageData = ctx2.getImageData(x, y, 1, 1).data;
-  rgbaColor = 'rgba(' + imageData[0] + ',' + imageData[1] + ',' + imageData[2] + ',1)';
+  context1.rect(0, 0, width1, height1);
   fillGradient();
-}
 
-function fillGradient() {
-  ctx1.fillStyle = rgbaColor;
-  ctx1.fillRect(0, 0, width1, height1);
+  context2.rect(0, 0, width2, height2);
+  let grid1 = context2.createLinearGradient(0, 0, 0, height1);
+  grid1.addColorStop(0, "rgba(255, 0, 0, 1)");
+  grid1.addColorStop(0.17, "rgba(255, 255, 0, 1)");
+  grid1.addColorStop(0.34, "rgba(0, 255, 0, 1)");
+  grid1.addColorStop(0.51, "rgba(0, 255, 255, 1)");
+  grid1.addColorStop(0.68, "rgba(0, 0, 255, 1)");
+  grid1.addColorStop(0.85, "rgba(255, 0, 255, 1)");
+  grid1.addColorStop(1, "rgba(255, 0, 0, 1)");
+  context2.fillStyle = grid1;
+  context2.fill();
 
-  let grdWhite = ctx2.createLinearGradient(0, 0, width1, 0);
-  grdWhite.addColorStop(0, 'rgba(255,255,255,1)');
-  grdWhite.addColorStop(1, 'rgba(255,255,255,0)');
-  ctx1.fillStyle = grdWhite;
-  ctx1.fillRect(0, 0, width1, height1);
+  const click = (event) => {
+    x = event.offsetX;
+    y = event.offsetY;
+    let imageData = context2.getImageData(x, y, 1, 1).data;
+    rgbaColor =
+      "rgba(" + imageData[0] + "," + imageData[1] + "," + imageData[2] + ",1)";
+    fillGradient();
+  };
 
-  let grdBlack = ctx2.createLinearGradient(0, 0, 0, height1);
-  grdBlack.addColorStop(0, 'rgba(0,0,0,0)');
-  grdBlack.addColorStop(1, 'rgba(0,0,0,1)');
-  ctx1.fillStyle = grdBlack;
-  ctx1.fillRect(0, 0, width1, height1);
-}
+  const fillGradient = () => {
+    context1.fillStyle = rgbaColor;
+    context1.fillRect(0, 0, width1, height1);
 
-function mousedown(e) {
-  drag = true;
-  changeColor(e);
-}
+    let grdWhite = context2.createLinearGradient(0, 0, width1, 0);
+    grdWhite.addColorStop(0, "rgba(255,255,255,1)");
+    grdWhite.addColorStop(1, "rgba(255,255,255,0)");
+    context1.fillStyle = grdWhite;
+    context1.fillRect(0, 0, width1, height1);
 
-function mousemove(e) {
-  if (drag) {
-    changeColor(e);
-  }
-}
+    let grdBlack = context2.createLinearGradient(0, 0, 0, height1);
+    grdBlack.addColorStop(0, "rgba(0,0,0,0)");
+    grdBlack.addColorStop(1, "rgba(0,0,0,1)");
+    context1.fillStyle = grdBlack;
+    context1.fillRect(0, 0, width1, height1);
+  };
 
-function mouseup(e) {
-  drag = false;
-}
+  const mousedown = (event) => {
+    drag = true;
+    changeColor(event);
+  };
 
-function changeColor(e) {
-  x = e.offsetX;
-  y = e.offsetY;
-  let imageData = ctx1.getImageData(x, y, 1, 1).data;
-  rgbaColor = 'rgba(' + imageData[0] + ',' + imageData[1] + ',' + imageData[2] + ',1)';
-  colorLabel.style.backgroundColor = rgbaColor;
-}
+  const mousemove = (event) => drag && changeColor(event);
 
-colorStrip.addEventListener("click", click, false);
+  const mouseup = () => (drag = false);
 
-colorBlock.addEventListener("mousedown", mousedown, false);
-colorBlock.addEventListener("mouseup", mouseup, false);
-colorBlock.addEventListener("mousemove", mousemove, false);
+  const changeColor = (event) => {
+    x = event.offsetX;
+    y = event.offsetY;
+    const imageData = context1.getImageData(x, y, 1, 1).data;
+    rgbaColor =
+      "rgba(" + imageData[0] + "," + imageData[1] + "," + imageData[2] + ",1)";
+    selectedColour.style.backgroundColor = rgbaColor;
+  };
+
+  colorChange.addEventListener("click", click, false);
+  colourAdjust.addEventListener("mousedown", mousedown, false);
+  colourAdjust.addEventListener("mouseup", mouseup, false);
+  colourAdjust.addEventListener("mousemove", mousemove, false);
+
+  // Save combination
+  $(".colour-selection").click(function () {
+    const newColour = $("#color-label").css("background-color");
+    $(this).css("background-color", newColour);
+  });
+
+  $("#new-combination-container button").click(function () {
+    let combination = [];
+    $("#colour-selection-container")
+      .children("div")
+      .each(function () {
+        const colorValue = $(this).css("background-color");
+        const decimalColour = colorValue.match(/\d+/gi);
+        const hexColour = decimalColour
+          .map((num) => {
+            const col = parseInt(num);
+            if (col > 0) return col.toString(16).toUpperCase();
+          })
+          .join("");
+        if (hexColour !== "") combination.push(hexColour);
+      });
+    $.post(`/api/combinations`, { combination });
+  });
+});
