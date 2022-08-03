@@ -86,4 +86,26 @@ $(() => {
     $("#opaque").fadeIn();
     $("#sign-in-form").hide();
   });
+
+  // Copy colour
+  $(".colour").click(function (event) {
+    const colourValue = $(this).text().trim();
+
+    if (navigator.clipboard) {
+      navigator.clipboard
+        .writeText(colourValue)
+        .then(() => {
+          $(this).html(`<span class="material-symbols-rounded">done</span>`);
+        })
+        .then(() => {
+          $(this).mouseleave(() => {
+            $(this)
+              .html(colourValue)
+              .css("color", "#" + colourValue);
+          });
+        });
+    } else {
+      console.log("Browser Not compatible");
+    }
+  });
 });
