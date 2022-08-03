@@ -1,0 +1,44 @@
+#new-combination-container h2 {
+  margin: 0;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: bold;
+}
+#color-input {
+  display: none;
+}
+#color-label {
+  height: 30px;
+  width: 50px;
+  border-radius: 5px;
+  box-shadow: 0 0 2px rgb(110, 110, 110);
+}
+#color-input:checked ~ #color-picker {
+  opacity: 1;
+}
+#color-picker {
+  background-color: white;
+  border: solid 1px #ccc;
+  opacity: 0;
+  padding: 6px 6px 0px 6px;
+  border-radius: 5px;
+  box-shadow: 0 0 2px rgb(110, 110, 110);
+}
+
+canvas:hover {
+  cursor: url("../images-icons/radio_button_unchecked_FILL0_wght500_GRAD-25_opsz20.png"),
+    auto;
+}
+
+#new-combination-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+#color-picker-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+}
