@@ -42,7 +42,7 @@ $(() => {
   });
 
   // Trigger likes update in the database and display them
-  $(".likes-icon").click(function () {
+  $(".material-symbols-rounded").click(function () {
     const id = $(this).attr("id");
     $.post(`/api/likes/${id}`, (data) => {
       const { combination } = data;
@@ -53,6 +53,7 @@ $(() => {
         const rounded = Math.round(combination.likes / 100) / 10;
         formattedLikes = rounded + "k";
       }
+      $(this).css("font-variation-settings", "'FILL' 1");
       $(this).next().html(formattedLikes);
     });
   });
