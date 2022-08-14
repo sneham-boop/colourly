@@ -79,7 +79,7 @@ $(() => {
   colourAdjust.addEventListener("mousedown", mousedown, false);
   colourAdjust.addEventListener("mouseup", mouseup, false);
   colourAdjust.addEventListener("mousemove", mousemove, false);
-
+  
   // Save combination
   $(".colour-selection").click(function () {
     const newColour = $("#color-label").css("background-color");

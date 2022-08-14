@@ -1,14 +1,14 @@
 <%- include('partials/_head') %>
-<script src="/javascript/colour_picker.js"></script>
+<script src="/javascript/colour_picker.js" defer></script>
   <div id="new-combination-container">
-    <h2>Canvas Color Picker</h2>
+    <h2>Select a new combination!</h2>
     <section id="color-picker-container">
       <label for="color-input" id="color-label" style="background-color: red"></label>
       <input type="checkbox" id="color-input" checked></input>
 
       <div id="color-picker">
-        <canvas id="color-block" width="300"></canvas>
-        <canvas id="color-strip" width="30"></canvas>
+        <canvas id="color-block" width="300" height="314"></canvas>
+        <canvas id="color-strip" width="30" height="314"></canvas>
       </div>
       <section id="colour-selection-container">
         <div class="colour-selection">+</div>
