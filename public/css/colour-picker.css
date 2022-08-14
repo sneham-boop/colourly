@@ -7,7 +7,7 @@
   display: none;
 }
 #color-label {
-  height: 300px;
+  height: 100%;
   width: 50px;
   border-radius: 5px;
   box-shadow: 0 0 2px rgb(110, 110, 110);
@@ -19,12 +19,15 @@
   background-color: white;
   border: solid 1px #ccc;
   opacity: 0;
-  padding: 6px 6px 0px 6px;
+  padding: 20px 20px 14px 20px;
   border-radius: 5px;
   box-shadow: 0 0 2px rgb(110, 110, 110);
+  display: flex;
+  gap: 10px;
 }
 
-canvas:hover {
+
+#color-picker:hover {
   cursor: url("../images-icons/radio_button_unchecked_FILL0_wght500_GRAD-25_opsz20.png"),
     auto;
 }
@@ -41,6 +44,7 @@ canvas:hover {
   flex-direction: row;
   justify-content: space-between;
   gap: 20px;
+  height: 350px;
 }
 
 #colour-selection-container {

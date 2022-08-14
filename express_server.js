@@ -60,6 +60,13 @@ app.get("/colours", (req, res) => {
     });
 });
 
+// Save your favourite - Colour picker screen
+app.get("/colours/palette", (req, res) => {
+  // const { id } = req.params;
+  console.log("I'm here");
+  res.render("new_palette");
+});
+
 // ** API Routes ** //
 
 // Show all existing colours

@@ -16,30 +16,6 @@ $(() => {
   let drag = false;
   let rgbaColor = "rgba(174,32,18,1)";
 
-  context1.rect(0, 0, width1, height1);
-  fillGradient();
-
-  context2.rect(0, 0, width2, height2);
-  let grid1 = context2.createLinearGradient(0, 0, 0, height1);
-  grid1.addColorStop(0, "rgba(255, 0, 0, 1)");
-  grid1.addColorStop(0.17, "rgba(255, 255, 0, 1)");
-  grid1.addColorStop(0.34, "rgba(0, 255, 0, 1)");
-  grid1.addColorStop(0.51, "rgba(0, 255, 255, 1)");
-  grid1.addColorStop(0.68, "rgba(0, 0, 255, 1)");
-  grid1.addColorStop(0.85, "rgba(255, 0, 255, 1)");
-  grid1.addColorStop(1, "rgba(255, 0, 0, 1)");
-  context2.fillStyle = grid1;
-  context2.fill();
-
-  const click = (event) => {
-    x = event.offsetX;
-    y = event.offsetY;
-    let imageData = context2.getImageData(x, y, 1, 1).data;
-    rgbaColor =
-      "rgba(" + imageData[0] + "," + imageData[1] + "," + imageData[2] + ",1)";
-    fillGradient();
-  };
-
   const fillGradient = () => {
     context1.fillStyle = rgbaColor;
     context1.fillRect(0, 0, width1, height1);
@@ -55,6 +31,15 @@ $(() => {
     grdBlack.addColorStop(1, "rgba(0,0,0,1)");
     context1.fillStyle = grdBlack;
     context1.fillRect(0, 0, width1, height1);
+  };
+
+  const click = (event) => {
+    x = event.offsetX;
+    y = event.offsetY;
+    let imageData = context2.getImageData(x, y, 1, 1).data;
+    rgbaColor =
+      "rgba(" + imageData[0] + "," + imageData[1] + "," + imageData[2] + ",1)";
+    fillGradient();
   };
 
   const mousedown = (event) => {
@@ -74,6 +59,21 @@ $(() => {
       "rgba(" + imageData[0] + "," + imageData[1] + "," + imageData[2] + ",1)";
     selectedColour.style.backgroundColor = rgbaColor;
   };
+
+  context1.rect(0, 0, width1, height1);
+  fillGradient();
+
+  context2.rect(0, 0, width2, height2);
+  let grid1 = context2.createLinearGradient(0, 0, 0, height1);
+  grid1.addColorStop(0, "rgba(255, 0, 0, 1)");
+  grid1.addColorStop(0.17, "rgba(255, 255, 0, 1)");
+  grid1.addColorStop(0.34, "rgba(0, 255, 0, 1)");
+  grid1.addColorStop(0.51, "rgba(0, 255, 255, 1)");
+  grid1.addColorStop(0.68, "rgba(0, 0, 255, 1)");
+  grid1.addColorStop(0.85, "rgba(255, 0, 255, 1)");
+  grid1.addColorStop(1, "rgba(255, 0, 0, 1)");
+  context2.fillStyle = grid1;
+  context2.fill();
 
   colorChange.addEventListener("click", click, false);
   colourAdjust.addEventListener("mousedown", mousedown, false);

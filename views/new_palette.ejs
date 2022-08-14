@@ -1,0 +1,28 @@
+<%- include('partials/_head') %>
+  <div id="new-combination-container">
+    <h2>Canvas Color Picker</h2>
+    <section id="color-picker-container">
+      <label for="color-input" id="color-label" style="background-color: #AE2012"></label>
+      <input type="checkbox" id="color-input" checked></input>
+
+      <div id="color-picker">
+        <canvas id="color-block" width="300"></canvas>
+        <canvas id="color-strip" width="30"></canvas>
+      </div>
+      <section id="colour-selection-container">
+        <div class="colour-selection">+</div>
+        <div class="colour-selection">+</div>
+        <div class="colour-selection">+</div>
+        <div class="colour-selection">+</div>
+        <div class="colour-selection">+</div>
+      </section>
+      <button type="submit">Save combination</button>
+    </section>
+
+  </div>
+
+  <%- include('partials/_sign_in_form') %>
+    <%- include('partials/_bootstrap_scripts') %>
+      </body>
+
+      </html>

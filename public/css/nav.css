@@ -27,7 +27,9 @@ nav div i {
 i:hover {
   cursor: pointer;
 }
-
+a {
+  color: black;
+}
 a:hover {
   text-decoration: none;
   color: black;
