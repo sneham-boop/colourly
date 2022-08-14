@@ -42,7 +42,7 @@ const formatLikes = (likes = 2345) => {
 // Show main page
 app.get("/colours", (req, res) => {
   const { user } = req.session;
-  
+  console.log("Logged in as:", req.session);
   database
     .getAllCombinations()
     .then((result) => {
@@ -66,9 +66,12 @@ app.get("/colours", (req, res) => {
 // Save your favourite - Colour picker screen
 app.get("/colours/palette", (req, res) => {
   const { user } = req.session;
+
+  if (!user) return res.redirect("/colours");
+
   const templateVars = {
-    user
-  }
+    user,
+  };
   res.render("new_palette", templateVars);
 });
 
@@ -93,7 +96,6 @@ app.post("/login", (req, res) => {
         return;
       }
       req.session.user = user;
-      // res.send({user: {name: user.name, email: user.email, id: user.id}});
       res.redirect("/colours");
     })
     .catch((e) => res.send(e));
@@ -106,6 +108,38 @@ app.post("/logout", (req, res) => {
   console.log("Logged out");
   res.redirect("/colours");
 });
+
+// Register a new user
+app.post("/register", (req, res) => {
+  const { email, password } = req.body;
+  const hashedPassword = bcrypt.hashSync(password, 10);
+
+  const message = {
+    user: undefined,
+    text: "",
+  };
+
+  if (email === "" || password === "") {
+    message.text = "Enter a valid email and/or password.";
+    return res.redirect("/colours");
+  }
+
+  // Add user if info valid
+  const user = {
+    email,
+    password: hashedPassword,
+  };
+
+  database
+    .addUser(user)
+    .then((user) => {
+      console.log("This user was just added:", user);
+      req.session.user = user;
+      res.redirect("/colours");
+    })
+    .catch((e) => res.send(e));
+});
+
 // ** API Routes ** //
 
 // Show all existing colours
