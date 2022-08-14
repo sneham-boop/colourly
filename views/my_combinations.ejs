@@ -1,0 +1,38 @@
+<!-- Show a specific user's combinations -->
+<%- include('partials/_head') %>
+  <main id="main">
+    <div id="heading-container">
+      <h1 id="heading">Your Colour Palettes</h1>
+      <h3 id="sub-heading">Would you like to add another palette?</h3>
+      <span id="add-more-combinations"><a href="/colours/palette">Add more</a></span>
+    </div>
+    <div id="combinations-container">
+      <% for (const id in combinations) { %>
+        <div class="single-combination">
+          <section class="combination">
+            <% for (const colour of combinations[id].colours) { %>
+              <span class="colour">
+                <%=colour%>
+              </span>
+              <% } %>
+          </section>
+          <div class="combination-info">
+            <span class="material-symbols-rounded" id="<%=combinations[id].id%>">
+              favorite
+            </span>
+            <p class="likes">
+              <%=combinations[id].likes%>
+            </p>
+            <i class="fa-solid fa-ellipsis"></i>
+          </div>
+        </div>
+        <% } %>
+    </div>
+
+    <%- include('partials/_sign_in_up_form') %>
+
+  </main>
+  <%- include('partials/_bootstrap_scripts') %>
+    </body>
+
+    </html>

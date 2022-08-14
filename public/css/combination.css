@@ -64,3 +64,21 @@
   color:  black;
   cursor: pointer;
 }
+
+#add-more-combinations {
+  background-color: #0066ff;
+  color: white;
+  font-family: "Ubuntu", sans-serif;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+
+#add-more-combinations:hover {
+  background-color: #0055ff;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+
+#add-more-combinations a {
+  color: white;
+}

@@ -42,7 +42,7 @@ const formatLikes = (likes = 2345) => {
 // Show main page
 app.get("/colours", (req, res) => {
   const { user } = req.session;
-  console.log("Logged in as:", req.session);
+  // console.log("Logged in as:", req.session);
   database
     .getAllCombinations()
     .then((result) => {
@@ -66,9 +66,11 @@ app.get("/colours", (req, res) => {
 // Save your favourite - Colour picker screen
 app.get("/colours/palette", (req, res) => {
   const { user } = req.session;
-
-  if (!user) return res.redirect("/colours");
-
+  console.log("In colour/pallettes", user);
+  if (!user) {
+    console.log("This user does not exist!")
+    return res.redirect("/colours")
+  };
   const templateVars = {
     user,
   };
@@ -133,7 +135,7 @@ app.post("/register", (req, res) => {
   database
     .addUser(user)
     .then((user) => {
-      console.log("This user was just added:", user);
+      // console.log("This user was just added:", user);
       req.session.user = user;
       res.redirect("/colours");
     })
@@ -145,14 +147,14 @@ app.get("/colours/:id", (req, res) => {
   const { user } = req.session;
   const { id } = req.params;
 
-  if( !user || !id) return res.redirect("/colours");
-  console.log("Logged in as:", req.session, id);
+  if (!user || !id) return res.redirect("/colours");
+  // console.log("Logged in as:", req.session, id);
 
   database
     .getCombinationsForUser(id)
     .then((result) => {
       const { combinations } = result;
-      console.log(combinations);
+
       for (const id in combinations) {
         const likes = formatLikes(combinations[id].likes);
         combinations[id].likes = likes;
@@ -161,7 +163,7 @@ app.get("/colours/:id", (req, res) => {
         combinations,
         user,
       };
-      res.render("index", templateVars);
+      res.render("my_combinations", templateVars);
     })
     .catch((e) => {
       console.error(e);

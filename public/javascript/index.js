@@ -93,6 +93,7 @@ $(() => {
       location.reload();
     });
   });
+
   // Copy colour
   $(".colour").click(function (event) {
     const colourValue = $(this).text().trim();
