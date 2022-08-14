@@ -44,17 +44,21 @@
           <span class="sign-up-button">Sign up</span>
           <% } else { %>
             <form id="logout-form" method="POST" action="/logout">
-              <span>Logged in as: <%=user.email %>
+              <span>Signed in as: <%=user.email %>
               </span>
-              <button type="submit" class="btn btn-outline-dark" formmethod="POST" formaction="/logout">Logout</button>
+              <button type="submit" class="btn btn-outline-dark" formmethod="POST" formaction="/logout">Sign out</button>
             </form>
             <% } %>
               <i id="collapsible-menu-icon" class="fa-solid fa-bars fa-lg"></i>
       </div>
     </nav>
     <ul class="menu">
-      <li id="menu-sign-in" class="menu-item">Sign in</li>
-      <li id="menu-sign-up" class="menu-item">Sign up</li>
-      <li id="menu-new-palette" class="menu-item"><a href="/colours/palette">Save your favourites</a></li>
+      <% if(user===null){ %>
+        <li id="menu-sign-in" class="menu-item">Sign in</li>
+        <li id="menu-sign-up" class="menu-item">Sign up</li>
+        <% } else { %>
+          <li id="menu-sign-out" class="menu-item">Sign out</li>
+          <% } %>
+            <li id="menu-new-palette" class="menu-item"><a href="/colours/palette">Save your favourites</a></li>
     </ul>
   </header>

@@ -87,6 +87,12 @@ $(() => {
     $("#sign-in-form").hide();
   });
 
+  // Sign out menu action
+  $("#menu-sign-out").click(function () {
+    $.post(`/logout`, function () {
+      location.reload();
+    });
+  });
   // Copy colour
   $(".colour").click(function (event) {
     const colourValue = $(this).text().trim();
@@ -108,5 +114,4 @@ $(() => {
       console.log("Browser Not compatible");
     }
   });
-
 });

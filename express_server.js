@@ -82,6 +82,7 @@ const login = function (email, password) {
     return null;
   });
 };
+exports.login = login;
 
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
@@ -102,7 +103,7 @@ app.post("/login", (req, res) => {
 
 app.post("/logout", (req, res) => {
   req.session.user = null;
-  // res.send({});
+  console.log("Logged out");
   res.redirect("/colours");
 });
 // ** API Routes ** //
