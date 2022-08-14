@@ -140,6 +140,35 @@ app.post("/register", (req, res) => {
     .catch((e) => res.send(e));
 });
 
+// Show my colour combinations
+app.get("/colours/:id", (req, res) => {
+  const { user } = req.session;
+  const { id } = req.params;
+
+  if( !user || !id) return res.redirect("/colours");
+  console.log("Logged in as:", req.session, id);
+
+  database
+    .getCombinationsForUser(id)
+    .then((result) => {
+      const { combinations } = result;
+      console.log(combinations);
+      for (const id in combinations) {
+        const likes = formatLikes(combinations[id].likes);
+        combinations[id].likes = likes;
+      }
+      const templateVars = {
+        combinations,
+        user,
+      };
+      res.render("index", templateVars);
+    })
+    .catch((e) => {
+      console.error(e);
+      res.send(e);
+    });
+});
+
 // ** API Routes ** //
 
 // Show all existing colours
