@@ -1,7 +1,16 @@
+#new-combination-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  margin-top: 3em;
+}
+
 #new-combination-container h2 {
   margin: 0;
   font-family: "Ubuntu", sans-serif;
   font-weight: bold;
+  font-size: 50px;
 }
 #color-input {
   display: none;
@@ -28,16 +37,10 @@
 
 
 #color-picker:hover {
-  cursor: url("../images-icons/radio_button_unchecked_FILL0_wght500_GRAD-25_opsz20.png"),
-    auto;
+  cursor: url("../images-icons/radio_button_unchecked_FILL0_wght500_GRAD-25_opsz20.png"),auto;
 }
 
-#new-combination-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
-}
+
 
 #color-picker-container {
   display: flex;

@@ -1,7 +1,7 @@
 -- Create a user
 INSERT INTO users (email, password)
-VALUES ('sneha@sneha.com','sneha'),
-('bill@bill.com', 'bill');
+VALUES ('sneha@sneha.com','$2a$10$r9wYh1lcViQBfeIF13wUs.JSD7jdk.l0XLlBdySc.3FW/Z8dM2Z2e'),
+('bill@bill.com', '$2a$10$r9wYh1lcViQBfeIF13wUs.JSD7jdk.l0XLlBdySc.3FW/Z8dM2Z2e');
 
 -- Add a colour
 INSERT INTO colours (value, user_id)

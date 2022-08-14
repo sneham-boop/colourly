@@ -14,7 +14,7 @@ $(() => {
   let x = 0;
   let y = 0;
   let drag = false;
-  let rgbaColor = "rgba(174,32,18,1)";
+  let rgbaColor = "rgba(255,0,0,1)";
 
   const fillGradient = () => {
     context1.fillStyle = rgbaColor;
