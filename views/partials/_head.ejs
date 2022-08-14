@@ -15,7 +15,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> -->
 
   <link rel="stylesheet" href="/css/styles.css" />
@@ -37,9 +38,18 @@
     <nav>
       <a href="/colours">Colours</a>
       <div>
-        <span class="sign-in-link">Sign in</span>
-        <span class="sign-up-button">Sign up</span>
-        <i id="collapsible-menu-icon" class="fa-solid fa-bars fa-lg"></i>
+        <!-- Login/Register -->
+        <% if(user===null){ %>
+          <span class="sign-in-link">Sign in</span>
+          <span class="sign-up-button">Sign up</span>
+          <% } else { %>
+            <form id="logout-form" method="POST" action="/logout">
+              <span>Logged in as: <%=user.email %>
+              </span>
+              <button type="submit" class="btn btn-outline-dark" formmethod="POST" formaction="/logout">Logout</button>
+            </form>
+            <% } %>
+              <i id="collapsible-menu-icon" class="fa-solid fa-bars fa-lg"></i>
       </div>
     </nav>
     <ul class="menu">

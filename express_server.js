@@ -41,6 +41,8 @@ const formatLikes = (likes = 2345) => {
 
 // Show main page
 app.get("/colours", (req, res) => {
+  const { user } = req.session;
+  
   database
     .getAllCombinations()
     .then((result) => {
@@ -51,6 +53,7 @@ app.get("/colours", (req, res) => {
       }
       const templateVars = {
         combinations,
+        user,
       };
       res.render("index", templateVars);
     })
@@ -62,35 +65,46 @@ app.get("/colours", (req, res) => {
 
 // Save your favourite - Colour picker screen
 app.get("/colours/palette", (req, res) => {
-  res.render("new_palette");
+  const { user } = req.session;
+  const templateVars = {
+    user
+  }
+  res.render("new_palette", templateVars);
 });
 
 // Login a user
 
-const login =  function(email, password) {
-  return database.getUserWithEmail(email)
-  .then(user => {
+const login = function (email, password) {
+  return database.getUserWithEmail(email).then((user) => {
     if (bcrypt.compareSync(password, user.password)) {
       return user;
     }
     return null;
   });
-}
+};
 
-app.post('/login', (req, res) => {
-  const {email, password} = req.body;
+app.post("/login", (req, res) => {
+  const { email, password } = req.body;
   login(email, password)
-    .then(user => {
+    .then((user) => {
       if (!user) {
-        res.send({error: "error"});
+        res.send({ error: "error" });
         return;
       }
-      req.session.userId = user.id;
-      res.send({user: {name: user.name, email: user.email, id: user.id}});
+      req.session.user = user;
+      // res.send({user: {name: user.name, email: user.email, id: user.id}});
+      res.redirect("/colours");
     })
-    .catch(e => res.send(e));
+    .catch((e) => res.send(e));
 });
 
+// Logout
+
+app.post("/logout", (req, res) => {
+  req.session.user = null;
+  // res.send({});
+  res.redirect("/colours");
+});
 // ** API Routes ** //
 
 // Show all existing colours
