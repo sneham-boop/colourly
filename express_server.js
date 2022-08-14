@@ -66,11 +66,10 @@ app.get("/colours", (req, res) => {
 // Save your favourite - Colour picker screen
 app.get("/colours/palette", (req, res) => {
   const { user } = req.session;
-  console.log("In colour/pallettes", user);
   if (!user) {
-    console.log("This user does not exist!")
-    return res.redirect("/colours")
-  };
+    console.log("This user does not exist!");
+    return res.redirect("/colours");
+  }
   const templateVars = {
     user,
   };
@@ -107,7 +106,6 @@ app.post("/login", (req, res) => {
 
 app.post("/logout", (req, res) => {
   req.session.user = null;
-  console.log("Logged out");
   res.redirect("/colours");
 });
 
@@ -282,11 +280,21 @@ app.post("/api/likes/:id", (req, res) => {
 // Add a new combination
 app.post("/api/combinations", (req, res) => {
   const { combination } = req.body;
+  const { user } = req.session;
 
-  if (!combination) return res.send(400);
-  console.log(combination);
-  return;
-  database;
+  if (!combination || !user) return res.send(400);
+  const colours = combination;
+  const id = user.id;
+  database
+    .addCombinationsForUser(id, colours)
+    .then((result) => {
+      const { combination } = result;
+      res.redirect("/colours");
+    })
+    .catch((e) => {
+      console.error(e);
+      res.send(e);
+    });
 });
 
 app.listen(PORT, () => {
