@@ -3,7 +3,7 @@
   <main id="main">
     <div id="heading-container">
       <h1 id="heading">Colour Palettes</h1>
-      <h3 id="sub-heading">Save your own favourite colour palette and vote on others!</h3>
+      <h3 id="sub-heading">Pick your own colour palette and save others to your library!</h3>
     </div>
     <div id="combinations-container">
       <% for (const id in combinations) { %>
@@ -29,7 +29,7 @@
     </div>
 
     <%- include('partials/_sign_in_up_form') %>
-
+    <%- include('partials/_combination_menu') %>
   </main>
   <%- include('partials/_bootstrap_scripts') %>
     </body>

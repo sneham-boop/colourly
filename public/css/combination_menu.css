@@ -1,0 +1,44 @@
+#combination-nav-container {
+  /* height: 300px; */
+  width: 300px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 2px rgb(110, 110, 110);
+  padding: 1em;
+  position: absolute;
+}
+
+#combination-nav-container nav {
+  border: 0px;
+  height: 100%;
+  padding: 0px;
+}
+
+#combination-nav-container nav a {
+  font-family: "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 18px;
+  font-weight: 200;
+}
+
+#combination-nav-container ul {
+  list-style-type: none;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin: 0px;
+}
+
+#combination-nav-container li {
+  border-radius: 10px;
+  width: 100%;
+  padding: 1em;
+}
+
+#combination-nav-container li:hover {
+  background-color: #e6f0ff;
+  width: 100%;
+  cursor: pointer;
+}
