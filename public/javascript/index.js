@@ -115,4 +115,15 @@ $(() => {
       console.log("Browser Not compatible");
     }
   });
+
+  // Float menu show
+  $(".float-menu-show").click(function (event) {
+    const { id } = this;
+    console.log(event.pageX, event.pageY);
+    $("#combination-nav-container").css({
+      display: "block",
+      left: event.pageX,
+      top: event.pageY,
+    });
+  });
 });

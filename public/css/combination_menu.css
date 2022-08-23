@@ -1,11 +1,11 @@
 #combination-nav-container {
-  /* height: 300px; */
-  width: 300px;
+  width: 275px;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 0 2px rgb(110, 110, 110);
   padding: 1em;
   position: absolute;
+  display: none;
 }
 
 #combination-nav-container nav {
@@ -14,9 +14,9 @@
   padding: 0px;
 }
 
-#combination-nav-container nav a {
-  font-family: "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+#combination-nav-container a {
+  /* font-family: "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; */
   font-size: 18px;
   font-weight: 200;
 }
@@ -30,11 +30,14 @@
   flex-direction: column;
   margin: 0px;
 }
-
+ 
 #combination-nav-container li {
   border-radius: 10px;
   width: 100%;
-  padding: 1em;
+  padding: 0.5em;
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
 }
 
 #combination-nav-container li:hover {

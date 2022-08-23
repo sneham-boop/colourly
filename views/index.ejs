@@ -22,14 +22,14 @@
             <p class="likes">
               <%=combinations[id].likes%>
             </p>
-            <i class="fa-solid fa-ellipsis"></i>
+            <i class="fa-solid fa-ellipsis float-menu-show" id="<%=combinations[id].id%>"></i>
           </div>
         </div>
         <% } %>
     </div>
 
     <%- include('partials/_sign_in_up_form') %>
-    <%- include('partials/_combination_menu') %>
+      <%- include('partials/_combination_menu') %>
   </main>
   <%- include('partials/_bootstrap_scripts') %>
     </body>
