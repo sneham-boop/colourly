@@ -17,15 +17,17 @@
 .combination {
   display: flex;
   flex-direction: row;
+  /* justify-content: space-between; */
+  gap: 0px;
   height: 7em;
-  width: 20em;
+  width: 25em;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 0 2px rgb(110, 110, 110);
 }
 
-.colour {
-  width: 33.333%;
+.colour { 
+  width:100%;
   text-align: center;
   padding: 50px 0; /* to center text*/
   vertical-align: middle;
@@ -34,7 +36,7 @@
 }
 
 .colour:hover {
-  width: 75%;
+  /* width: 125%; */
   transition-duration: 0.3s;
   cursor: pointer;
 }

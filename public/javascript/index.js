@@ -135,4 +135,18 @@ $(() => {
       $("#combination-nav-container").css({ display: "none" });
     }
   });
+
+  // Colour width adjustments on hover
+  // $(".combination").mouseenter(function () {
+  //   const $colour = $(this).find(".colour");
+  //   // console.log($colour);
+  $(".colour").mouseenter(function () {
+    const allSpans = $(this).siblings();
+
+    // allSpans.forEach((el) => {
+    //   console.log($(el).text());
+    // });
+    console.log(allSpans[0]);
+  });
+  // });
 });

@@ -51,19 +51,24 @@
 }
 
 #colour-selection-container {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 30px; */
+  display: grid;
+  grid-template-columns: 50px 50px;
+  grid-template-rows: 50px 50px 50px 50px 50px;
+  gap: 25px;
 }
 
 .colour-selection {
-  height: 30px;
+  height: 50px;
   width: 50px;
   border-radius: 5px;
   box-shadow: 0 0 2px rgb(110, 110, 110);
   text-align: center;
-  padding:3px;
+  padding:10px;
+  font-size: 20px;
 }
 
 .colour-selection:hover {
