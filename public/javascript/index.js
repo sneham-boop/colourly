@@ -117,13 +117,22 @@ $(() => {
   });
 
   // Float menu show
-  $(".float-menu-show").click(function (event) {
-    const { id } = this;
-    console.log(event.pageX, event.pageY);
-    $("#combination-nav-container").css({
-      display: "block",
-      left: event.pageX,
-      top: event.pageY,
+  $(document).ready(function () {
+    $(".float-menu-show").click(function (event) {
+      const { id } = this;
+      $("#combination-nav-container").css({
+        display: "block",
+        left: event.pageX,
+        top: event.pageY,
+      });
     });
+  });
+
+  // Float menu hide
+  $(document).on("click", function (event) {
+    const target = event.target;
+    if (!$(target).hasClass("float-menu-show")) {
+      $("#combination-nav-container").css({ display: "none" });
+    }
   });
 });
