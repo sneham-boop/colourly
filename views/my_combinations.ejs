@@ -6,31 +6,9 @@
       <h3 id="sub-heading">Would you like to add another colour palette?</h3>
       <span id="add-more-combinations"><a href="/colours/palette">Add more</a></span>
     </div>
-    <div id="combinations-container">
-      <% for (const id in combinations) { %>
-        <div class="single-combination">
-          <section class="combination">
-            <% for (const colour of combinations[id].colours) { %>
-              <span class="colour">
-                <%=colour%>
-              </span>
-              <% } %>
-          </section>
-          <div class="combination-info">
-            <span class="material-symbols-rounded" id="<%=combinations[id].id%>">
-              favorite
-            </span>
-            <p class="likes">
-              <%=combinations[id].likes%>
-            </p>
-            <i class="fa-solid fa-ellipsis float-menu-show"></i>
-          </div>
-        </div>
-        <% } %>
-    </div>
-
-    <%- include('partials/_sign_in_up_form') %>
-    <%- include('partials/_combination_menu') %>
+    <%- include('partials/_show_combinations.ejs') %>
+      <%- include('partials/_sign_in_up_form') %>
+        <%- include('partials/_combination_menu') %>
   </main>
   <%- include('partials/_bootstrap_scripts') %>
     </body>

@@ -1,0 +1,22 @@
+<div id="combinations-container">
+  <% for (const id in combinations) { %>
+    <div class="single-combination">
+      <section class="combination">
+        <% for (const colour of combinations[id].colours) { %>
+          <span class="colour">
+            <%=colour%>
+          </span>
+          <% } %>
+      </section>
+      <div class="combination-info">
+        <span class="material-symbols-rounded" id="<%=combinations[id].id%>">
+          favorite 
+        </span>
+        <p class="likes">
+          <%=combinations[id].likes%>
+        </p>
+        <i class="fa-solid fa-ellipsis float-menu-show" id="<%=combinations[id].id%>"></i>
+      </div>
+    </div>
+    <% } %>
+</div>
