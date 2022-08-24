@@ -62,9 +62,15 @@ a:hover {
   cursor: pointer;
 }
 
+#menu-container {
+  position: relative;
+  display: inline-block;
+  width: 20%;
+}
+
 .menu {
   display: none;
-  justify-content: end;
+  position: absolute;
   color: black;
   list-style-type: none;
   width: 100%;
@@ -80,7 +86,12 @@ a:hover {
 
 .menu-item {
   border-bottom: 1px solid rgb(198, 198, 198);
-  padding: 0 2em;
+  border-left: 1px solid rgb(198, 198, 198);
+  padding: 0 2em 0 0;
+}
+
+.menu-item:hover {
+  background-color: aliceblue;
 }
 
 #logout-form {
