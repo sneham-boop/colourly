@@ -5,18 +5,18 @@ VALUES ('sneha@sneha.com','$2a$10$r9wYh1lcViQBfeIF13wUs.JSD7jdk.l0XLlBdySc.3FW/Z
 
 -- Add a colour
 INSERT INTO colours (value, user_id)
-VALUES ('#001219', 1),
-('#005f73', 1),
-('#0a9396', 1),
-('#94d2bd', 1),
-('#e9d8a6', 1),
-('#ee9b00', 1),
-('#ca6702', 1), 
-('#bb3e03', 1),
-('#ae2012', 1),
-('#9b2226', 2),
-('#8e9aaf', 2),
-('#cbc0d3', 2);
+VALUES ('#26547c', 1),
+('#ef476f', 1),
+('#ffd166', 1),
+('#fed700', 1),
+('#21b0fe', 1),
+('#e94f37', 1),
+('#009fb7', 1), 
+('#fed766', 1),
+('#fe4a49', 1),
+('#f87060', 2),
+('#ffbe0b', 2),
+('#ff6978', 2);
 
 -- Add a new combination
 INSERT INTO combinations (user_id, likes)
@@ -54,4 +54,4 @@ VALUES (1, 2),
 (1, 1),
 (2, 1),
 (5, 2),
-(5, 2),
+(5, 2);

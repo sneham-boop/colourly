@@ -18,7 +18,7 @@
   display: flex;
   flex-direction: row;
   gap: 0px;
-  height: 7em;
+  height: 8em;
   width: 30vw;
   min-width: 350px;
   border-radius: 10px;
@@ -30,7 +30,7 @@
   flex-grow: 1;
   flex-shrink: 3;
   text-align: center;
-  padding: 50px 0; /* to center text*/
+  padding: 55px 0; /* to center text*/
   vertical-align: middle;
   font-family: 'Ubuntu', sans-serif;
   font-weight: bold;
