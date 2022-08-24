@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 50px;
   margin-top: 3em;
 }
 
@@ -35,13 +35,6 @@
   gap: 10px;
 }
 
-
-#color-picker:hover {
-  /* cursor: url("../images-icons/radio_button_unchecked_FILL0_wght500_GRAD-25_opsz20.png"),auto; */
-}
-
-
-
 #color-picker-container {
   display: flex;
   flex-direction: row;
@@ -51,10 +44,6 @@
 }
 
 #colour-selection-container {
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px; */
   display: grid;
   grid-template-columns: 50px 50px;
   grid-template-rows: 50px 50px 50px 50px 50px;
@@ -81,7 +70,6 @@
   background-color: #0066ff;
   width: 150px;
   height: 100px;
-  /* font-weight: bold; */
   color: white;
   font-size: 20px;
   font-family: "Ubuntu", sans-serif;
@@ -91,4 +79,11 @@
 #new-combination-container button:hover {
   cursor: pointer;
   background-color: #0055ff;
+}
+
+#new-combination-container ol {
+  font-size: 15px;
+  font-family: "Ubuntu", sans-serif;
+  color: rgb(112, 112, 103);
+  font-weight: 100;
 }

@@ -1,7 +1,8 @@
+<!-- Select a new palette -->
 <%- include('partials/_head') %>
   <script src="/javascript/colour_picker.js" defer></script>
   <div id="new-combination-container">
-    <h2>Pick a new palette!</h2>
+    <h2>Create a new palette</h2>
     <section id="color-picker-container">
       <label for="color-input" id="color-label" style="background-color: red"></label>
       <input type="checkbox" id="color-input" checked></input>
@@ -24,9 +25,14 @@
       </section>
       <button type="submit">Add to library</button>
     </section>
-
+    <ol>
+      <li>Click somewhere in the colour square.</li>
+      <li>Click on one of the empty buckets.</li>
+      <li>Colours can be overwritten by selecting a new one and clicking on the bucket again.</li>
+      <li>Do this for up to 10 colours.</li>
+      <li>Click on the "Add to library" button to add the combination to your library.</li>
+    </ol>
   </div>
-
   <%- include('partials/_sign_in_up_form') %>
     <%- include('partials/_bootstrap_scripts') %>
       </body>

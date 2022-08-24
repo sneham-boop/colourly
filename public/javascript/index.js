@@ -7,7 +7,7 @@ $(() => {
     const g = (rgb >> 8) & 0xff; // extract green
     const b = (rgb >> 0) & 0xff; // extract blue
     const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b; // per ITU-R BT.709
-    if (luma < 80) return true;
+    if (luma < 100) return true;
     return false;
   }
 
@@ -148,12 +148,6 @@ $(() => {
           });
         }
       };
-
-      // $("#combination-nav").css({
-      //   display: "block",
-      //   left: menuLocation.x,
-      //   top: menuLocation.y,
-      // });
       $("#combination-nav-container").css({
         display: "block",
         left: menuLocation.x,
@@ -166,7 +160,6 @@ $(() => {
   $(document).on("click", function (event) {
     const target = event.target;
     if (!$(target).hasClass("float-menu-show")) {
-      // $("#combination-nav").css({ display: "none" });
       $("#combination-nav-container").css({ display: "none" });
     }
   });
