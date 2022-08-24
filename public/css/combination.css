@@ -6,6 +6,8 @@
   flex-wrap: wrap;
   padding: 2em;
   width: 100%;
+  margin:0px;
+  margin-bottom: 5em;
 }
 
 .single-combination {
