@@ -42,9 +42,6 @@ $(() => {
     $(".menu").slideToggle();
   });
 
-  // const leftBy = `${$(window).width() - 250}px`;
-  // $(".menu").css({ float: "left"});
-
   // Trigger likes update in the database and display them
   $(".material-symbols-rounded").click(function () {
     const id = $(this).attr("id");

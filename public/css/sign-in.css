@@ -18,9 +18,7 @@
   position: absolute;
   top: 20%;
   left: 35%;
-  /* display: none; */
   opacity: 1;
-  /* margin-top: 50vw; */
 }
 
 .form-container {
@@ -58,3 +56,18 @@
 .form-container p {
   text-align: center;
 }
+
+.form-container > h1 + p {
+color: #7d7c83;
+font-size: 18px;
+}
+
+.form-container  input {
+  width: 90%;
+  height: 3em;
+  box-shadow: 0 0 1px rgb(110, 110, 110);
+  border: 0px;
+  border-radius: 8px;
+  padding-left: 1em;
+}
+/*  */
