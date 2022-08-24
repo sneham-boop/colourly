@@ -126,10 +126,34 @@ $(() => {
       const heightDiff = height - event.pageY;
       const widthDiff = width - event.pageX;
       let menuLocation = { x: event.pageX, y: event.pageY };
-      
-      if (heightDiff < 240) menuLocation.y -= 240;
-      if (widthDiff < 275) menuLocation.x -= 275;
 
+      if (heightDiff < 240) {
+        menuLocation.y -= 240
+        $("#upper-triangle").css({
+          display: "none"
+        });
+        $("#lower-triangle").css({
+          display: "block"
+        });
+      };
+      if (widthDiff < 275) {
+        menuLocation.x -= 275
+        if ($("#lower-triangle").css("display") === "block") {
+          $("#lower-triangle").css({
+            left: "230px"
+          });
+        } else {
+          $("#upper-triangle").css({
+            left: "230px"
+          });
+        }
+      };
+
+      // $("#combination-nav").css({
+      //   display: "block",
+      //   left: menuLocation.x,
+      //   top: menuLocation.y,
+      // });
       $("#combination-nav-container").css({
         display: "block",
         left: menuLocation.x,
@@ -142,6 +166,7 @@ $(() => {
   $(document).on("click", function (event) {
     const target = event.target;
     if (!$(target).hasClass("float-menu-show")) {
+      // $("#combination-nav").css({ display: "none" });
       $("#combination-nav-container").css({ display: "none" });
     }
   });
