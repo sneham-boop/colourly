@@ -82,3 +82,11 @@ a:hover {
   border-bottom: 1px solid rgb(198, 198, 198);
   padding: 0 2em;
 }
+
+#logout-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
