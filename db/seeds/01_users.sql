@@ -48,3 +48,10 @@ VALUES (1, 1),
 (12, 6),
 (11, 6),
 (6, 6);
+
+INSERT INTO combinations_users (combination_id, user_id)
+VALUES (1, 2),
+(1, 1),
+(2, 1),
+(5, 2),
+(5, 2),

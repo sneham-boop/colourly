@@ -26,3 +26,9 @@ CREATE TABLE colours_combinations (
   colour_id INTEGER REFERENCES colours(id) ON DELETE CASCADE,
   combination_id INTEGER REFERENCES combinations(id) ON DELETE CASCADE
 );
+
+CREATE TABLE combinations_users (
+  id SERIAL PRIMARY KEY NOT NULL,
+  combination_id INTEGER REFERENCES combinations(id) ON DELETE CASCADE,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+)

@@ -7,6 +7,7 @@
   position: absolute;
   display: none;
   background-color: white;
+  transition: 2000;
 }
 
 #combination-nav-container nav {
