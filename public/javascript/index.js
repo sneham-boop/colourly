@@ -16,7 +16,7 @@ $(() => {
       .children("span")
       .each(function () {
         const colorValue = `#${$(this).text().trim()}`;
-        $(this).css("color", colorValue);
+        $(this).css({ color: colorValue });
         $(this).css("background-color", colorValue);
       });
   }
@@ -140,13 +140,21 @@ $(() => {
   // $(".combination").mouseenter(function () {
   //   const $colour = $(this).find(".colour");
   //   // console.log($colour);
-  $(".colour").mouseenter(function () {
-    const allSpans = $(this).siblings();
-
-    // allSpans.forEach((el) => {
-    //   console.log($(el).text());
-    // });
-    console.log(allSpans[0]);
-  });
+  // $(".colour").mouseenter(function () {
+  //   const otherColours = $(this).siblings();
+  //   const length = otherColours.length;
+  //   const smallWidth = `${Math.floor(100 / length)}%`;
+  //   const hoverWidth = 100 - smallWidth * length;
+  //   $(this).css({ width: hoverWidth });
+  //   for (const id in otherColours) {
+  //     const colour = otherColours[id];
+  //     if ($(colour).hasClass("colour")) {
+  //       console.log(smallWidth);
+  //       $(colour).css({ width: smallWidth });
+  //     } else {
+  //       break;
+  //     }
+  //   }
+  // });
   // });
 });

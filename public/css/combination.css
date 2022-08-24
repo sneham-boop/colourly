@@ -17,28 +17,31 @@
 .combination {
   display: flex;
   flex-direction: row;
-  /* justify-content: space-between; */
   gap: 0px;
   height: 7em;
-  width: 25em;
+  width: 35vw;
+  min-width: 350px;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 0 2px rgb(110, 110, 110);
 }
 
 .colour { 
-  width:100%;
+  flex-grow: 1;
+  flex-shrink: 3;
   text-align: center;
   padding: 50px 0; /* to center text*/
   vertical-align: middle;
   font-family: 'Ubuntu', sans-serif;
   font-weight: bold;
+  font-size: 5px;
 }
 
 .colour:hover {
-  /* width: 125%; */
+  flex-grow: 2;
   transition-duration: 0.3s;
   cursor: pointer;
+  font-size: 15px;
 }
 
 .combination-info {
