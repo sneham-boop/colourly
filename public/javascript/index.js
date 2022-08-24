@@ -121,10 +121,19 @@ $(() => {
   $(document).ready(function () {
     $(".float-menu-show").click(function (event) {
       const { id } = this;
+      const width = $(window).width();
+      const height = $(window).height();
+      const heightDiff = height - event.pageY;
+      const widthDiff = width - event.pageX;
+      let menuLocation = { x: event.pageX, y: event.pageY };
+      
+      if (heightDiff < 240) menuLocation.y -= 240;
+      if (widthDiff < 275) menuLocation.x -= 275;
+
       $("#combination-nav-container").css({
         display: "block",
-        left: event.pageX,
-        top: event.pageY,
+        left: menuLocation.x,
+        top: menuLocation.y,
       });
     });
   });
@@ -136,26 +145,4 @@ $(() => {
       $("#combination-nav-container").css({ display: "none" });
     }
   });
-
-  // Colour width adjustments on hover
-  // $(".combination").mouseenter(function () {
-  //   const $colour = $(this).find(".colour");
-  //   // console.log($colour);
-  // $(".colour").mouseenter(function () {
-  //   const otherColours = $(this).siblings();
-  //   const length = otherColours.length;
-  //   const smallWidth = `${Math.floor(100 / length)}%`;
-  //   const hoverWidth = 100 - smallWidth * length;
-  //   $(this).css({ width: hoverWidth });
-  //   for (const id in otherColours) {
-  //     const colour = otherColours[id];
-  //     if ($(colour).hasClass("colour")) {
-  //       console.log(smallWidth);
-  //       $(colour).css({ width: smallWidth });
-  //     } else {
-  //       break;
-  //     }
-  //   }
-  // });
-  // });
 });
