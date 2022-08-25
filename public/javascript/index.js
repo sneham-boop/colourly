@@ -123,35 +123,50 @@ $(() => {
       const { id } = this;
       const width = $(window).width();
       const height = $(window).height();
-      const heightDiff = height - event.pageY;
-      const widthDiff = width - event.pageX;
-      let menuLocation = { x: event.pageX, y: event.pageY };
+      let x = $(this).offset().left - 16;
+      let y = $(this).offset().top + 27;
 
-      if (heightDiff < 240) {
-        menuLocation.y -= 240
+      let screenX = event.clientX;
+      let screenY = event.clientY;
+
+      const widthDiff = width - screenX;
+      const heightDiff = height - screenY;
+
+      $("#upper-triangle").css({
+        display: "block",
+        left: "8px",
+        top: "-15px",
+      });
+      $("#lower-triangle").css({
+        display: "none",
+        left: "8px",
+      });
+
+      if (heightDiff <= 240) {
+        y -= 240 + 24;
         $("#upper-triangle").css({
-          display: "none"
+          display: "none",
         });
         $("#lower-triangle").css({
-          display: "block"
+          display: "block",
         });
-      };
+      }
       if (widthDiff < 275) {
-        menuLocation.x -= 275
+        x -= 225;
         if ($("#lower-triangle").css("display") === "block") {
           $("#lower-triangle").css({
-            left: "230px"
+            left: "233px",
           });
         } else {
           $("#upper-triangle").css({
-            left: "230px"
+            left: "233px",
           });
         }
-      };
+      }
       $("#combination-nav-container").css({
         display: "block",
-        left: menuLocation.x,
-        top: menuLocation.y,
+        left: x,
+        top: y,
       });
     });
   });
