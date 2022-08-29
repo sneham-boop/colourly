@@ -169,6 +169,28 @@ app.get("/colours/:id", (req, res) => {
     });
 });
 
+// Show saved combinations by a user
+app.get("/combinations/users/saved", (req, res) => {
+  const { user } = req.session;
+
+  if (!user) return res.redirect("/colours");
+
+  database
+    .showSavedCombinations(user.id)
+    .then((result) => {
+      const { combinations } = result;
+      const templateVars = {
+        combinations,
+        user
+      };
+      res.render("my_combinations", templateVars);
+    })
+    .catch((e) => {
+      console.error(e);
+      res.send(e);
+    });
+});
+
 // ** API Routes ** //
 
 // Show all existing colours
@@ -246,6 +268,24 @@ app.get("/api/combinations/users/:id", (req, res) => {
   const { id } = req.params;
   database
     .getCombinationsForUser(id)
+    .then((result) => {
+      const { combinations } = result;
+      const templateVars = {
+        combinations,
+      };
+      res.send(templateVars);
+    })
+    .catch((e) => {
+      console.error(e);
+      res.send(e);
+    });
+});
+
+// Show saved combinations by a user
+app.get("/api/combinations/users/saved/:id", (req, res) => {
+  const { id } = req.params;
+  database
+    .showSavedCombinations(id)
     .then((result) => {
       const { combinations } = result;
       const templateVars = {

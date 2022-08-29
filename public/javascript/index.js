@@ -38,7 +38,6 @@ $(() => {
 
   // Toggles the collapsible menu
   $("#collapsible-menu-icon").click(function () {
-    console.log($(window).width());
     $(".menu").slideToggle();
   });
 
