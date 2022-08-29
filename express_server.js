@@ -262,13 +262,11 @@ app.get("/api/combinations/users/:id", (req, res) => {
 // Delete a combination
 app.delete("/api/combinations/:id", function (req, res) {
   const { id } = req.params;
-console.log("Deleting combination number: ",id);
-  // return;
+
   database
     .deleteCombination(id)
     .then((result) => {
-      console.log(result);
-      res.redirect("/colours");
+      res.send(result);
     })
     .catch((e) => {
       console.error(e);

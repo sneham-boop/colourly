@@ -169,18 +169,19 @@ $(() => {
         left: x,
         top: y,
       });
-
-      
     });
 
     // Delete
-      $("#delete-combination").click(function () {
-        // console.log(id);
-        $.ajax({
-          type: "DELETE",
-          url: `/api/combinations/${id}`
-        });
+    $("#delete-combination").click(function () {
+      // console.log(id);
+      $.ajax({
+        type: "DELETE",
+        url: `/api/combinations/${id}`,
+        success: function (result) {
+          window.location.reload();
+        },
       });
+    });
   });
 
   // Float menu hide
