@@ -160,7 +160,7 @@ app.get("/colours/:id", (req, res) => {
       const templateVars = {
         combinations,
         user,
-        heading: "My Creations"
+        heading: "My Creations",
       };
       res.render("my_combinations", templateVars);
     })
@@ -183,9 +183,26 @@ app.get("/combinations/users/saved", (req, res) => {
       const templateVars = {
         combinations,
         user,
-        heading: "Palette Library"
+        heading: "Palette Library",
       };
       res.render("my_combinations", templateVars);
+    })
+    .catch((e) => {
+      console.error(e);
+      res.send(e);
+    });
+});
+
+// Save a combination
+app.post("/combinations/users/saved/", (req, res) => {
+  const { user } = req.session;
+  const { id } = req.body;
+  if (!user) return res.redirect("/colours");
+
+  database
+    .saveCombination(id, user.id)
+    .then((result) => {
+      if (result) res.redirect("/colours");
     })
     .catch((e) => {
       console.error(e);
@@ -305,9 +322,15 @@ app.get("/api/combinations/users/saved/:id", (req, res) => {
 app.delete("/api/combinations/:id", function (req, res) {
   const { id } = req.params;
   const { user } = req.session;
-  const {userID, combinationUserID} = req.body;
-  console.log("User",userID, "is trying to delete a combination by", combinationUserID);
-  if (userID !== combinationUserID) return res.send("Not allowed. Please log in with proper credentials.");
+  const { userID, combinationUserID } = req.body;
+  console.log(
+    "User",
+    userID,
+    "is trying to delete a combination by",
+    combinationUserID
+  );
+  if (userID !== combinationUserID)
+    return res.send("Not allowed. Please log in with proper credentials.");
 
   database
     .deleteCombination(id)

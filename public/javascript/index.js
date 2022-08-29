@@ -42,9 +42,26 @@ $(() => {
   });
 
   // Trigger likes update in the database and display them
+  // $(".material-symbols-rounded").click(function () {
+  //   const id = $(this).attr("id");
+  //   $.post(`/api/likes/${id}`, (data) => {
+  //     const { combination } = data;
+  //     let formattedLikes = "";
+  //     if (combination.likes < 1000) {
+  //       formattedLikes = combination.likes.toString();
+  //     } else {
+  //       const rounded = Math.round(combination.likes / 100) / 10;
+  //       formattedLikes = rounded + "k";
+  //     }
+  //     $(this).css("font-variation-settings", "'FILL' 1");
+  //     $(this).next().html(formattedLikes);
+  //   });
+  // });
+
+  // Trigger save combination
   $(".material-symbols-rounded").click(function () {
     const id = $(this).attr("id");
-    $.post(`/api/likes/${id}`, (data) => {
+    $.post(`/combinations/users/saved/`, { id }, (data) => {
       const { combination } = data;
       let formattedLikes = "";
       if (combination.likes < 1000) {
@@ -177,7 +194,12 @@ $(() => {
 
     // Delete
     $("#delete-combination").click(function () {
-      console.log("User ID is:",userID,"Combination user ID is:", combinationUserID);
+      console.log(
+        "User ID is:",
+        userID,
+        "Combination user ID is:",
+        combinationUserID
+      );
       if (userID === combinationUserID) {
         $.ajax({
           type: "DELETE",
