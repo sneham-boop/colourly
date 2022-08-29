@@ -126,11 +126,11 @@ $(() => {
       let x = $(this).offset().left - 16;
       let y = $(this).offset().top + 27;
 
-      let screenX = event.clientX;
-      let screenY = event.clientY;
+      let screenClickX = event.clientX;
+      let screenClickY = event.clientY;
 
-      const widthDiff = width - screenX;
-      const heightDiff = height - screenY;
+      const widthDiff = width - screenClickX;
+      const heightDiff = height - screenClickY;
 
       $("#upper-triangle").css({
         display: "block",
