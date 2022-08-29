@@ -160,6 +160,7 @@ app.get("/colours/:id", (req, res) => {
       const templateVars = {
         combinations,
         user,
+        heading: "My Creations"
       };
       res.render("my_combinations", templateVars);
     })
@@ -181,7 +182,8 @@ app.get("/combinations/users/saved", (req, res) => {
       const { combinations } = result;
       const templateVars = {
         combinations,
-        user
+        user,
+        heading: "Palette Library"
       };
       res.render("my_combinations", templateVars);
     })
