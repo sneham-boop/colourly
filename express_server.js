@@ -262,6 +262,10 @@ app.get("/api/combinations/users/:id", (req, res) => {
 // Delete a combination
 app.delete("/api/combinations/:id", function (req, res) {
   const { id } = req.params;
+  const { user } = req.session;
+  const {userID, combinationUserID} = req.body;
+  console.log("User",userID, "is trying to delete a combination by", combinationUserID);
+  if (userID !== combinationUserID) return res.send("Not allowed. Please log in with proper credentials.");
 
   database
     .deleteCombination(id)

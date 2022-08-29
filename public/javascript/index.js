@@ -120,8 +120,13 @@ $(() => {
   // Float menu show
   $(document).ready(function () {
     let id;
+    let userID;
+    let combinationUserID;
     $(".float-menu-show").click(function (event) {
       id = this.id;
+      userID = $(this).attr("user_id");
+      combinationUserID = $(this).attr("combination_user_id");
+
       const width = $(window).width();
       const height = $(window).height();
       let x = $(this).offset().left - 16;
@@ -173,14 +178,17 @@ $(() => {
 
     // Delete
     $("#delete-combination").click(function () {
-      // console.log(id);
-      $.ajax({
-        type: "DELETE",
-        url: `/api/combinations/${id}`,
-        success: function (result) {
-          window.location.reload();
-        },
-      });
+      console.log("User ID is:",userID,"Combination user ID is:", combinationUserID);
+      if (userID === combinationUserID) {
+        $.ajax({
+          type: "DELETE",
+          url: `/api/combinations/${id}`,
+          data: { userID, combinationUserID },
+          success: function (result) {
+            window.location.reload();
+          },
+        });
+      }
     });
   });
 
