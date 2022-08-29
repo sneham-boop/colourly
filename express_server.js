@@ -259,6 +259,23 @@ app.get("/api/combinations/users/:id", (req, res) => {
     });
 });
 
+// Delete a combination
+app.delete("/api/combinations/:id", function (req, res) {
+  const { id } = req.params;
+console.log("Deleting combination number: ",id);
+  // return;
+  database
+    .deleteCombination(id)
+    .then((result) => {
+      console.log(result);
+      res.redirect("/colours");
+    })
+    .catch((e) => {
+      console.error(e);
+      res.send(e);
+    });
+});
+
 // Update a like
 app.post("/api/likes/:id", (req, res) => {
   const { id } = req.params;

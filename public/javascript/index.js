@@ -119,8 +119,9 @@ $(() => {
 
   // Float menu show
   $(document).ready(function () {
+    let id;
     $(".float-menu-show").click(function (event) {
-      const { id } = this;
+      id = this.id;
       const width = $(window).width();
       const height = $(window).height();
       let x = $(this).offset().left - 16;
@@ -168,7 +169,18 @@ $(() => {
         left: x,
         top: y,
       });
+
+      
     });
+
+    // Delete
+      $("#delete-combination").click(function () {
+        // console.log(id);
+        $.ajax({
+          type: "DELETE",
+          url: `/api/combinations/${id}`
+        });
+      });
   });
 
   // Float menu hide
@@ -178,4 +190,16 @@ $(() => {
       $("#combination-nav-container").css({ display: "none" });
     }
   });
+
+  // // Delete
+  // $("#delete-combination").click(function () {
+  //   console.log(this);
+  //   // $.ajax({
+  //   //   type: "POST",
+  //   //   url: "/api/combinations/:id",
+  //   //   data: data,
+  //   //   success: success,
+  //   //   dataType: dataType
+  //   // });
+  // });
 });
