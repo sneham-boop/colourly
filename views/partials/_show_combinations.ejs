@@ -9,11 +9,12 @@
           <% } %>
       </section>
       <div class="combination-info">
-        <span class="material-symbols-rounded" id="<%=combinations[id].id%>">
+        <span class="material-symbols-rounded" id="<%=combinations[id].id%>" <% if (user) {%>user="<%=user.email%>"<%}%>>
           favorite 
         </span>
         <p class="likes">
-          <%=combinations[id].likes%>
+          <!-- <%=combinations[id].likes%> -->
+          450
         </p>
         <i class="fa-solid fa-ellipsis float-menu-show" id="<%=combinations[id].id%>" combination_user_id="<%=combinations[id].user_id%>" <% if (user) { %> user_id="<%=user.id%>" <% }%> ></i>
       </div>

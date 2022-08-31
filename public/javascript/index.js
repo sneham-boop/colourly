@@ -58,29 +58,10 @@ $(() => {
   //   });
   // });
 
-  // Trigger save combination
-  $(".material-symbols-rounded").click(function () {
-    const id = $(this).attr("id");
-    $.post(`/combinations/users/saved/`, { id }, (data) => {
-      const { combination } = data;
-      let formattedLikes = "";
-      if (combination.likes < 1000) {
-        formattedLikes = combination.likes.toString();
-      } else {
-        const rounded = Math.round(combination.likes / 100) / 10;
-        formattedLikes = rounded + "k";
-      }
-      $(this).css("font-variation-settings", "'FILL' 1");
-      $(this).next().html(formattedLikes);
-    });
-  });
 
   // Sign in form
-  $("#sign-in-form i").click(function () {
-    $("#opaque").fadeOut();
-  });
-
-  $(".sign-in-link, #menu-sign-in").click(function () {
+  // Show sign in function
+  const showSignIn = () => {
     if ($(".menu").is(":visible")) {
       $(".menu").slideToggle();
     }
@@ -88,13 +69,21 @@ $(() => {
     $("#sign-in-form").show();
     $("#opaque").fadeIn();
     $("#sign-up-form").hide();
+  };
+
+  // Hide
+  $("#sign-in-form i").click(function () {
+    $("#opaque").fadeOut();
   });
 
-  // Sign up form
+  $(".sign-in-link, #menu-sign-in").click(showSignIn);
+
+  // Sign up form hide
   $("#sign-up-form i").click(function () {
     $("#opaque").fadeOut();
   });
 
+  // Sign up form show
   $(".sign-up-button, #menu-sign-up").click(function () {
     if ($(".menu").is(":visible")) {
       $(".menu").slideToggle();
@@ -109,6 +98,33 @@ $(() => {
     $.post(`/logout`, function () {
       location.reload();
     });
+  });
+
+  // Trigger save or unsave of a combination
+  $(".material-symbols-rounded").click(function () {
+    const id = $(this).attr("id");
+    const user = $(this).attr("user");
+    if (user) {
+      let checkFill = $(this).css("font-variation-settings");
+      let save;
+
+      // Save palette
+      if (checkFill.includes('"FILL" 0')) {
+        save = true;
+        checkFill = checkFill.replace('"FILL" 0', '"FILL" 1');
+      }
+      // Unsave palette
+      else {
+        save = false;
+        checkFill = checkFill.replace('"FILL" 1', '"FILL" 0');
+      }
+      $.post(`/combinations/users/saved/`, { id, save }, (data) => {
+        $(this).css("font-variation-settings", checkFill);
+      });
+      return;
+    }
+    // Need to sign in or sign up to save a palette.
+    showSignIn();
   });
 
   // Copy colour
