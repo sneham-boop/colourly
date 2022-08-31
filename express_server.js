@@ -196,12 +196,29 @@ app.get("/combinations/users/saved", (req, res) => {
 // Save a combination
 app.post("/combinations/users/saved/", (req, res) => {
   const { user } = req.session;
-  const { id } = req.body;
-  if (!user) return res.redirect("/colours");
-
-  database
+  const { id, save } = req.body;
+  if (!user) return res.status(400).send("User must log in prior to saving a combination.");
+  
+  // Save
+  if (save === "true") {
+    database
     .saveCombination(id, user.id)
     .then((result) => {
+      console.log("Saved", result);
+      if (result) res.redirect("/colours");
+    })
+    .catch((e) => {
+      console.error(e);
+      res.send(e);
+    });
+    return;
+  }
+
+  // Unsave
+  database
+    .unsaveCombination(id, user.id)
+    .then((result) => {
+      console.log("Unsaved", result);
       if (result) res.redirect("/colours");
     })
     .catch((e) => {
