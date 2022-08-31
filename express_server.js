@@ -47,6 +47,7 @@ app.get("/colours", (req, res) => {
     .getAllCombinations()
     .then((result) => {
       const { combinations } = result;
+      // console.log(combinations);
       for (const id in combinations) {
         const likes = formatLikes(combinations[id].likes);
         combinations[id].likes = likes;
@@ -197,20 +198,22 @@ app.get("/combinations/users/saved", (req, res) => {
 app.post("/combinations/users/saved/", (req, res) => {
   const { user } = req.session;
   const { id, save } = req.body;
-  if (!user) return res.status(400).send("User must log in prior to saving a combination.");
-  
+  if (!user)
+    return res
+      .status(400)
+      .send("User must log in prior to saving a combination.");
+
   // Save
   if (save === "true") {
     database
-    .saveCombination(id, user.id)
-    .then((result) => {
-      console.log("Saved", result);
-      if (result) res.redirect("/colours");
-    })
-    .catch((e) => {
-      console.error(e);
-      res.send(e);
-    });
+      .saveCombination(id, user.id)
+      .then(({combination}) => {
+        if (!combination) res.redirect("/colours");
+      })
+      .catch((e) => {
+        console.error(e);
+        res.send(e);
+      });
     return;
   }
 
