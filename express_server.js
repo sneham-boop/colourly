@@ -37,6 +37,10 @@ const formatLikes = (likes = 2345) => {
   return formattedLikes;
 };
 
+const formatSaves = (combinations) => {
+  
+};
+
 // ** User routes ** //
 
 // Show main page
@@ -47,9 +51,9 @@ app.get("/colours", (req, res) => {
     .getAllCombinations()
     .then((result) => {
       const { combinations } = result;
-      // console.log(combinations);
+      console.log(combinations);
       for (const id in combinations) {
-        const likes = formatLikes(combinations[id].likes);
+        const likes = combinations[id].savedBy.length;
         combinations[id].likes = likes;
       }
       const templateVars = {
