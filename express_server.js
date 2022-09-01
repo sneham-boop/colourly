@@ -37,25 +37,17 @@ const formatLikes = (likes = 2345) => {
   return formattedLikes;
 };
 
-const formatSaves = (combinations) => {
-  
-};
+const formatSaves = (combinations) => {};
 
 // ** User routes ** //
 
 // Show main page
 app.get("/colours", (req, res) => {
   const { user } = req.session;
- 
+
   database
     .getAllCombinations()
-    .then((result) => {
-      const { combinations } = result;
-      // console.log(combinations);
-      // for (const id in combinations) {
-      //   const likes = combinations[id].savedBy.length;
-      //   combinations[id].likes = likes;
-      // }
+    .then(({ combinations }) => {
       const templateVars = {
         combinations,
         user,
@@ -138,7 +130,6 @@ app.post("/register", (req, res) => {
   database
     .addUser(user)
     .then((user) => {
-      // console.log("This user was just added:", user);
       req.session.user = user;
       res.redirect("/colours");
     })
@@ -151,17 +142,10 @@ app.get("/colours/:id", (req, res) => {
   const { id } = req.params;
 
   if (!user || !id) return res.redirect("/colours");
-  // console.log("Logged in as:", req.session, id);
 
   database
     .getCombinationsForUser(id)
-    .then((result) => {
-      const { combinations } = result;
-
-      // for (const id in combinations) {
-      //   const likes = formatLikes(combinations[id].likes);
-      //   combinations[id].likes = likes;
-      // }
+    .then(({ combinations }) => {
       const templateVars = {
         combinations,
         user,
@@ -211,7 +195,7 @@ app.post("/combinations/users/saved/", (req, res) => {
   if (save === "true") {
     database
       .saveCombination(id, user.id)
-      .then(({combination}) => {
+      .then(({ combination }) => {
         if (!combination) res.redirect("/colours");
         console.log(combination);
         return combination;
