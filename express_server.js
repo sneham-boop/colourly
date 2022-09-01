@@ -137,14 +137,13 @@ app.post("/register", (req, res) => {
 });
 
 // Show my colour combinations
-app.get("/colours/:id", (req, res) => {
+app.get("/colours/created", (req, res) => {
   const { user } = req.session;
-  const { id } = req.params;
 
-  if (!user || !id) return res.redirect("/colours");
+  if (!user) return res.redirect("/colours");
 
-  database
-    .getCombinationsForUser(id)
+  database 
+    .getCombinationsForUser(user.id)
     .then(({ combinations }) => {
       const templateVars = {
         combinations,
