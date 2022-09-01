@@ -46,12 +46,12 @@ const formatSaves = (combinations) => {
 // Show main page
 app.get("/colours", (req, res) => {
   const { user } = req.session;
-  // console.log("Logged in as:", req.session);
+ 
   database
     .getAllCombinations()
     .then((result) => {
       const { combinations } = result;
-      console.log(combinations);
+      // console.log(combinations);
       for (const id in combinations) {
         const likes = combinations[id].savedBy.length;
         combinations[id].likes = likes;
@@ -213,6 +213,8 @@ app.post("/combinations/users/saved/", (req, res) => {
       .saveCombination(id, user.id)
       .then(({combination}) => {
         if (!combination) res.redirect("/colours");
+        console.log(combination);
+        return combination;
       })
       .catch((e) => {
         console.error(e);
@@ -226,7 +228,8 @@ app.post("/combinations/users/saved/", (req, res) => {
     .unsaveCombination(id, user.id)
     .then((result) => {
       console.log("Unsaved", result);
-      if (result) res.redirect("/colours");
+      // if (result) res.redirect("/colours");
+      return result;
     })
     .catch((e) => {
       console.error(e);

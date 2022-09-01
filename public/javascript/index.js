@@ -114,13 +114,33 @@ $(() => {
         checkFill = checkFill.replace('"FILL" 0', '"FILL" 1');
       }
       // Unsave palette
-      else {
+      else if (checkFill.includes('"FILL" 1')) {
         save = false;
         checkFill = checkFill.replace('"FILL" 1', '"FILL" 0');
       }
       $.post(`/combinations/users/saved/`, { id, save }, (data) => {
+        // window.location.reload();
+        console.log("In the post request.", data);
         $(this).css("font-variation-settings", checkFill);
+        $(this).load();
       });
+      // .done(()=>{
+      //   console.log("In the .done");
+      //   $(this).load();
+      // });
+
+      // $.ajax({
+      //   type: "POST",
+      //   url: `/combinations/users/saved/`,
+      //   data: { id, save },
+      //   success: function (result) {
+      //     console.log(result);
+      //     $(this).css("font-variation-settings", checkFill);
+      //     window.location.reload();
+      //     // $(this).css("font-variation-settings", checkFill);
+      //   },
+      // });
+
       return;
     }
     // Need to sign in or sign up to save a palette.
