@@ -37,26 +37,10 @@ $(() => {
   $(".colour").mouseenter(handlerIn).mouseleave(handlerOut);
 
   // Toggles the collapsible menu
-  $("#collapsible-menu-icon").click(function () {
+  $("#collapsible-menu-icon").click(function (event) {
+    event.stopPropagation();
     $(".menu").slideToggle();
   });
-
-  // Trigger likes update in the database and display them
-  // $(".material-symbols-rounded").click(function () {
-  //   const id = $(this).attr("id");
-  //   $.post(`/api/likes/${id}`, (data) => {
-  //     const { combination } = data;
-  //     let formattedLikes = "";
-  //     if (combination.likes < 1000) {
-  //       formattedLikes = combination.likes.toString();
-  //     } else {
-  //       const rounded = Math.round(combination.likes / 100) / 10;
-  //       formattedLikes = rounded + "k";
-  //     }
-  //     $(this).css("font-variation-settings", "'FILL' 1");
-  //     $(this).next().html(formattedLikes);
-  //   });
-  // });
 
 
   // Sign in form
@@ -249,23 +233,16 @@ $(() => {
     });
   });
 
-  // Float menu hide
+  // Float menu & colapsible menu hide
   $(document).on("click", function (event) {
     const target = event.target;
     if (!$(target).hasClass("float-menu-show")) {
       $("#combination-nav-container").css({ display: "none" });
     }
-  });
 
-  // // Delete
-  // $("#delete-combination").click(function () {
-  //   console.log(this);
-  //   // $.ajax({
-  //   //   type: "POST",
-  //   //   url: "/api/combinations/:id",
-  //   //   data: data,
-  //   //   success: success,
-  //   //   dataType: dataType
-  //   // });
-  // });
+    if (!$(target).hasClass(".menu-icon")) {
+      console.log("Main menu.");
+      $(".menu").slideUp();
+    }
+  });
 });
