@@ -101,7 +101,7 @@ $(() => {
   });
 
   // Trigger save or unsave of a combination
-  $(".material-symbols-rounded").click(function () {
+  $(".combination-info .material-symbols-rounded").click(function () {
     const id = $(this).attr("id");
     const user = $(this).attr("user");
     if (user) {
