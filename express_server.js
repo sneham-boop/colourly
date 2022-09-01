@@ -158,10 +158,10 @@ app.get("/colours/:id", (req, res) => {
     .then((result) => {
       const { combinations } = result;
 
-      for (const id in combinations) {
-        const likes = formatLikes(combinations[id].likes);
-        combinations[id].likes = likes;
-      }
+      // for (const id in combinations) {
+      //   const likes = formatLikes(combinations[id].likes);
+      //   combinations[id].likes = likes;
+      // }
       const templateVars = {
         combinations,
         user,
