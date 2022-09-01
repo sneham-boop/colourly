@@ -52,10 +52,10 @@ app.get("/colours", (req, res) => {
     .then((result) => {
       const { combinations } = result;
       // console.log(combinations);
-      for (const id in combinations) {
-        const likes = combinations[id].savedBy.length;
-        combinations[id].likes = likes;
-      }
+      // for (const id in combinations) {
+      //   const likes = combinations[id].savedBy.length;
+      //   combinations[id].likes = likes;
+      // }
       const templateVars = {
         combinations,
         user,
