@@ -52,6 +52,7 @@ $(() => {
 
     $("#sign-in-form").show();
     $("#opaque").fadeIn();
+    $("#sign-in-form input[type|='email']").focus();
     $("#sign-up-form").hide();
   };
 
@@ -74,6 +75,7 @@ $(() => {
     }
     $("#sign-up-form").show();
     $("#opaque").fadeIn();
+    $("#sign-up-form input[type|='email']").focus();
     $("#sign-in-form").hide();
   });
 

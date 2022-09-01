@@ -8,7 +8,7 @@ nav {
 }
 
 nav a {
-  color: black;
+  color: #212529;
   font-family: "Ubuntu", sans-serif;
   font-weight: 700;
   font-size: 25px;
@@ -51,7 +51,7 @@ a:hover {
 }
 
 .sign-in-link {
-  color: black;
+  color: #212529;
   padding: 5px 10px;
   font-family: "Ubuntu", sans-serif;
 }
@@ -71,7 +71,7 @@ a:hover {
 .menu {
   display: none;
   position: absolute;
-  color: black;
+  color: #212529;
   list-style-type: none;
   width: 100%;
   text-align: end;
