@@ -165,6 +165,7 @@ $(() => {
 
       const width = $(window).width();
       const height = $(window).height();
+
       let x = $(this).offset().left - 16;
       let y = $(this).offset().top + 27;
 
@@ -184,8 +185,13 @@ $(() => {
         left: "8px",
       });
 
-      if (heightDiff <= 240) {
-        y -= 240 + 24;
+      const menuHeight = $("#combination-nav-container").height();
+      const menuHeightOffset = menuHeight + 30;
+
+      console.log(menuHeight);
+
+      if (heightDiff <= menuHeightOffset) {
+        y -= menuHeightOffset;
         $("#upper-triangle").css({
           display: "none",
         });
@@ -241,7 +247,6 @@ $(() => {
     }
 
     if (!$(target).hasClass(".menu-icon")) {
-      console.log("Main menu.");
       $(".menu").slideUp();
     }
   });
