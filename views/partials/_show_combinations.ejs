@@ -9,13 +9,13 @@
           <% } %>
       </section>
       <div class="combination-info">
-        <span class="material-symbols-rounded" <%if(user && combinations[id].savedBy.includes(user.id)) {%> style='font-variation-settings:"FILL" 1;'<%}%>id="<%=combinations[id].id%>" <% if (user) {%>user="<%=user.email%>"<%}%>>
+        <span class="material-symbols-rounded" <%if(user && combinations[id].savedBy.includes(user.id)) {%> style='font-variation-settings:"FILL" 1;'<%}%> comb_id="<%=combinations[id].id%>" <% if (user) {%>user="<%=user.email%>"<%}%>>
           favorite 
-        </span>
+        </span> 
         <p id=<%=`likes-${id}`%> class="likes">
           <%=combinations[id].saves%>
         </p>
-        <i class="fa-solid fa-ellipsis float-menu-show" id="<%=combinations[id].id%>" combination_user_id="<%=combinations[id].user_id%>" <% if (user) { %> user_id="<%=user.id%>" <% }%> ></i>
+        <i class="fa-solid fa-ellipsis float-menu-show" id="<%=combinations[id].id%>" created_by="<%=combinations[id].createdBy%>" <% if (user) { %> user_id="<%=user.id%>" <% }%> ></i>
       </div>
     </div>
     <% } %>

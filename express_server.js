@@ -330,14 +330,9 @@ app.get("/api/combinations/users/saved/:id", (req, res) => {
 app.delete("/api/combinations/:id", function (req, res) {
   const { id } = req.params;
   const { user } = req.session;
-  const { userID, combinationUserID } = req.body;
-  console.log(
-    "User",
-    userID,
-    "is trying to delete a combination by",
-    combinationUserID
-  );
-  if (userID !== combinationUserID)
+  const { userID, createdBy } = req.body;
+  
+  if (userID !== createdBy || user.id !== parseInt(createdBy))
     return res.send("Not allowed. Please log in with proper credentials.");
 
   database

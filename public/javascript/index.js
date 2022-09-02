@@ -86,11 +86,10 @@ $(() => {
   });
 
   // Trigger save or unsave of a combination
-  $(".combination-info .material-symbols-rounded").click(function () {
-    const id = $(this).attr("id");
+  $(".combination-info .material-symbols-rounded, #save-combination-menu").click(function () {
+    const comb_id = $(this).attr("comb_id");
     const user = $(this).attr("user");
     
-    console.log(this);
     if (user) {
       let checkFill = $(this).css("font-variation-settings");
       let save;
@@ -99,22 +98,20 @@ $(() => {
       if (checkFill.includes('"FILL" 0')) {
         save = true;
         checkFill = checkFill.replace('"FILL" 0', '"FILL" 1');
-        console.log("In the post request, FILL is 0");
       }
-      // Unsave palette if (checkFill.includes('"FILL" 1'))
+      // Unsave palette 
       else {
         save = false;
         checkFill = checkFill.replace('"FILL" 1', '"FILL" 0');
-        console.log("In the post request, FILL is 1");
       }
 
       $.ajax({
         type: "POST",
         url: `/combinations/users/saved/`,
-        data: { id, save },
+        data: { id: comb_id, save },
         success: (result) => {
           $(this).css("font-variation-settings", checkFill);
-          $(`#likes-${id}`).load(location.href + ` #likes-${id}`);
+          $(`#likes-${comb_id}`).load(location.href + ` #likes-${comb_id}`);
         },
       });
       return;
@@ -149,11 +146,11 @@ $(() => {
   $(document).ready(function () {
     let id;
     let userID;
-    let combinationUserID;
+    let createdBy;
     $(".float-menu-show").click(function (event) {
       id = this.id;
       userID = $(this).attr("user_id");
-      combinationUserID = $(this).attr("combination_user_id");
+      createdBy = $(this).attr("created_by");
 
       const width = $(window).width();
       const height = $(window).height();
@@ -180,7 +177,6 @@ $(() => {
       const menuHeight = $("#combination-nav-container").height();
       const menuHeightOffset = menuHeight + 30;
 
-      console.log(menuHeight);
 
       if (heightDiff <= menuHeightOffset) {
         y -= menuHeightOffset;
@@ -212,17 +208,11 @@ $(() => {
 
     // Delete
     $("#delete-combination").click(function () {
-      console.log(
-        "User ID is:",
-        userID,
-        "Combination user ID is:",
-        combinationUserID
-      );
-      if (userID === combinationUserID) {
+      if (userID === createdBy) {
         $.ajax({
           type: "DELETE",
           url: `/api/combinations/${id}`,
-          data: { userID, combinationUserID },
+          data: { userID, createdBy },
           success: function (result) {
             window.location.reload();
           },
