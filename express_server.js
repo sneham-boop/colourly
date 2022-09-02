@@ -142,7 +142,7 @@ app.get("/colours/created", (req, res) => {
 
   if (!user) return res.redirect("/colours");
 
-  database 
+  database
     .getCombinationsForUser(user.id)
     .then(({ combinations }) => {
       const templateVars = {
@@ -196,8 +196,7 @@ app.post("/combinations/users/saved/", (req, res) => {
       .saveCombination(id, user.id)
       .then(({ combination }) => {
         if (!combination) res.redirect("/colours");
-        console.log(combination);
-        return combination;
+        res.send({ combination });
       })
       .catch((e) => {
         console.error(e);
@@ -209,10 +208,9 @@ app.post("/combinations/users/saved/", (req, res) => {
   // Unsave
   database
     .unsaveCombination(id, user.id)
-    .then((result) => {
-      console.log("Unsaved", result);
-      // if (result) res.redirect("/colours");
-      return result;
+    .then(({ combination }) => {
+      if (!combination) res.redirect("/colours");
+      res.send({ combination });
     })
     .catch((e) => {
       console.error(e);

@@ -42,7 +42,6 @@ $(() => {
     $(".menu").slideToggle();
   });
 
-
   // Sign in form
   // Show sign in function
   const showSignIn = () => {
@@ -90,6 +89,8 @@ $(() => {
   $(".combination-info .material-symbols-rounded").click(function () {
     const id = $(this).attr("id");
     const user = $(this).attr("user");
+    
+    console.log(this);
     if (user) {
       let checkFill = $(this).css("font-variation-settings");
       let save;
@@ -98,35 +99,39 @@ $(() => {
       if (checkFill.includes('"FILL" 0')) {
         save = true;
         checkFill = checkFill.replace('"FILL" 0', '"FILL" 1');
+        console.log("In the post request, FILL is 0");
       }
-      // Unsave palette
-      else if (checkFill.includes('"FILL" 1')) {
+      // Unsave palette if (checkFill.includes('"FILL" 1'))
+      else {
         save = false;
         checkFill = checkFill.replace('"FILL" 1', '"FILL" 0');
+        console.log("In the post request, FILL is 1");
       }
-      $.post(`/combinations/users/saved/`, { id, save }, (data) => {
-        // window.location.reload();
-        console.log("In the post request.", data);
-        $(this).css("font-variation-settings", checkFill);
-        $(this).load();
-      });
-      // .done(()=>{
-      //   console.log("In the .done");
+      // $.post(`/combinations/users/saved/`, { id, save }, (data) => {
+      //   // window.location.reload();
+      //   console.log("In the post request.", data);
+      //   $(this).css("font-variation-settings", checkFill);
       //   $(this).load();
+      //   // $(this).reload();
       // });
 
-      // $.ajax({
-      //   type: "POST",
-      //   url: `/combinations/users/saved/`,
-      //   data: { id, save },
-      //   success: function (result) {
-      //     console.log(result);
-      //     $(this).css("font-variation-settings", checkFill);
-      //     window.location.reload();
-      //     // $(this).css("font-variation-settings", checkFill);
-      //   },
-      // });
-
+      $.ajax({
+        type: "POST",
+        url: `/combinations/users/saved/`,
+        data: { id, save },
+        success: (result) => {
+          console.log(result);
+          $(this).css("font-variation-settings", checkFill);
+          // window.location.reload();
+          // $(".combinations-container").load(
+          //   location.href + " .combinations-container"
+          // );
+          const parent = $(this).parent();
+          const saves = $(parent).find(".likes");
+          console.log(saves);
+          $(`#likes-${id}`).load(location.href + ` #likes-${id}`);
+        },
+      });
       return;
     }
     // Need to sign in or sign up to save a palette.

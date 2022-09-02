@@ -12,7 +12,7 @@
         <span class="material-symbols-rounded" <%if(user && combinations[id].savedBy.includes(user.id)) {%> style='font-variation-settings:"FILL" 1;'<%}%>id="<%=combinations[id].id%>" <% if (user) {%>user="<%=user.email%>"<%}%>>
           favorite 
         </span>
-        <p class="likes">
+        <p id=<%=`likes-${id}`%> class="likes">
           <%=combinations[id].saves%>
           <!-- 450 -->
         </p>
