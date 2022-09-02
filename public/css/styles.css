@@ -21,3 +21,7 @@
  color:rgb(112, 112, 103);
  font-weight: lighter;
 }
+
+#main {
+ min-height: 675px;
+}
