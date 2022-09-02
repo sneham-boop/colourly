@@ -107,28 +107,13 @@ $(() => {
         checkFill = checkFill.replace('"FILL" 1', '"FILL" 0');
         console.log("In the post request, FILL is 1");
       }
-      // $.post(`/combinations/users/saved/`, { id, save }, (data) => {
-      //   // window.location.reload();
-      //   console.log("In the post request.", data);
-      //   $(this).css("font-variation-settings", checkFill);
-      //   $(this).load();
-      //   // $(this).reload();
-      // });
 
       $.ajax({
         type: "POST",
         url: `/combinations/users/saved/`,
         data: { id, save },
         success: (result) => {
-          console.log(result);
           $(this).css("font-variation-settings", checkFill);
-          // window.location.reload();
-          // $(".combinations-container").load(
-          //   location.href + " .combinations-container"
-          // );
-          const parent = $(this).parent();
-          const saves = $(parent).find(".likes");
-          console.log(saves);
           $(`#likes-${id}`).load(location.href + ` #likes-${id}`);
         },
       });
