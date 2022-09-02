@@ -86,12 +86,51 @@ $(() => {
   });
 
   // Trigger save or unsave of a combination
-  $(".combination-info .material-symbols-rounded, #save-combination-menu").click(function () {
-    const comb_id = $(this).attr("comb_id");
-    const user = $(this).attr("user");
-    
-    if (user) {
-      let checkFill = $(this).css("font-variation-settings");
+  // $(".combination-info .material-symbols-rounded, #save-combination-menu").click(function () {
+  //   const comb_id = $(this).attr("comb_id");
+  //   const user = $(this).attr("user");
+
+  //   if (user) {
+  //     let checkFill = $(this).css("font-variation-settings");
+  //     let save;
+
+  //     // Save palette
+  //     if (checkFill.includes('"FILL" 0')) {
+  //       save = true;
+  //       checkFill = checkFill.replace('"FILL" 0', '"FILL" 1');
+  //     }
+  //     // Unsave palette
+  //     else {
+  //       save = false;
+  //       checkFill = checkFill.replace('"FILL" 1', '"FILL" 0');
+  //     }
+
+  //     $.ajax({
+  //       type: "POST",
+  //       url: `/combinations/users/saved/`,
+  //       data: { id: comb_id, save },
+  //       success: (result) => {
+  //         $(this).css("font-variation-settings", checkFill);
+  //         $(`#likes-${comb_id}`).load(location.href + ` #likes-${comb_id}`);
+  //       },
+  //     });
+  //     return;
+  //   }
+  //   // Need to sign in or sign up to save a palette.
+  //   showSignIn();
+  // });
+
+  // Save combination function
+  function saveACombination(CID, UID) {
+
+    // Combination ID coming through the heart within combination-info or the float menu
+    const comb_id = $(this).attr("comb_id") || CID;
+    const userID = $(this).attr("user_id") || UID;
+
+
+    $(document).find()
+    if (userID) {
+      let checkFill = $(`#heart-${comb_id}`).css("font-variation-settings");
       let save;
 
       // Save palette
@@ -99,7 +138,7 @@ $(() => {
         save = true;
         checkFill = checkFill.replace('"FILL" 0', '"FILL" 1');
       }
-      // Unsave palette 
+      // Unsave palette
       else {
         save = false;
         checkFill = checkFill.replace('"FILL" 1', '"FILL" 0');
@@ -110,7 +149,7 @@ $(() => {
         url: `/combinations/users/saved/`,
         data: { id: comb_id, save },
         success: (result) => {
-          $(this).css("font-variation-settings", checkFill);
+          $(`#heart-${comb_id}`).css("font-variation-settings", checkFill);
           $(`#likes-${comb_id}`).load(location.href + ` #likes-${comb_id}`);
         },
       });
@@ -118,7 +157,10 @@ $(() => {
     }
     // Need to sign in or sign up to save a palette.
     showSignIn();
-  });
+  }
+
+  // Save triggered from .combination-info
+  $(".combination-info .material-symbols-rounded").click(saveACombination);
 
   // Copy colour
   $(".colour").click(function (event) {
@@ -142,7 +184,7 @@ $(() => {
     }
   });
 
-  // Float menu show
+  // Float menu show and controls
   $(document).ready(function () {
     let id;
     let userID;
@@ -177,7 +219,6 @@ $(() => {
       const menuHeight = $("#combination-nav-container").height();
       const menuHeightOffset = menuHeight + 30;
 
-
       if (heightDiff <= menuHeightOffset) {
         y -= menuHeightOffset;
         $("#upper-triangle").css({
@@ -199,6 +240,17 @@ $(() => {
           });
         }
       }
+
+      // Status of "Save" text in float menu
+      $heart = $(`#heart-${id}`);
+      let checkFill = $heart.css("font-variation-settings");
+      if (checkFill.includes('"FILL" 0')) {
+        $("#combination-nav-container #save-combination-menu p").empty().append("Save");
+      }
+      else {
+        $("#combination-nav-container #save-combination-menu p").empty().append("Unsave");
+      }
+      
       $("#combination-nav-container").css({
         display: "block",
         left: x,
@@ -206,7 +258,7 @@ $(() => {
       });
     });
 
-    // Delete
+    // Delete triggered from float menu
     $("#delete-combination").click(function () {
       if (userID === createdBy) {
         $.ajax({
@@ -219,6 +271,9 @@ $(() => {
         });
       }
     });
+
+    // Save triggered from float menu
+    $("#save-combination-menu").click(()=>saveACombination(id, userID));
   });
 
   // Float menu & colapsible menu hide

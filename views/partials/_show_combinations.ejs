@@ -9,14 +9,19 @@
           <% } %>
       </section>
       <div class="combination-info">
-        <span class="material-symbols-rounded" <%if(user && combinations[id].savedBy.includes(user.id)) {%> style='font-variation-settings:"FILL" 1;'<%}%> comb_id="<%=combinations[id].id%>" <% if (user) {%>user="<%=user.email%>"<%}%>>
+        <span id=<%=`heart-${id}`%> class="material-symbols-rounded" <%if(user && combinations[id].savedBy.includes(user.id)) {%> style='font-variation-settings:"FILL" 1;'<%}%> comb_id="<%=combinations[id].id%>" <% if (user) {%>user_id="<%=user.id%>"<%}%>>
           favorite 
         </span> 
         <p id=<%=`likes-${id}`%> class="likes">
           <%=combinations[id].saves%>
+           <!-- <%if (combinations[id].saves > 0) { %>
+            <%=combinations[id].saves%>
+              <% } else { %>
+                <%=0%>
+                  <% }%> -->
         </p>
         <i class="fa-solid fa-ellipsis float-menu-show" id="<%=combinations[id].id%>" created_by="<%=combinations[id].createdBy%>" <% if (user) { %> user_id="<%=user.id%>" <% }%> ></i>
       </div>
     </div>
-    <% } %>
+    <% } %> 
 </div> 
