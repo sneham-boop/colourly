@@ -85,41 +85,6 @@ $(() => {
     });
   });
 
-  // Trigger save or unsave of a combination
-  // $(".combination-info .material-symbols-rounded, #save-combination-menu").click(function () {
-  //   const comb_id = $(this).attr("comb_id");
-  //   const user = $(this).attr("user");
-
-  //   if (user) {
-  //     let checkFill = $(this).css("font-variation-settings");
-  //     let save;
-
-  //     // Save palette
-  //     if (checkFill.includes('"FILL" 0')) {
-  //       save = true;
-  //       checkFill = checkFill.replace('"FILL" 0', '"FILL" 1');
-  //     }
-  //     // Unsave palette
-  //     else {
-  //       save = false;
-  //       checkFill = checkFill.replace('"FILL" 1', '"FILL" 0');
-  //     }
-
-  //     $.ajax({
-  //       type: "POST",
-  //       url: `/combinations/users/saved/`,
-  //       data: { id: comb_id, save },
-  //       success: (result) => {
-  //         $(this).css("font-variation-settings", checkFill);
-  //         $(`#likes-${comb_id}`).load(location.href + ` #likes-${comb_id}`);
-  //       },
-  //     });
-  //     return;
-  //   }
-  //   // Need to sign in or sign up to save a palette.
-  //   showSignIn();
-  // });
-
   // Save combination function
   function saveACombination(CID, UID) {
 
@@ -189,10 +154,12 @@ $(() => {
     let id;
     let userID;
     let createdBy;
+    let colours;
     $(".float-menu-show").click(function (event) {
       id = this.id;
       userID = $(this).attr("user_id");
       createdBy = $(this).attr("created_by");
+      colours = $(this).attr("colours");
 
       const width = $(window).width();
       const height = $(window).height();
@@ -274,7 +241,30 @@ $(() => {
 
     // Save triggered from float menu
     $("#save-combination-menu").click(()=>saveACombination(id, userID));
+
+    // Open palette from float menu
+    $("#open-palette-combination-menu").click(function () {
+      const coloursArray = colours.split(",");
+      const width = `${Math.round(100/coloursArray.length)}%`;
+      console.log(coloursArray);
+
+      let coloursHTML = "";
+      
+      coloursArray.forEach(colour => {
+        coloursHTML = coloursHTML.concat(`<div style="background-color:#${colour};"></div>`);
+      });
+      console.log(coloursHTML);
+      $("#palette-fullscreen-palette").empty().append(coloursHTML);
+      $("#palette-fullscreen").css({"display":"inline"});
+      $("#palette-fullscreen-palette div").css({"width":width});
+      console.log($("#palette-fullscreen-palette").html());
+      
+    });
   });
+
+  $("#palette-fullscreen-cancel").click(()=>{
+    $("#palette-fullscreen").css({"display":"none"});
+  })
 
   // Float menu & colapsible menu hide
   $(document).on("click", function (event) {
