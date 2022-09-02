@@ -87,13 +87,11 @@ $(() => {
 
   // Save combination function
   function saveACombination(CID, UID) {
-
     // Combination ID coming through the heart within combination-info or the float menu
     const comb_id = $(this).attr("comb_id") || CID;
     const userID = $(this).attr("user_id") || UID;
 
-
-    $(document).find()
+    $(document).find();
     if (userID) {
       let checkFill = $(`#heart-${comb_id}`).css("font-variation-settings");
       let save;
@@ -212,12 +210,15 @@ $(() => {
       $heart = $(`#heart-${id}`);
       let checkFill = $heart.css("font-variation-settings");
       if (checkFill.includes('"FILL" 0')) {
-        $("#combination-nav-container #save-combination-menu p").empty().append("Save");
+        $("#combination-nav-container #save-combination-menu p")
+          .empty()
+          .append("Save");
+      } else {
+        $("#combination-nav-container #save-combination-menu p")
+          .empty()
+          .append("Unsave");
       }
-      else {
-        $("#combination-nav-container #save-combination-menu p").empty().append("Unsave");
-      }
-      
+
       $("#combination-nav-container").css({
         display: "block",
         left: x,
@@ -240,31 +241,32 @@ $(() => {
     });
 
     // Save triggered from float menu
-    $("#save-combination-menu").click(()=>saveACombination(id, userID));
+    $("#save-combination-menu").click(() => saveACombination(id, userID));
 
     // Open palette from float menu
-    $("#open-palette-combination-menu").click(function () {
+    $(
+      "#open-palette-combination-menu, #view-fullscreen-combination-menu"
+    ).click(function () {
       const coloursArray = colours.split(",");
-      const width = `${Math.round(100/coloursArray.length)}%`;
-      console.log(coloursArray);
+      const width = `${Math.round(100 / coloursArray.length)}%`;
 
       let coloursHTML = "";
-      
-      coloursArray.forEach(colour => {
-        coloursHTML = coloursHTML.concat(`<div style="background-color:#${colour};"></div>`);
+
+      coloursArray.forEach((colour) => {
+        coloursHTML = coloursHTML.concat(
+          `<div style="background-color:#${colour};"></div>`
+        );
       });
-      console.log(coloursHTML);
+
       $("#palette-fullscreen-palette").empty().append(coloursHTML);
-      $("#palette-fullscreen").css({"display":"inline"});
-      $("#palette-fullscreen-palette div").css({"width":width});
-      console.log($("#palette-fullscreen-palette").html());
-      
+      $("#palette-fullscreen").css({ display: "inline" });
+      $("#palette-fullscreen-palette div").css({ width: width });
     });
   });
 
-  $("#palette-fullscreen-cancel").click(()=>{
-    $("#palette-fullscreen").css({"display":"none"});
-  })
+  $("#palette-fullscreen-cancel").click(() => {
+    $("#palette-fullscreen").css({ display: "none" });
+  });
 
   // Float menu & colapsible menu hide
   $(document).on("click", function (event) {

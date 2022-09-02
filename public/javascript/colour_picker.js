@@ -84,6 +84,7 @@ $(() => {
   $(".colour-selection").click(function () {
     const newColour = $("#color-label").css("background-color");
     $(this).css("background-color", newColour);
+    console.log("This is the new colour",newColour);
   });
 
   $("#new-combination-container button").click(function () {
@@ -93,14 +94,23 @@ $(() => {
       .each(function () {
         const colorValue = $(this).css("background-color");
         const decimalColour = colorValue.match(/\d+/gi);
+        console.log("colours received.", decimalColour);
+        if (decimalColour.length === 4) return;
         const hexColour = decimalColour
           .map((num) => {
-            const col = parseInt(num);
-            if (col > 0) return col.toString(16).toUpperCase();
+            let col = parseInt(num);
+            if (col > 0) {
+              col = col.toString(16);
+              if (col.length === 1) col = `0${col}`;
+              return col.toUpperCase();
+            } 
+            if (col === 0) return "00";
           })
           .join("");
         if (hexColour !== "") combination.push(hexColour);
+        
       });
+      console.log("Resulting combination",combination);
     $.post(`/api/combinations`, { combination });
   });
 });
