@@ -1,0 +1,32 @@
+<!-- Test users -->
+<%- include('partials/_head') %>
+  <main id="main">
+    <div id="test-users-heading-container">
+      <h3 id="test-users-heading">Would you like to test this application?</h3>
+      <p id="test-users-subtext">Use one of the logins below if you would like to continue without creating your own
+        account.</p>
+      <span id="login-test-users" class="sign-in-link">Login</span>
+    </div>
+    <section id="test-users">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">User 1</h5>
+          <p class="card-text">Email: janedoe@doe.com</p>
+          <p class="card-text">Password: password</p>
+        </div>
+      </div>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">User 2</h5>
+          <p class="card-text">Email: johndoe@doe.com</p>
+          <p class="card-text">Password: password</p>
+        </div>
+      </div>
+    </section>
+    <%- include('partials/_sign_in_up_form') %>
+  </main>
+  <%- include('partials/_footer') %>
+    <%- include('partials/_bootstrap_scripts') %>
+      </body>
+
+      </html>

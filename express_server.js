@@ -73,6 +73,18 @@ app.get("/colours/palette", (req, res) => {
   res.render("new_palette", templateVars);
 });
 
+// Test users
+app.get("/test", (req, res) => {
+  const { user } = req.session;
+  if (user) {
+    console.log("You are already logged in!");
+    return res.redirect("/colours");
+  }
+  const templateVars = {
+    user,
+  };
+  res.render("test_users", templateVars);
+});
 // Login a user
 
 const login = function (email, password) {

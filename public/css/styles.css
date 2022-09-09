@@ -4,6 +4,11 @@
   padding: 0px;
 }
 
+h1,h2,h3,h4,h5,h6,p,div,span {
+  margin: 0px;
+  padding: 0px;
+}
+
 #heading-container {
   height: 40vh;
   display: flex;
@@ -24,4 +29,6 @@
 
 #main {
  min-height: 675px;
+ font-family: "Ubuntu", sans-serif;
 }
+
