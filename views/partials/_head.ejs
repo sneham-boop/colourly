@@ -4,74 +4,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-    integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-  
-  
-  <%- include('_local_stylesheets.ejs') %>
-
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <title>
-    Colour Database
-  </title>
+  <%- include('_remote_css_fonts') %>
+    <%- include('_local_stylesheets') %>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <title>
+        Colourly
+      </title>
 </head>
 
 <body>
   <header>
-    <nav id="navigation" class="navbar navbar-light navbar-expand-lg">
-      <a class="navbar-brand" href="/colours">Colourly</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item <%if(active==='home'){%>active<%}%>">
-            <a class="nav-link" href="/colours">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <% if(!user){ %>
-          <li class="nav-item" id="menu-sign-in">
-            <a class="nav-link" href="#">Sign in</a>
-          </li>
-          <li class="nav-item" id="menu-sign-up">
-            <a class="nav-link" href="#">Sign up</a>
-          </li> 
-          <% } %>
-          <li class="nav-item  <%if(active==='created'){%>active<%}%>" id="menu-my-combinations">
-            <a class="nav-link" href="/colours/created">Palettes you created</a>
-          </li> 
-          <li class="nav-item  <%if(active==='saved'){%>active<%}%>" id="menu-my-saved-combinations">
-            <a class="nav-link" href="/combinations/users/saved">Saved Palettes</a>
-          </li> 
-          <li class="nav-item  <%if(active==='new'){%>active<%}%>" id="menu-new-palette">
-            <a class="nav-link" href="/colours/palette">Create</a>
-          </li> 
-          <li class="nav-item  <%if(active==='test'){%>active<%}%>" id="menu-test_user">
-            <a class="nav-link" href="/test">Test Users</a>
-          </li> 
-        </ul>
-        <% if(user){ %>
-        <span class="navbar-text">
-          Signed in as <%=user.email%>
-        </span>
-        <form class="form-inline my-2 my-lg-0 ml-3" action="/logout" method="POST">
-          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Logout</button>
-        </form>
-        <% } %>
-      </div>
-    </nav>
+    <%- include('_nav') %>
   </header>
