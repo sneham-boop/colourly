@@ -217,7 +217,7 @@ $(() => {
         $("#combination-nav-container #save-combination-menu p")
           .empty()
           .append("Unsave");
-      }
+      } 
 
       $("#combination-nav-container").css({
         display: "block",
@@ -275,8 +275,14 @@ $(() => {
       $("#combination-nav-container").css({ display: "none" });
     }
 
-    if (!$(target).hasClass(".menu-icon")) {
-      $(".menu").slideUp();
+    if (!$(target).hasClass(".navbar-toggler")) {
+      $("#navbarText").collapse("hide");
     }
   });
+
+  $(document).scroll(function () {
+    $("#combination-nav-container").css({ display: "none" });
+    $("#navbarText").collapse("hide");
+  })
+
 });
