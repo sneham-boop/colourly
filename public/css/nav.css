@@ -18,6 +18,17 @@ nav > a {
   color: #212529;
 }
 
+
+/* Media Queries */
+@media (min-width: 0px) and (max-width: 990px) {
+
+/* Remove margin from logout button in responsive menu */
+#navbarText .ml-3{
+  margin-left: 0px!important; 
+}
+
+}
+
 /* 
 
 
