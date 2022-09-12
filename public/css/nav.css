@@ -1,11 +1,11 @@
 nav {
   border-top: 1px solid rgb(198, 198, 198);
   border-bottom: 1px solid rgb(198, 198, 198);
+  font-family: "Ubuntu", sans-serif;
 }
 
 nav > a {
   color: #212529;
-  font-family: "Ubuntu", sans-serif;
   font-weight: 700;
   font-size: 25px;
 }
