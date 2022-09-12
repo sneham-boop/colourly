@@ -51,6 +51,7 @@ app.get("/colours", (req, res) => {
       const templateVars = {
         combinations,
         user,
+        active: "home"
       };
       res.render("index", templateVars);
     })
@@ -68,7 +69,8 @@ app.get("/colours/palette", (req, res) => {
     return res.redirect("/colours");
   }
   const templateVars = {
-    user,
+    active: "new",
+    user
   };
   res.render("new_palette", templateVars);
 });
@@ -76,15 +78,17 @@ app.get("/colours/palette", (req, res) => {
 // Test users
 app.get("/test", (req, res) => {
   const { user } = req.session;
-  if (user) {
-    console.log("You are already logged in!");
-    return res.redirect("/colours");
-  }
+  // if (user) {
+  //   console.log("You are already logged in!");
+  //   return res.redirect("/colours");
+  // }
   const templateVars = {
-    user,
+    active: "test",
+    user
   };
   res.render("test_users", templateVars);
 });
+
 // Login a user
 
 const login = function (email, password) {
@@ -161,6 +165,7 @@ app.get("/colours/created", (req, res) => {
         combinations,
         user,
         heading: "My Creations",
+        active: "created"
       };
       res.render("my_combinations", templateVars);
     })
@@ -184,6 +189,7 @@ app.get("/combinations/users/saved", (req, res) => {
         combinations,
         user,
         heading: "Palette Library",
+        active: "saved"
       };
       res.render("my_combinations", templateVars);
     })
