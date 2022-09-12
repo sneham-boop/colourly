@@ -1,11 +1,12 @@
 #test-users-heading-container {
-  padding-top: 3em;
+  padding-top: 4em;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
   width: 100%;
-}
+} 
+
 #test-users-heading-container h3 {
   font-size: 1.75rem;
 }
@@ -19,13 +20,19 @@
   width: 100%;
 }
 
+#test-users .card {
+  height: 
+}
+
 #test-users .card:hover {
   box-shadow: 0px 4px 4px rgb(210, 208, 208);
 }
 
 #test-users-subtext {
   color: #7d7c83;
-  font-size: 18px;
+  font-size: 16px;
+  width: 40%;
+  text-align: center;
 }
 
 #login-test-users {

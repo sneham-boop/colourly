@@ -78,10 +78,10 @@ app.get("/colours/palette", (req, res) => {
 // Test users
 app.get("/test", (req, res) => {
   const { user } = req.session;
-  // if (user) {
-  //   console.log("You are already logged in!");
-  //   return res.redirect("/colours");
-  // }
+  if (user) {
+    console.log("You are already logged in!");
+    return res.redirect("/colours");
+  }
   const templateVars = {
     active: "test",
     user
