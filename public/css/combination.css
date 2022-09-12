@@ -6,7 +6,7 @@
   flex-wrap: wrap;
   padding: 2em;
   width: 100%;
-  margin:0px;
+  margin: 0px;
   margin-bottom: 5em;
 }
 
@@ -14,6 +14,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.5em;
+  width: 30vw;
 }
 
 .combination {
@@ -21,20 +22,20 @@
   flex-direction: row;
   gap: 0px;
   height: 8em;
-  width: 30vw;
-  min-width: 350px;
+  /* width: 30vw; */
+  /* min-width: 350px; */
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 0 2px rgb(110, 110, 110);
 }
 
-.colour { 
+.colour {
   flex-grow: 1;
-  flex-shrink: 3;
+  flex-shrink: 4;
   text-align: center;
   padding: 55px 0; /* to center text*/
   vertical-align: middle;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
   font-weight: bold;
   font-size: 5px;
 }
@@ -49,10 +50,10 @@
 .combination-info {
   display: flex;
   flex-direction: row;
-  justify-content:end;
+  justify-content: end;
   gap: 1em;
   margin-right: 1em;
-  color:  rgb(110, 110, 110);
+  color: rgb(110, 110, 110);
 }
 
 .combination-info i {
@@ -60,15 +61,11 @@
 }
 
 .material-symbols-rounded {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48;
-} 
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+}
 
 .combination-info:hover {
-  color:  black;
+  color: black;
   cursor: pointer;
 }
 
@@ -92,4 +89,32 @@
 
 #add-more-combinations a {
   color: white;
+}
+
+/* Media Queries */
+@media (min-width: 0px) and (max-width: 738px) {
+  .single-combination {
+    width: 90vw;
+  }
+}
+
+@media (min-width: 0px) and (max-width: 990px) {
+  .combination {
+    height: 7em;
+  }
+  .colour {
+    padding: 45px 0; /* to center text*/
+  }
+}
+
+@media (min-width: 739px) and (max-width: 1250px) {
+  .single-combination {
+    width: 40%;
+  }
+}
+
+@media (min-width: 1251px) and (max-width: 1429px) {
+  .single-combination {
+    width: 30%;
+  }
 }

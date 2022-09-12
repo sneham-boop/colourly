@@ -1,14 +1,17 @@
 #test-users-heading-container {
-  padding-top: 4em;
+  margin-top: -5em;
+  padding: 1em;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 20px;
   width: 100%;
-} 
+}
 
 #test-users-heading-container h3 {
   font-size: 1.75rem;
+  text-align: center;
 }
 
 #test-users {
@@ -16,21 +19,20 @@
   flex-direction: row;
   justify-content: center;
   gap: 40px;
-  margin: 4em 0;
-  width: 100%;
-}
-
-#test-users .card {
-  height: 
+  margin: 2em;
 }
 
 #test-users .card:hover {
   box-shadow: 0px 4px 4px rgb(210, 208, 208);
 }
 
+#test-users .card {
+  min-width: 250px;
+}
+
 #test-users-subtext {
   color: #7d7c83;
-  font-size: 16px;
+  font-size: 1rem;
   width: 40%;
   text-align: center;
 }
@@ -47,4 +49,21 @@
   background-color: #0055ff;
   transition-duration: 0.2s;
   cursor: pointer;
+}
+
+@media (min-width: 0px) and (max-width: 650px) {
+  #test-users {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #test-users-heading-container {
+    margin-top: 0em;
+  }
+}
+
+@media (min-width: 0px) and (max-width: 990px) {
+  #test-users-subtext {
+    width: 70%;
+  }
 }

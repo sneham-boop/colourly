@@ -4,10 +4,28 @@
   padding: 0px;
 }
 
-h1,h2,h3,h4,h5,h6,p,div,span {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+div,
+span {
   margin: 0px;
   padding: 0px;
 }
+
+body {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: "Ubuntu", sans-serif;
+}
+
 
 #heading-container {
   height: 40vh;
@@ -15,24 +33,39 @@ h1,h2,h3,h4,h5,h6,p,div,span {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 20px;
 }
 
 #heading-container h1 {
   font-size: 60px;
   font-weight: bold;
+  text-align: center;
 }
 
 #heading-container h3 {
- color:rgb(112, 112, 103);
- font-weight: lighter;
-}
-
-#main {
- min-height: 675px;
- font-family: "Ubuntu", sans-serif;
+  color: rgb(112, 112, 103);
+  font-weight: lighter;
+  text-align: center;
+  font-size: 28px;
+  width: 60%;
 }
 
 a:hover {
   text-decoration: none;
 }
 
+@media (min-width: 0px) and (max-width: 990px) {
+  #heading-container {
+    height: 30vh;
+  }
+
+  #heading-container h1 {
+    font-size: 50px;
+    font-weight: bold;
+  }
+
+  #heading-container h3 {
+    width: 70%;
+    font-size: 24px;
+  }
+}

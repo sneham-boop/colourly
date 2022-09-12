@@ -1,7 +1,7 @@
 <div id="combinations-container">
   <% for (const id in combinations) { %>
     <div class="single-combination">
-      <section class="combination">
+      <section class="combination"> 
         <% for (const colour of combinations[id].colours) { %>
           <span class="colour">
             <%=colour%>
@@ -14,11 +14,6 @@
         </span> 
         <p id=<%=`likes-${id}`%> class="likes">
           <%=combinations[id].saves%>
-           <!-- <%if (combinations[id].saves > 0) { %>
-            <%=combinations[id].saves%>
-              <% } else { %>
-                <%=0%>
-                  <% }%> -->
         </p>
         <i class="fa-solid fa-ellipsis float-menu-show" id="<%=combinations[id].id%>" created_by="<%=combinations[id].createdBy%>" colours="<%=combinations[id].colours%>" <% if (user) { %> user_id="<%=user.id%>" <% }%> ></i>
       </div>
