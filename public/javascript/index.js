@@ -36,11 +36,6 @@ $(() => {
 
   $(".colour").mouseenter(handlerIn).mouseleave(handlerOut);
 
-  // Toggles the collapsible menu
-  $("#collapsible-menu-icon").click(function (event) {
-    event.stopPropagation();
-    $(".menu").slideToggle();
-  });
 
   // Sign in form
   // Show sign in function
@@ -280,9 +275,12 @@ $(() => {
     }
   });
 
-  $(document).scroll(function () {
+  $(document).scroll(function (event) {
     $("#combination-nav-container").css({ display: "none" });
     $("#navbarText").collapse("hide");
+    const y = $(this).scrollTop();
+    // console.log(y);
+    y > 270 ? $("#go-up").fadeIn() : $("#go-up").fadeOut();
   })
 
 });
