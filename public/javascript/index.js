@@ -38,31 +38,32 @@ $(() => {
 
 
   // Sign in form
-  // Show sign in function
+  // Show
   const showSignIn = () => {
     $("#sign-in-form").show();
     $("#opaque").fadeIn();
     $("#sign-in-form input[type|='email']").focus();
     $("#sign-up-form").hide();
   };
+  $(".sign-in-link").click(showSignIn);
 
   // Hide
   $("#sign-in-form i").click(function () {
     $("#opaque").fadeOut();
   });
-  $("#menu-sign-in").click(showSignIn);
 
-  // Sign up form hide
-  $("#sign-up-form i").click(function () {
-    $("#opaque").fadeOut();
-  });
-
-  // Sign up form show
-  $("#menu-sign-up").click(function () {
+  // Sign up form
+  // Show
+  $(".sign-up-link").click(function () {
     $("#sign-up-form").show();
     $("#opaque").fadeIn();
     $("#sign-up-form input[type|='email']").focus();
     $("#sign-in-form").hide();
+  });
+
+  // Hide
+  $("#sign-up-form i").click(function () {
+    $("#opaque").fadeOut();
   });
 
   // Save combination function
