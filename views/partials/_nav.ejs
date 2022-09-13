@@ -12,7 +12,7 @@
       <li class="nav-item <%if(active==='home'){%>active<%}%>">
         <a class="nav-link" href="/colours">Home <span class="sr-only">(current)</span></a>
       </li>
-
+      <% if(user){ %>
       <li class="nav-item  <%if(active==='created'){%>active<%}%>" id="menu-my-combinations">
         <a class="nav-link" href="/colours/created">Palettes you created</a>
       </li>
@@ -22,6 +22,7 @@
       <li class="nav-item  <%if(active==='new'){%>active<%}%>" id="menu-new-palette">
         <a class="nav-link" href="/colours/palette">Create</a>
       </li>
+      <% } %>
       <!-- Not logged in -->
       <% if(!user){ %>
         <li class="nav-item  <%if(active==='test'){%>active<%}%>" id="menu-test_user">
@@ -34,6 +35,9 @@
           <a class="nav-link" href="#">Sign up</a>
         </li>
         <% } %>
+        <li class="nav-item <%if(active==='faq'){%>active<%}%>" id="menu-faq">
+          <a class="nav-link" href="/colourly/faq">FAQs</a>
+        </li>
     </ul>
     <!-- Logged in -->
     <% if(user){ %>

@@ -1,0 +1,47 @@
+<!-- Test users -->
+<%- include('partials/_head') %>
+  <main id="main">
+    <section id="faq-container">
+      <h3 class="text-center mb-4 pb-2 text-primary fw-bold">Frequently Asked Questions</h3>
+      <p class="text-center mb-5">
+        Do you have a question that I haven't answered below? Contact me!
+      </p>
+
+      <div class="row">
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="faq-icon-question mb-3"><span class="material-symbols-rounded text-primary">lightbulb</span><h6 class="text-primary"> How did you come up with this idea?</h6></div>
+          <p>This app is inspired by Coolers. I am an artist in my spare time and this application felt like something I would actually use. I was also moved by how intuitive and clean their UI was and I took up the challenge to create a mock based on some of their features. 
+          </p>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="faq-icon-question mb-3"><span class="material-symbols-rounded text-primary">school</span><h6 class="text-primary"> What did you learn?</h6></div>
+          <p>I understood the impact of adding additional data points as an after thought to the application. I had to restructure the database, queries and re-think the movement of data as Colourly developed. Learning from this experience, I appreciate the importance of structuring data well and in advance. 
+          </p>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="faq-icon-question mb-3"><span class="material-symbols-rounded text-primary">bug_report</span><h6 class="text-primary"> How can I test this application?</h6></div>
+          <p>You can use either of the test accounts I've set up <a href="/test">here</a> or create your own account <a href="/test">here</a>.</p>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="faq-icon-question mb-3"><span class="material-symbols-rounded text-primary">construction</span><h6 class="text-primary"> What would you do differently the next time?</h6></div>
+          <p>I would plan the movement and structure of my data prior to jumping straight into front-end development. Also, I would use a front-end framework such as React to better control state within my application. Right, now my application state is sprinkled throughout the application and there is no single source of truth.</p>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="faq-icon-question mb-3"><span class="material-symbols-rounded text-primary">add_circle</span><h6 class="text-primary"> What other features would you like to add to Colourly?</h6></div>
+          <p>I plan to add additional ways to modify colours on the create page. I also plan to offer more details on each colour, such as their RGB / HSL value for example.</p>
+        </p>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="faq-icon-question mb-3"><span class="material-symbols-rounded text-primary">sentiment_very_satisfied</span><h6 class="text-primary"> Did you do any user testing?</h6></div>
+          <p>I did some basic user testing with my friends and colleagues. Based on feedback, I simplified the menu structure and added this FAQ page.
+          </p>
+        </div>
+      </div>
+    </section>
+    <%- include('partials/_sign_in_up_form') %>
+  </main>
+  <%- include('partials/_footer') %>
+    <%- include('partials/_bootstrap_scripts') %>
+      </body>
+
+      </html>

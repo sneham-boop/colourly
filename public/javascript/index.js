@@ -40,10 +40,6 @@ $(() => {
   // Sign in form
   // Show sign in function
   const showSignIn = () => {
-    if ($(".menu").is(":visible")) {
-      $(".menu").slideToggle();
-    }
-
     $("#sign-in-form").show();
     $("#opaque").fadeIn();
     $("#sign-in-form input[type|='email']").focus();
@@ -54,8 +50,7 @@ $(() => {
   $("#sign-in-form i").click(function () {
     $("#opaque").fadeOut();
   });
-
-  $(".sign-in-link, #menu-sign-in").click(showSignIn);
+  $("#menu-sign-in").click(showSignIn);
 
   // Sign up form hide
   $("#sign-up-form i").click(function () {
@@ -63,21 +58,11 @@ $(() => {
   });
 
   // Sign up form show
-  $(".sign-up-button, #menu-sign-up").click(function () {
-    if ($(".menu").is(":visible")) {
-      $(".menu").slideToggle();
-    }
+  $("#menu-sign-up").click(function () {
     $("#sign-up-form").show();
     $("#opaque").fadeIn();
     $("#sign-up-form input[type|='email']").focus();
     $("#sign-in-form").hide();
-  });
-
-  // Sign out menu action
-  $("#menu-sign-out").click(function () {
-    $.post(`/logout`, function () {
-      location.reload();
-    });
   });
 
   // Save combination function

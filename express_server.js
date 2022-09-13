@@ -236,6 +236,19 @@ app.post("/combinations/users/saved/", (req, res) => {
     });
 });
 
+// FAQ page render
+app.get("/colourly/faq", (req, res) => {
+  const { user } = req.session;
+
+  const templateVars = {
+    active: "faq",
+    user
+  };
+
+  res.render("faq", templateVars);
+});
+
+
 // ** API Routes ** ///
 
 // Show all existing colours
