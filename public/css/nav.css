@@ -4,6 +4,10 @@ nav {
   font-family: "Ubuntu", sans-serif;
 }
 
+#navigation {
+  margin-bottom: 2em;
+}
+
 #navigation > a {
   color: #212529;
   font-weight: 700;
