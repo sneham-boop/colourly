@@ -5,8 +5,8 @@
       <h1 id="heading">
         <%=heading%>
       </h1>
-      <h3 id="sub-heading">Would you like to add another colour palette?</h3>
-      <span id="add-more-combinations"><a href="/colours/palette">Add more</a></span>
+      <h3 id="sub-heading"><%=subHeading%></h3>
+      <span id="add-more-combinations"><a href="<%=redirectLink%>"><%=buttonText%></a></span>
     </div>
     <%- include('partials/_show_combinations.ejs') %>
       <%- include('partials/_sign_in_up_form') %>

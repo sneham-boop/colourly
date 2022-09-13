@@ -100,7 +100,7 @@ const login = function (email, password) {
     return { error: "Password does not match!" };
   });
 };
-exports.login = login;
+exports.login = login;  
 
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
@@ -166,6 +166,9 @@ app.get("/colours/created", (req, res) => {
         combinations,
         user,
         heading: "My Creations",
+        subHeading: "Would you like to create a new colour palette?",
+        redirectLink: "/colours/palette",
+        buttonText: "Create",
         active: "created",
       };
       res.render("my_combinations", templateVars);
@@ -190,6 +193,9 @@ app.get("/combinations/users/saved", (req, res) => {
         combinations,
         user,
         heading: "Palette Library",
+        subHeading: "Would you like to add another colour palette to your library?",
+        redirectLink: "/colours",
+        buttonText: "See all available",
         active: "saved",
       };
       res.render("my_combinations", templateVars);

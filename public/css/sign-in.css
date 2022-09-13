@@ -73,14 +73,6 @@ font-size: 18px;
   padding-left: 1em;
 }
 
-#register-link-text a {
-  color: #0055ff;
-}
-
-#register-link-text a:hover {
-  text-decoration: underline;
-}
-
 .form-container input:focus {
   outline: none;
   border: 1px solid #0066ff;
