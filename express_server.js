@@ -51,7 +51,7 @@ app.get("/colours", (req, res) => {
       const templateVars = {
         combinations,
         user,
-        active: "home"
+        active: "home",
       };
       res.render("index", templateVars);
     })
@@ -70,7 +70,7 @@ app.get("/colours/palette", (req, res) => {
   }
   const templateVars = {
     active: "new",
-    user
+    user,
   };
   res.render("new_palette", templateVars);
 });
@@ -84,7 +84,7 @@ app.get("/test", (req, res) => {
   }
   const templateVars = {
     active: "test",
-    user
+    user,
   };
   res.render("test_users", templateVars);
 });
@@ -92,11 +92,12 @@ app.get("/test", (req, res) => {
 // Login a user
 
 const login = function (email, password) {
-  return database.getUserWithEmail(email).then((user) => {
+  return database.getUserWithEmail(email).then(({ user, error }) => {
+    if (error) return { error };
     if (bcrypt.compareSync(password, user.password)) {
-      return user;
+      return { user };
     }
-    return null;
+    return { error: "Password does not match!" };
   });
 };
 exports.login = login;
@@ -104,9 +105,9 @@ exports.login = login;
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
   login(email, password)
-    .then((user) => {
-      if (!user) {
-        res.send({ error: "error" });
+    .then(({ user, error }) => {
+      if (!user || error) {
+        res.redirect("/colours");
         return;
       }
       req.session.user = user;
@@ -165,7 +166,7 @@ app.get("/colours/created", (req, res) => {
         combinations,
         user,
         heading: "My Creations",
-        active: "created"
+        active: "created",
       };
       res.render("my_combinations", templateVars);
     })
@@ -189,7 +190,7 @@ app.get("/combinations/users/saved", (req, res) => {
         combinations,
         user,
         heading: "Palette Library",
-        active: "saved"
+        active: "saved",
       };
       res.render("my_combinations", templateVars);
     })
@@ -242,12 +243,11 @@ app.get("/colourly/faq", (req, res) => {
 
   const templateVars = {
     active: "faq",
-    user
+    user,
   };
 
   res.render("faq", templateVars);
 });
-
 
 // ** API Routes ** ///
 
@@ -362,7 +362,7 @@ app.delete("/api/combinations/:id", function (req, res) {
   const { id } = req.params;
   const { user } = req.session;
   const { userID, createdBy } = req.body;
-  
+
   if (userID !== createdBy || user.id !== parseInt(createdBy))
     return res.send("Not allowed. Please log in with proper credentials.");
 
