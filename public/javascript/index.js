@@ -267,7 +267,7 @@ $(() => {
   $(document).on("click", function (event) {
     const target = event.target;
     if (!$(target).hasClass("float-menu-show")) {
-      $("#combination-nav-container").css({ display: "none" });
+      $("#combination-nav-container").fadeOut();
     }
 
     if (!$(target).hasClass(".navbar-toggler")) {
@@ -276,10 +276,12 @@ $(() => {
   });
 
   $(document).scroll(function (event) {
-    $("#combination-nav-container").css({ display: "none" });
+    // Hide menus if page scrolls
+    $("#combination-nav-container").fadeOut();
     $("#navbarText").collapse("hide");
+
+    // Show/Hide go up button in footer
     const y = $(this).scrollTop();
-    // console.log(y);
     y > 270 ? $("#go-up").fadeIn() : $("#go-up").fadeOut();
   })
 
