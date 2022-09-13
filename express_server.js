@@ -383,23 +383,6 @@ app.delete("/api/combinations/:id", function (req, res) {
     });
 });
 
-// // Update a like
-// app.post("/api/likes/:id", (req, res) => {
-//   const { id } = req.params;
-//   database
-//     .updateLikes(id)
-//     .then((result) => {
-//       const { combination } = result;
-//       const templateVars = {
-//         combination,
-//       };
-//       res.send(templateVars);
-//     })
-//     .catch((e) => {
-//       console.error(e);
-//       res.send(e);
-//     });
-// });
 
 // Add a new combination
 app.post("/api/combinations", (req, res) => {
@@ -413,7 +396,7 @@ app.post("/api/combinations", (req, res) => {
     .addCombinationsForUser(id, colours)
     .then((result) => {
       const { combination } = result;
-      res.redirect("/colours");
+      if(combination) res.send({redirectLink: "/colours/created"});
     })
     .catch((e) => {
       console.error(e);
