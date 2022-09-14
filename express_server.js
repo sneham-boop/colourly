@@ -26,23 +26,11 @@ app.use(
 
 // Import db
 const database = require("./lib/db");
-const { db } = database;
-
-// Helper functions
-
-const formatLikes = (likes = 2345) => {
-  if (likes < 1000) return likes.toString();
-  const rounded = Math.round(likes / 100) / 10;
-  const formattedLikes = rounded + "k";
-  return formattedLikes;
-};
-
-const formatSaves = (combinations) => {};
 
 // ** User routes ** //
 
-// Show main page
-app.get("/colours", (req, res) => {
+// Show home page
+app.get("/colourly", (req, res) => {
   const { user } = req.session;
 
   database
@@ -61,12 +49,21 @@ app.get("/colours", (req, res) => {
     });
 });
 
+// Redirect to home
+app.get("/", (req, res) => {
+  res.redirect("/colourly");
+});
+
+app.get("/home", (req, res) => {
+  res.redirect("/colourly");
+});
+
 // Save your favourite - Colour picker screen
-app.get("/colours/palette", (req, res) => {
+app.get("/colourly/palette", (req, res) => {
   const { user } = req.session;
   if (!user) {
     console.log("This user does not exist!");
-    return res.redirect("/colours");
+    return res.redirect("/colourly");
   }
   const templateVars = {
     active: "new",
@@ -80,7 +77,7 @@ app.get("/test", (req, res) => {
   const { user } = req.session;
   if (user) {
     console.log("You are already logged in!");
-    return res.redirect("/colours");
+    return res.redirect("/colourly");
   }
   const templateVars = {
     active: "test",
@@ -100,18 +97,18 @@ const login = function (email, password) {
     return { error: "Password does not match!" };
   });
 };
-exports.login = login;  
+exports.login = login;
 
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
   login(email, password)
     .then(({ user, error }) => {
       if (!user || error) {
-        res.redirect("/colours");
+        res.redirect("/colourly");
         return;
       }
       req.session.user = user;
-      res.redirect("/colours");
+      res.redirect("/colourly");
     })
     .catch((e) => res.send(e));
 });
@@ -120,7 +117,7 @@ app.post("/login", (req, res) => {
 
 app.post("/logout", (req, res) => {
   req.session.user = null;
-  res.redirect("/colours");
+  res.redirect("/colourly");
 });
 
 // Register a new user
@@ -135,7 +132,7 @@ app.post("/register", (req, res) => {
 
   if (email === "" || password === "") {
     message.text = "Enter a valid email and/or password.";
-    return res.redirect("/colours");
+    return res.redirect("/colourly");
   }
 
   // Add user if info valid
@@ -148,16 +145,16 @@ app.post("/register", (req, res) => {
     .addUser(user)
     .then((user) => {
       req.session.user = user;
-      res.redirect("/colours");
+      res.redirect("/colourly");
     })
     .catch((e) => res.send(e));
 });
 
 // Show my colour combinations
-app.get("/colours/created", (req, res) => {
+app.get("/colourly/created", (req, res) => {
   const { user } = req.session;
 
-  if (!user) return res.redirect("/colours");
+  if (!user) return res.redirect("/colourly");
 
   database
     .getCombinationsForUser(user.id)
@@ -167,7 +164,7 @@ app.get("/colours/created", (req, res) => {
         user,
         heading: "My Creations",
         subHeading: "Would you like to create a new colour palette?",
-        redirectLink: "/colours/palette",
+        redirectLink: "/colourly/palette",
         buttonText: "Create",
         active: "created",
       };
@@ -183,7 +180,7 @@ app.get("/colours/created", (req, res) => {
 app.get("/combinations/users/saved", (req, res) => {
   const { user } = req.session;
 
-  if (!user) return res.redirect("/colours");
+  if (!user) return res.redirect("/colourly");
 
   database
     .showSavedCombinations(user.id)
@@ -193,8 +190,9 @@ app.get("/combinations/users/saved", (req, res) => {
         combinations,
         user,
         heading: "Palette Library",
-        subHeading: "Would you like to add another colour palette to your library?",
-        redirectLink: "/colours",
+        subHeading:
+          "Would you like to add another colour palette to your library?",
+        redirectLink: "/colourly",
         buttonText: "See all available",
         active: "saved",
       };
@@ -220,7 +218,7 @@ app.post("/combinations/users/saved/", (req, res) => {
     database
       .saveCombination(id, user.id)
       .then(({ combination }) => {
-        if (!combination) res.redirect("/colours");
+        if (!combination) res.redirect("/colourly");
         res.send({ combination });
       })
       .catch((e) => {
@@ -234,7 +232,7 @@ app.post("/combinations/users/saved/", (req, res) => {
   database
     .unsaveCombination(id, user.id)
     .then(({ combination }) => {
-      if (!combination) res.redirect("/colours");
+      if (!combination) res.redirect("/colourly");
       res.send({ combination });
     })
     .catch((e) => {
@@ -258,7 +256,7 @@ app.get("/colourly/faq", (req, res) => {
 // ** API Routes ** ///
 
 // Show all existing colours
-app.get("/api/colours", (req, res) => {
+app.get("/api/colourly", (req, res) => {
   database
     .getAllColours()
     .then((result) => {
@@ -275,7 +273,7 @@ app.get("/api/colours", (req, res) => {
 });
 
 // Show single colour
-app.get("/api/colours/:id", (req, res) => {
+app.get("/api/colourly/:id", (req, res) => {
   const { id } = req.params;
   database
     .getColour(id)
@@ -383,7 +381,6 @@ app.delete("/api/combinations/:id", function (req, res) {
     });
 });
 
-
 // Add a new combination
 app.post("/api/combinations", (req, res) => {
   const { combination } = req.body;
@@ -396,7 +393,7 @@ app.post("/api/combinations", (req, res) => {
     .addCombinationsForUser(id, colours)
     .then((result) => {
       const { combination } = result;
-      if(combination) res.send({redirectLink: "/colours/created"});
+      if (combination) res.send({ redirectLink: "/colourly/created" });
     })
     .catch((e) => {
       console.error(e);
