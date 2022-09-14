@@ -261,6 +261,9 @@ app.get("/api/colours", (req, res) => {
     .getAllColours()
     .then((result) => {
       const { colours } = result;
+
+      if (!colours) return res.status(500).send('Could not find colours');
+
       const templateVars = {
         colours,
       };
@@ -275,12 +278,63 @@ app.get("/api/colours", (req, res) => {
 // Get single colour
 app.get("/api/colours/:id", (req, res) => {
   const { id } = req.params;
+
+  if (!parseInt(id)) return res.status(400).send(`${id} is not a number. Please enter a colour id.`);
+
   database
     .getColour(id)
     .then((result) => {
       const { colour } = result;
+
+      if (colour.length === 0) return res.status(500).send(`Could not find colour with id: ${id}`);
+
       const templateVars = {
         colour,
+      };
+      res.send(templateVars);
+    })
+    .catch((e) => {
+      console.error(e);
+      res.send(e);
+    });
+});
+
+// Users (Only Read from CRUD)
+// Get all users
+app.get("/api/users", (req, res) => {
+  database
+    .getAllUsers()
+    .then((result) => {
+      const { users } = result;
+
+      if (!users) return res.status(500).send('Could not find users.');
+
+      const templateVars = {
+        users,
+      };
+      res.send(templateVars);
+    })
+    .catch((e) => {
+      console.error(e);
+      res.send(e);
+    });
+});
+
+// Get user
+app.get("/api/users/:id", (req, res) => {
+  const { id } = req.params;
+
+  if (!parseInt(id)) return res.status(400).send(`${id} is not a number. Please enter a valid user id.`);
+
+  database
+    .getUser(id)
+    .then((result) => {
+      const { user } = result;
+
+      if (user.length === 0) return res.status(500).send(`Could not find user with id: ${id}`);
+
+      const templateVars = {
+        user,
       };
       res.send(templateVars);
     })
@@ -297,6 +351,9 @@ app.get("/api/combinations", (req, res) => {
     .getAllCombinations()
     .then((result) => {
       const { combinations } = result;
+
+      if (!combinations) return res.status(500).send('Could not find combinations.');
+
       const templateVars = {
         combinations,
       };
@@ -311,10 +368,16 @@ app.get("/api/combinations", (req, res) => {
 // Get single combination
 app.get("/api/combinations/:id", (req, res) => {
   const { id } = req.params;
+
+  if (!parseInt(id)) return res.status(400).send(`${id} is not a number. Please enter a valid combination id.`);
+
   database
     .getCombination(id)
     .then((result) => {
       const { combination } = result;
+ 
+      if (combination.length === 0) return res.status(500).send(`Could not find combination with id: ${id}`);
+
       const templateVars = {
         combination,
       };
@@ -329,10 +392,17 @@ app.get("/api/combinations/:id", (req, res) => {
 // Get all combinations created by a user
 app.get("/api/combinations/users/:id", (req, res) => {
   const { id } = req.params;
+
+  if (!parseInt(id)) return res.status(400).send(`${id} is not a number. Please enter a valid user id.`);
+
   database
     .getCombinationsForUser(id)
     .then((result) => {
       const { combinations } = result;
+      const combinationIDs = Object.keys(combinations);
+
+      if (combinationIDs.length === 0) return res.status(500).send(`Could not find any combinations for user id: ${id}`);
+
       const templateVars = {
         combinations,
       };
@@ -347,10 +417,17 @@ app.get("/api/combinations/users/:id", (req, res) => {
 // Get all combinations saved by a user
 app.get("/api/combinations/saved/users/:id", (req, res) => {
   const { id } = req.params;
+
+  if (!parseInt(id)) return res.status(400).send(`${id} is not a number. Please enter a valid user id.`);
+
   database
     .showSavedCombinations(id)
     .then((result) => {
       const { combinations } = result;
+
+      const combinationIDs = Object.keys(combinations);
+      if (combinationIDs.length === 0) return res.status(500).send(`Could not find any combinations for user id: ${id}`);
+
       const templateVars = {
         combinations,
       };
@@ -365,6 +442,9 @@ app.get("/api/combinations/saved/users/:id", (req, res) => {
 // Delete a combination
 app.delete("/api/combinations/:id", function (req, res) {
   const { id } = req.params;
+
+  if (!parseInt(id)) return res.status(400).send(`${id} is not a number. Please enter a valid combination id.`);
+
   const { user } = req.session;
   const { userID, createdBy } = req.body;
 
