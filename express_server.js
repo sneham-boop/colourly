@@ -254,8 +254,9 @@ app.get("/colourly/faq", (req, res) => {
 
 // ** API Routes ** ///
 
-// Show all existing colours
-app.get("/api/colourly", (req, res) => {
+// Colours (Only Read from CRUD)
+// Get all colours
+app.get("/api/colours", (req, res) => {
   database
     .getAllColours()
     .then((result) => {
@@ -271,8 +272,8 @@ app.get("/api/colourly", (req, res) => {
     });
 });
 
-// Show single colour
-app.get("/api/colourly/:id", (req, res) => {
+// Get single colour
+app.get("/api/colours/:id", (req, res) => {
   const { id } = req.params;
   database
     .getColour(id)
@@ -289,7 +290,8 @@ app.get("/api/colourly/:id", (req, res) => {
     });
 });
 
-// Show all existing combinations
+// Combinations (Only Create, Read & Delete from CRUD)
+// Get all combinations
 app.get("/api/combinations", (req, res) => {
   database
     .getAllCombinations()
@@ -306,7 +308,7 @@ app.get("/api/combinations", (req, res) => {
     });
 });
 
-// Show specific combinations based on combination id
+// Get single combination
 app.get("/api/combinations/:id", (req, res) => {
   const { id } = req.params;
   database
@@ -324,7 +326,7 @@ app.get("/api/combinations/:id", (req, res) => {
     });
 });
 
-// Show combinations for a user
+// Get all combinations created by a user
 app.get("/api/combinations/users/:id", (req, res) => {
   const { id } = req.params;
   database
@@ -342,8 +344,8 @@ app.get("/api/combinations/users/:id", (req, res) => {
     });
 });
 
-// Show saved combinations by a user
-app.get("/api/colourly/combinations/saved/:id", (req, res) => {
+// Get all combinations saved by a user
+app.get("/api/combinations/saved/users/:id", (req, res) => {
   const { id } = req.params;
   database
     .showSavedCombinations(id)
@@ -366,6 +368,7 @@ app.delete("/api/combinations/:id", function (req, res) {
   const { user } = req.session;
   const { userID, createdBy } = req.body;
 
+  // Check authentication
   if (userID !== createdBy || user.id !== parseInt(createdBy))
     return res.send("Not allowed. Please log in with proper credentials.");
 
@@ -380,11 +383,12 @@ app.delete("/api/combinations/:id", function (req, res) {
     });
 });
 
-// Add a new combination
+// Create a new combination
 app.post("/api/combinations", (req, res) => {
   const { combination } = req.body;
   const { user } = req.session;
 
+  // Check authentication
   if (!combination || !user) return res.send(400);
   const colours = combination;
   const id = user.id;
