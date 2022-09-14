@@ -90,7 +90,7 @@ $(() => {
 
       $.ajax({
         type: "POST",
-        url: `/combinations/users/saved/`,
+        url: `/colourly/combinations`,
         data: { id: comb_id, save },
         success: (result) => {
           $(`#heart-${comb_id}`).css("font-variation-settings", checkFill);

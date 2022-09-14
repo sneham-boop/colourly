@@ -58,8 +58,8 @@ app.get("/home", (req, res) => {
   res.redirect("/colourly");
 });
 
-// Save your favourite - Colour picker screen
-app.get("/colourly/palette", (req, res) => {
+// Create new combination
+app.get("/colourly/combination/new", (req, res) => {
   const { user } = req.session;
   if (!user) {
     console.log("This user does not exist!");
@@ -72,86 +72,8 @@ app.get("/colourly/palette", (req, res) => {
   res.render("new_palette", templateVars);
 });
 
-// Test users
-app.get("/test", (req, res) => {
-  const { user } = req.session;
-  if (user) {
-    console.log("You are already logged in!");
-    return res.redirect("/colourly");
-  }
-  const templateVars = {
-    active: "test",
-    user,
-  };
-  res.render("test_users", templateVars);
-});
-
-// Login a user
-
-const login = function (email, password) {
-  return database.getUserWithEmail(email).then(({ user, error }) => {
-    if (error) return { error };
-    if (bcrypt.compareSync(password, user.password)) {
-      return { user };
-    }
-    return { error: "Password does not match!" };
-  });
-};
-exports.login = login;
-
-app.post("/login", (req, res) => {
-  const { email, password } = req.body;
-  login(email, password)
-    .then(({ user, error }) => {
-      if (!user || error) {
-        res.redirect("/colourly");
-        return;
-      }
-      req.session.user = user;
-      res.redirect("/colourly");
-    })
-    .catch((e) => res.send(e));
-});
-
-// Logout
-
-app.post("/logout", (req, res) => {
-  req.session.user = null;
-  res.redirect("/colourly");
-});
-
-// Register a new user
-app.post("/register", (req, res) => {
-  const { email, password } = req.body;
-  const hashedPassword = bcrypt.hashSync(password, 10);
-
-  const message = {
-    user: undefined,
-    text: "",
-  };
-
-  if (email === "" || password === "") {
-    message.text = "Enter a valid email and/or password.";
-    return res.redirect("/colourly");
-  }
-
-  // Add user if info valid
-  const user = {
-    email,
-    password: hashedPassword,
-  };
-
-  database
-    .addUser(user)
-    .then((user) => {
-      req.session.user = user;
-      res.redirect("/colourly");
-    })
-    .catch((e) => res.send(e));
-});
-
 // Show my colour combinations
-app.get("/colourly/created", (req, res) => {
+app.get("/colourly/combinations/me", (req, res) => {
   const { user } = req.session;
 
   if (!user) return res.redirect("/colourly");
@@ -164,7 +86,7 @@ app.get("/colourly/created", (req, res) => {
         user,
         heading: "My Creations",
         subHeading: "Would you like to create a new colour palette?",
-        redirectLink: "/colourly/palette",
+        redirectLink: "/colourly/combination/new",
         buttonText: "Create",
         active: "created",
       };
@@ -177,7 +99,7 @@ app.get("/colourly/created", (req, res) => {
 });
 
 // Show saved combinations by a user
-app.get("/combinations/users/saved", (req, res) => {
+app.get("/colourly/combinations/saved", (req, res) => {
   const { user } = req.session;
 
   if (!user) return res.redirect("/colourly");
@@ -205,7 +127,7 @@ app.get("/combinations/users/saved", (req, res) => {
 });
 
 // Save a combination
-app.post("/combinations/users/saved/", (req, res) => {
+app.post("/colourly/combinations", (req, res) => {
   const { user } = req.session;
   const { id, save } = req.body;
   if (!user)
@@ -239,6 +161,83 @@ app.post("/combinations/users/saved/", (req, res) => {
       console.error(e);
       res.send(e);
     });
+});
+
+
+// Test users
+app.get("/colourly/test", (req, res) => {
+  const { user } = req.session;
+  if (user) {
+    console.log("You are already logged in!");
+    return res.redirect("/colourly");
+  }
+  const templateVars = {
+    active: "test",
+    user,
+  };
+  res.render("test_users", templateVars);
+});
+
+// Login a user
+const login = function (email, password) {
+  return database.getUserWithEmail(email).then(({ user, error }) => {
+    if (error) return { error };
+    if (bcrypt.compareSync(password, user.password)) {
+      return { user };
+    }
+    return { error: "Password does not match!" };
+  });
+};
+exports.login = login;
+
+app.post("/login", (req, res) => {
+  const { email, password } = req.body;
+  login(email, password)
+    .then(({ user, error }) => {
+      if (!user || error) {
+        res.redirect("/colourly");
+        return;
+      }
+      req.session.user = user;
+      res.redirect("/colourly");
+    })
+    .catch((e) => res.send(e));
+});
+
+// Logout
+app.post("/logout", (req, res) => {
+  req.session.user = null;
+  res.redirect("/colourly");
+});
+
+// Register a new user
+app.post("/register", (req, res) => {
+  const { email, password } = req.body;
+  const hashedPassword = bcrypt.hashSync(password, 10);
+
+  const message = {
+    user: undefined,
+    text: "",
+  };
+
+  if (email === "" || password === "") {
+    message.text = "Enter a valid email and/or password.";
+    return res.redirect("/colourly");
+  }
+
+  // Add user if info valid
+  const user = {
+    email,
+    password: hashedPassword,
+  };
+
+  database
+    .addUser(user)
+    .then((user) => {
+      req.session.user = user;
+      res.redirect("/colourly");
+    })
+    .catch((e) => res.send(e));
 });
 
 // FAQ page render
@@ -344,7 +343,7 @@ app.get("/api/combinations/users/:id", (req, res) => {
 });
 
 // Show saved combinations by a user
-app.get("/api/combinations/users/saved/:id", (req, res) => {
+app.get("/api/colourly/combinations/saved/:id", (req, res) => {
   const { id } = req.params;
   database
     .showSavedCombinations(id)
@@ -393,7 +392,7 @@ app.post("/api/combinations", (req, res) => {
     .addCombinationsForUser(id, colours)
     .then((result) => {
       const { combination } = result;
-      if (combination) res.send({ redirectLink: "/colourly/created" });
+      if (combination) res.send({ redirectLink: "/colourly/combinations/me" });
     })
     .catch((e) => {
       console.error(e);
