@@ -44,17 +44,22 @@ $(() => {
 
   const mousedown = (event) => {
     drag = true;
-    changeColor(event);
+    const elmnt = document.getElementById("drag-selector");
+    x = event.clientX;
+    y = event.clientY;
+    changeColor(x, y);
+    elmnt.style.top = y - 12 + "px";
+    elmnt.style.left = x - 12 + "px";
   };
 
-  const mousemove = (event) => drag && changeColor(event);
+  const mousemove = (event) => {
+    dragElement(document.getElementById("drag-selector"));
+  };
 
   const mouseup = () => (drag = false);
 
-  const changeColor = (event) => {
-    x = event.offsetX;
-    y = event.offsetY;
-    const imageData = context1.getImageData(x, y, 1, 1).data;
+  const changeColor = (x, y) => {
+    const imageData = context1.getImageData(x - 192, y - 266, 1, 1).data;
     rgbaColor =
       "rgba(" + imageData[0] + "," + imageData[1] + "," + imageData[2] + ",1)";
     selectedColour.style.backgroundColor = rgbaColor;
@@ -79,7 +84,62 @@ $(() => {
   colourAdjust.addEventListener("mousedown", mousedown, false);
   colourAdjust.addEventListener("mouseup", mouseup, false);
   colourAdjust.addEventListener("mousemove", mousemove, false);
-  
+
+
+// Drag adjuster
+function dragElement(draggable_element) {
+  var pos1 = 0,
+    pos2 = 0,
+    pos3 = 0,
+    pos4 = 0;
+  if (document.getElementById(draggable_element.id)) {
+    document.getElementById(draggable_element.id).onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // Mouse position
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    changeColor(pos3, pos4);
+    document.onmouseup = closeDragElement;
+    // Drag
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+
+    // Calculate position
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+
+    // New position
+    const checkX = pos3;
+    const checkY = pos4;
+
+    if (checkX > 200 && checkX < 490)
+      draggable_element.style.left =
+        draggable_element.offsetLeft - pos1 + "px";
+    if (checkY > 280 && checkY < 590)
+      draggable_element.style.top = draggable_element.offsetTop - pos2 + "px";
+
+    changeColor(
+      draggable_element.offsetLeft - pos1,
+      draggable_element.offsetTop - pos2
+    );
+  }
+
+  function closeDragElement() {
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+
   // Save combination
   $(".colour-selection").click(function () {
     const newColour = $("#color-label").css("background-color");
@@ -101,20 +161,24 @@ $(() => {
               col = col.toString(16);
               if (col.length === 1) col = `0${col}`;
               return col.toUpperCase();
-            } 
+            }
             if (col === 0) return "00";
           })
           .join("");
         if (hexColour !== "") combination.push(hexColour);
-        
       });
-    $.post(`/api/combinations`, { combination }, function(response, textStatus) {
-      const { redirectLink } = response;
-      if (redirectLink) {
+    $.post(
+      `/api/combinations`,
+      { combination },
+      function (response, textStatus) {
+        const { redirectLink } = response;
+        if (redirectLink) {
           window.location.href = redirectLink;
-      } else {
+        } else {
           $("#error-location").replaceWith(textStatus);
+        }
       }
+    );
   });
-  });
+
 });

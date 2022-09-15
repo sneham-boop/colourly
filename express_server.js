@@ -58,11 +58,10 @@ app.get("/home", (req, res) => {
   res.redirect("/colourly");
 });
 
-// Create new combination
+// Show page for colour picker
 app.get("/colourly/combination/new", (req, res) => {
   const { user } = req.session;
   if (!user) {
-    console.log("This user does not exist!");
     return res.redirect("/colourly");
   }
   const templateVars = {
@@ -163,7 +162,6 @@ app.post("/colourly/combinations", (req, res) => {
     });
 });
 
-
 // Test users
 app.get("/colourly/test", (req, res) => {
   const { user } = req.session;
@@ -262,7 +260,7 @@ app.get("/api/colours", (req, res) => {
     .then((result) => {
       const { colours } = result;
 
-      if (!colours) return res.status(500).send('Could not find colours');
+      if (!colours) return res.status(500).send("Could not find colours");
 
       const templateVars = {
         colours,
@@ -279,14 +277,18 @@ app.get("/api/colours", (req, res) => {
 app.get("/api/colours/:id", (req, res) => {
   const { id } = req.params;
 
-  if (!parseInt(id)) return res.status(400).send(`${id} is not a number. Please enter a colour id.`);
+  if (!parseInt(id))
+    return res
+      .status(400)
+      .send(`${id} is not a number. Please enter a colour id.`);
 
   database
     .getColour(id)
     .then((result) => {
       const { colour } = result;
 
-      if (colour.length === 0) return res.status(500).send(`Could not find colour with id: ${id}`);
+      if (colour.length === 0)
+        return res.status(500).send(`Could not find colour with id: ${id}`);
 
       const templateVars = {
         colour,
@@ -307,7 +309,7 @@ app.get("/api/users", (req, res) => {
     .then((result) => {
       const { users } = result;
 
-      if (!users) return res.status(500).send('Could not find users.');
+      if (!users) return res.status(500).send("Could not find users.");
 
       const templateVars = {
         users,
@@ -324,14 +326,18 @@ app.get("/api/users", (req, res) => {
 app.get("/api/users/:id", (req, res) => {
   const { id } = req.params;
 
-  if (!parseInt(id)) return res.status(400).send(`${id} is not a number. Please enter a valid user id.`);
+  if (!parseInt(id))
+    return res
+      .status(400)
+      .send(`${id} is not a number. Please enter a valid user id.`);
 
   database
     .getUser(id)
     .then((result) => {
       const { user } = result;
 
-      if (user.length === 0) return res.status(500).send(`Could not find user with id: ${id}`);
+      if (user.length === 0)
+        return res.status(500).send(`Could not find user with id: ${id}`);
 
       const templateVars = {
         user,
@@ -352,7 +358,8 @@ app.get("/api/combinations", (req, res) => {
     .then((result) => {
       const { combinations } = result;
 
-      if (!combinations) return res.status(500).send('Could not find combinations.');
+      if (!combinations)
+        return res.status(500).send("Could not find combinations.");
 
       const templateVars = {
         combinations,
@@ -369,14 +376,20 @@ app.get("/api/combinations", (req, res) => {
 app.get("/api/combinations/:id", (req, res) => {
   const { id } = req.params;
 
-  if (!parseInt(id)) return res.status(400).send(`${id} is not a number. Please enter a valid combination id.`);
+  if (!parseInt(id))
+    return res
+      .status(400)
+      .send(`${id} is not a number. Please enter a valid combination id.`);
 
   database
     .getCombination(id)
     .then((result) => {
       const { combination } = result;
- 
-      if (combination.length === 0) return res.status(500).send(`Could not find combination with id: ${id}`);
+
+      if (combination.length === 0)
+        return res
+          .status(500)
+          .send(`Could not find combination with id: ${id}`);
 
       const templateVars = {
         combination,
@@ -393,7 +406,10 @@ app.get("/api/combinations/:id", (req, res) => {
 app.get("/api/combinations/users/:id", (req, res) => {
   const { id } = req.params;
 
-  if (!parseInt(id)) return res.status(400).send(`${id} is not a number. Please enter a valid user id.`);
+  if (!parseInt(id))
+    return res
+      .status(400)
+      .send(`${id} is not a number. Please enter a valid user id.`);
 
   database
     .getCombinationsForUser(id)
@@ -401,7 +417,10 @@ app.get("/api/combinations/users/:id", (req, res) => {
       const { combinations } = result;
       const combinationIDs = Object.keys(combinations);
 
-      if (combinationIDs.length === 0) return res.status(500).send(`Could not find any combinations for user id: ${id}`);
+      if (combinationIDs.length === 0)
+        return res
+          .status(500)
+          .send(`Could not find any combinations for user id: ${id}`);
 
       const templateVars = {
         combinations,
@@ -418,7 +437,10 @@ app.get("/api/combinations/users/:id", (req, res) => {
 app.get("/api/combinations/saved/users/:id", (req, res) => {
   const { id } = req.params;
 
-  if (!parseInt(id)) return res.status(400).send(`${id} is not a number. Please enter a valid user id.`);
+  if (!parseInt(id))
+    return res
+      .status(400)
+      .send(`${id} is not a number. Please enter a valid user id.`);
 
   database
     .showSavedCombinations(id)
@@ -426,7 +448,10 @@ app.get("/api/combinations/saved/users/:id", (req, res) => {
       const { combinations } = result;
 
       const combinationIDs = Object.keys(combinations);
-      if (combinationIDs.length === 0) return res.status(500).send(`Could not find any combinations for user id: ${id}`);
+      if (combinationIDs.length === 0)
+        return res
+          .status(500)
+          .send(`Could not find any combinations for user id: ${id}`);
 
       const templateVars = {
         combinations,
@@ -443,7 +468,10 @@ app.get("/api/combinations/saved/users/:id", (req, res) => {
 app.delete("/api/combinations/:id", function (req, res) {
   const { id } = req.params;
 
-  if (!parseInt(id)) return res.status(400).send(`${id} is not a number. Please enter a valid combination id.`);
+  if (!parseInt(id))
+    return res
+      .status(400)
+      .send(`${id} is not a number. Please enter a valid combination id.`);
 
   const { user } = req.session;
   const { userID, createdBy } = req.body;
