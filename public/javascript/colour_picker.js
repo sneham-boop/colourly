@@ -1,19 +1,15 @@
 $(() => {
-  let colourAdjust = document.getElementById("color-block");
-  let context1 = colourAdjust.getContext("2d");
-  let width1 = colourAdjust.width;
-  let height1 = colourAdjust.height;
+  let colourFineTune = document.getElementById("color-block");
+  let context1 = colourFineTune.getContext("2d");
+  let width1 = colourFineTune.width;
+  let height1 = colourFineTune.height;
 
-  let colorChange = document.getElementById("color-strip");
-  let context2 = colorChange.getContext("2d");
-  let width2 = colorChange.width;
-  let height2 = colorChange.height;
+  let colorSelectStrip = document.getElementById("color-strip");
+  let context2 = colorSelectStrip.getContext("2d");
+  let width2 = colorSelectStrip.width;
+  let height2 = colorSelectStrip.height;
 
   let selectedColour = document.getElementById("color-label");
-
-  let x = 0;
-  let y = 0;
-  let drag = false;
   let rgbaColor = "rgba(255,0,0,1)";
 
   const fillGradient = () => {
@@ -33,36 +29,11 @@ $(() => {
     context1.fillRect(0, 0, width1, height1);
   };
 
-  const click = (event) => {
-    x = event.offsetX;
-    y = event.offsetY;
+  const adjHue = (x, y) => {
     let imageData = context2.getImageData(x, y, 1, 1).data;
     rgbaColor =
       "rgba(" + imageData[0] + "," + imageData[1] + "," + imageData[2] + ",1)";
     fillGradient();
-  };
-
-  const mousedown = (event) => {
-    drag = true;
-    const elmnt = document.getElementById("drag-selector");
-    x = event.clientX;
-    y = event.clientY;
-    changeColor(x, y);
-    elmnt.style.top = y - 12 + "px";
-    elmnt.style.left = x - 12 + "px";
-  };
-
-  const mousemove = (event) => {
-    dragElement(document.getElementById("drag-selector"));
-  };
-
-  const mouseup = () => (drag = false);
-
-  const changeColor = (x, y) => {
-    const imageData = context1.getImageData(x - 192, y - 266, 1, 1).data;
-    rgbaColor =
-      "rgba(" + imageData[0] + "," + imageData[1] + "," + imageData[2] + ",1)";
-    selectedColour.style.backgroundColor = rgbaColor;
   };
 
   context1.rect(0, 0, width1, height1);
@@ -71,74 +42,109 @@ $(() => {
   context2.rect(0, 0, width2, height2);
   let grid1 = context2.createLinearGradient(0, 0, 0, height1);
   grid1.addColorStop(0, "rgba(255, 0, 0, 1)");
-  grid1.addColorStop(0.17, "rgba(255, 255, 0, 1)");
-  grid1.addColorStop(0.34, "rgba(0, 255, 0, 1)");
-  grid1.addColorStop(0.51, "rgba(0, 255, 255, 1)");
-  grid1.addColorStop(0.68, "rgba(0, 0, 255, 1)");
-  grid1.addColorStop(0.85, "rgba(255, 0, 255, 1)");
+  grid1.addColorStop(0.142, "rgba(255, 255, 0, 1)");
+  grid1.addColorStop(0.284, "rgba(0, 255, 0, 1)");
+  grid1.addColorStop(0.426, "rgba(0, 255, 255, 1)");
+  grid1.addColorStop(0.568, "rgba(0, 0, 255, 1)");
+  grid1.addColorStop(0.852, "rgba(255, 0, 255, 1)");
   grid1.addColorStop(1, "rgba(255, 0, 0, 1)");
   context2.fillStyle = grid1;
   context2.fill();
 
-  colorChange.addEventListener("click", click, false);
-  colourAdjust.addEventListener("mousedown", mousedown, false);
-  colourAdjust.addEventListener("mouseup", mouseup, false);
-  colourAdjust.addEventListener("mousemove", mousemove, false);
+  // Colour adjustment
+  const adjSaturationLightness = (x, y) => {
+    const imageData = context1.getImageData(x, y, 1, 1).data;
+    rgbaColor =
+      "rgba(" + imageData[0] + "," + imageData[1] + "," + imageData[2] + ",1)";
+    selectedColour.style.backgroundColor = rgbaColor;
+  };
 
+  const boundingAreaBlock = colourFineTune.getBoundingClientRect();
+  $("#drag-container").css({
+    top: boundingAreaBlock.top,
+    left: boundingAreaBlock.left,
+  });
 
-// Drag adjuster
-function dragElement(draggable_element) {
-  var pos1 = 0,
-    pos2 = 0,
-    pos3 = 0,
-    pos4 = 0;
-  if (document.getElementById(draggable_element.id)) {
-    document.getElementById(draggable_element.id).onmousedown = dragMouseDown;
+  const boundingAreaStrip = colorSelectStrip.getBoundingClientRect();
+  $("#drag-color-strip-container").css({
+    top: boundingAreaStrip.top,
+    left: boundingAreaStrip.left,
+  });
+
+  // console.log(colourAdjustRect.top, colourAdjustRect.right, colourAdjustRect.bottom, colourAdjustRect.left);
+  // $(document).click(function(event){
+  //   console.log(event.clientX, event.clientY);
+  // })
+
+  // Drag selector
+  function dragElement(el, bound, moveVertically) {
+    let newX = 0,
+      newY = 0,
+      initialX = 0,
+      initialY = 0;
+    if (el) el.onmousedown = requestDrag;
+    
+    function requestDrag(e) {
+      e.preventDefault();
+      // Mouse position
+      initialX = e.clientX;
+      initialY = e.clientY;
+      document.onmouseup = endDrag;
+      document.onmousemove = beginDrag;
+    }
+
+    function beginDrag(e) {
+      e.preventDefault();
+
+      // Calculate position
+      newX = initialX - e.clientX;
+      newY = initialY - e.clientY;
+      initialX = e.clientX;
+      initialY = e.clientY;
+
+      // New position
+      const x = el.offsetLeft - newX;
+      const y = el.offsetTop - newY;
+
+      // Strip
+      if (moveVertically) {
+        if (e.clientY > bound.top && e.clientY < bound.bottom)
+          el.style.top = y + "px";
+        adjHue(x + 7.5, y + 19);
+        const sel = document.getElementById("drag-selector");
+        adjSaturationLightness(sel.offsetLeft+12, sel.offsetTop+12);
+      }
+      // Block
+      else {
+        if (e.clientX > bound.left && e.clientX < bound.right)
+          el.style.left = x + "px";
+        if (e.clientY > bound.top && e.clientY < bound.bottom)
+          el.style.top = y + "px";
+        adjSaturationLightness(el.offsetLeft + 12, el.offsetTop + 12);
+      }
+    }
+
+    function endDrag() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+    }
   }
 
-  function dragMouseDown(e) {
-    e = e || window.event;
-    e.preventDefault();
-    // Mouse position
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    changeColor(pos3, pos4);
-    document.onmouseup = closeDragElement;
-    // Drag
-    document.onmousemove = elementDrag;
-  }
-
-  function elementDrag(e) {
-    e = e || window.event;
-    e.preventDefault();
-
-    // Calculate position
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-
-    // New position
-    const checkX = pos3;
-    const checkY = pos4;
-
-    if (checkX > 200 && checkX < 490)
-      draggable_element.style.left =
-        draggable_element.offsetLeft - pos1 + "px";
-    if (checkY > 280 && checkY < 590)
-      draggable_element.style.top = draggable_element.offsetTop - pos2 + "px";
-
-    changeColor(
-      draggable_element.offsetLeft - pos1,
-      draggable_element.offsetTop - pos2
+  $("#drag-container").mouseover(function () {
+    dragElement(
+      document.getElementById("drag-selector"),
+      boundingAreaBlock,
+      false
     );
-  }
+  });
 
-  function closeDragElement() {
-    document.onmouseup = null;
-    document.onmousemove = null;
-  }
-}
+  $("#drag-color-strip-container").mouseover(function () {
+    dragElement(
+      document.getElementById("drag-color-strip-selector"),
+      boundingAreaStrip,
+      true
+    );
+  });
 
   // Save combination
   $(".colour-selection").click(function () {
@@ -180,5 +186,4 @@ function dragElement(draggable_element) {
       }
     );
   });
-
 });

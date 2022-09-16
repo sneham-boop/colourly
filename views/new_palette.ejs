@@ -6,15 +6,22 @@
 
 
 <!-- Adjust colour -->
-  <div id="drag-selector">
-    <span class="material-symbols-outlined">
+  <div id="drag-container">
+    <span id="drag-selector" class="material-symbols-outlined">
       adjust
       </span>
   </div>
+  <div id="drag-color-strip-container">
+    <span id="drag-color-strip-selector" class="material-symbols-rounded">
+      remove
+      </span>
+  </div>
+ 
+  
     <section id="color-picker-container">
-      <label for="color-input" id="color-label" style="background-color: red"></label>
-      <input type="checkbox" id="color-input" checked></input>
-
+      <!-- <label for="color-input" id="color-label" style="background-color: red"></label> -->
+      <!-- <input type="checkbox" id="color-input" checked></input> -->
+      <div id="color-label"></div>
       <div id="color-picker">
         <canvas id="color-block" width="300" height="314"></canvas>
         <canvas id="color-strip" width="30" height="314"></canvas>
