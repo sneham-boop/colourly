@@ -2,54 +2,61 @@
 <%- include('partials/_head') %>
   <script src="/javascript/colour_picker.js" defer></script>
   <div id="new-combination-container">
-    <h2>Create a new palette</h2>
+    <!-- <h2>Create a new palette</h2> -->
 
 
-<!-- Adjust colour -->
-  <div id="drag-container">
-    <span id="drag-selector" class="material-symbols-outlined">
-      adjust
+    <!-- Adjust colour -->
+    <div id="drag-container">
+      <span id="drag-selector" class="material-symbols-outlined">
+        adjust
       </span>
-  </div>
-  <div id="drag-color-strip-container">
-    <span id="drag-color-strip-selector" class="material-symbols-rounded">
-      remove
+    </div>
+    <div id="drag-color-strip-container">
+      <span id="drag-color-strip-selector" class="material-symbols-rounded">
+        remove
       </span>
-  </div>
- 
-  
+    </div>
+    <h4>Create your own palette</h4>
+    <div id="colour-sel-container">
+      <section id="selected-cols">
+        <div class="selected-col">+</div>
+        <div class="selected-col">+</div>
+        <div class="selected-col">+</div>
+        <div class="selected-col">+</div>
+        <div class="selected-col">+</div>
+        <div class="selected-col">+</div>
+        <div class="selected-col">+</div>
+        <div class="selected-col">+</div>
+        <div class="selected-col">+</div>
+        <div class="selected-col">+</div>
+      </section>
+      <section id="current-col">
+        <h6>Selection</h6>
+        <div id="colour-value"></div>
+      </section>
+    </div>
+    
     <section id="color-picker-container">
-      <!-- <label for="color-input" id="color-label" style="background-color: red"></label> -->
-      <!-- <input type="checkbox" id="color-input" checked></input> -->
-      <div id="color-label"></div>
       <div id="color-picker">
         <canvas id="color-block" width="300" height="314"></canvas>
         <canvas id="color-strip" width="30" height="314"></canvas>
       </div>
-      <section id="colour-selection-container">
-        <div class="colour-selection">+</div>
-        <div class="colour-selection">+</div>
-        <div class="colour-selection">+</div>
-        <div class="colour-selection">+</div>
-        <div class="colour-selection">+</div>
-        <div class="colour-selection">+</div> 
-        <div class="colour-selection">+</div>
-        <div class="colour-selection">+</div>
-        <div class="colour-selection">+</div>
-        <div class="colour-selection">+</div>
-      </section>
-      <button type="submit">Add to library</button>
+      <div id="color-picker-instructions">
+        <h6>Instructions:</h6>
+        <ol>
+          <li>Move the selectors to adjust colour.</li>
+          <li>Click on the "+" button to select.</li>
+          <li>Colours can be overwritten by adjusting a new one and clicking on "+" again.</li>
+          <li>Up to 10 colours may be added to each palette.</li>
+          <li>Click on "Save to library" to add palette to your library.</li>
+        </ol>
+        <button type="submit">Save to library</button>
+      </div>
+
     </section>
-    <ol>
-      <li>Click somewhere in the colour square.</li>
-      <li>Click on one of the empty buckets.</li>
-      <li>Colours can be overwritten by selecting a new one and clicking on the bucket again.</li>
-      <li>Do this for up to 10 colours.</li>
-      <li>Click on the "Add to library" button to add the combination to your library.</li>
-    </ol>
   </div>
   <%- include('partials/_footer') %>
-  <%- include('partials/_sign_in_up_form') %>
+    <%- include('partials/_sign_in_up_form') %>
       <%- include('partials/_bootstrap_scripts') %>
         </body>
 

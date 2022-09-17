@@ -1,15 +1,15 @@
 $(() => {
-  let colourFineTune = document.getElementById("color-block");
-  let context1 = colourFineTune.getContext("2d");
-  let width1 = colourFineTune.width;
-  let height1 = colourFineTune.height;
+  let saturationLightnessBlock = document.getElementById("color-block");
+  let context1 = saturationLightnessBlock.getContext("2d");
+  let width1 = saturationLightnessBlock.width;
+  let height1 = saturationLightnessBlock.height;
 
-  let colorSelectStrip = document.getElementById("color-strip");
-  let context2 = colorSelectStrip.getContext("2d");
-  let width2 = colorSelectStrip.width;
-  let height2 = colorSelectStrip.height;
+  let hueStrip = document.getElementById("color-strip");
+  let context2 = hueStrip.getContext("2d");
+  let width2 = hueStrip.width;
+  let height2 = hueStrip.height;
 
-  let selectedColour = document.getElementById("color-label");
+  let selectedColour = document.getElementById("colour-value");
   let rgbaColor = "rgba(255,0,0,1)";
 
   const fillGradient = () => {
@@ -59,22 +59,17 @@ $(() => {
     selectedColour.style.backgroundColor = rgbaColor;
   };
 
-  const boundingAreaBlock = colourFineTune.getBoundingClientRect();
+  const boundingAreaBlock = saturationLightnessBlock.getBoundingClientRect();
   $("#drag-container").css({
     top: boundingAreaBlock.top,
     left: boundingAreaBlock.left,
   });
 
-  const boundingAreaStrip = colorSelectStrip.getBoundingClientRect();
+  const boundingAreaStrip = hueStrip.getBoundingClientRect();
   $("#drag-color-strip-container").css({
     top: boundingAreaStrip.top,
     left: boundingAreaStrip.left,
   });
-
-  // console.log(colourAdjustRect.top, colourAdjustRect.right, colourAdjustRect.bottom, colourAdjustRect.left);
-  // $(document).click(function(event){
-  //   console.log(event.clientX, event.clientY);
-  // })
 
   // Drag selector
   function dragElement(el, bound, moveVertically) {
@@ -83,7 +78,7 @@ $(() => {
       initialX = 0,
       initialY = 0;
     if (el) el.onmousedown = requestDrag;
-    
+
     function requestDrag(e) {
       e.preventDefault();
       // Mouse position
@@ -112,7 +107,7 @@ $(() => {
           el.style.top = y + "px";
         adjHue(x + 7.5, y + 19);
         const sel = document.getElementById("drag-selector");
-        adjSaturationLightness(sel.offsetLeft+12, sel.offsetTop+12);
+        adjSaturationLightness(sel.offsetLeft + 12, sel.offsetTop + 12);
       }
       // Block
       else {
@@ -147,14 +142,14 @@ $(() => {
   });
 
   // Save combination
-  $(".colour-selection").click(function () {
-    const newColour = $("#color-label").css("background-color");
+  $(".selected-col").click(function () {
+    const newColour = $("#colour-value").css("background-color");
     $(this).css("background-color", newColour);
   });
 
   $("#new-combination-container button").click(function () {
     let combination = [];
-    $("#colour-selection-container")
+    $("#selected-cols")
       .children("div")
       .each(function () {
         const colorValue = $(this).css("background-color");
