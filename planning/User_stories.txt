@@ -1,0 +1,13 @@
+User stories:
+1) User should be able to see all combinations when they visit the homepage without logging in.
+2) User should be able to hover on colour and see the colour value.
+3) Once the user clicks on a colour, the value is copied.
+4) User can see how many people have saved a particular palette.
+5) User can view a palette as a full screen view.
+6) User should be able to create a new account, login and logout.
+7) Once logged in, user should be able to see their saved palettes.
+8) Once logged in, user should be able to create new palettes containing upto 10 colours.
+9) Once logged in, user should be able too see their created palettes.
+10) Once logged in, user should only be able to delete their own palettes.
+11) Once logged in, user should be able to save new palettes from available choices.
+
