@@ -33,6 +33,8 @@ const database = require("./lib/db");
 app.get("/colourly", (req, res) => {
   const { user } = req.session;
 
+  res.send({message: "hello"});
+  return;
   database
     .getAllCombinations()
     .then(({ combinations }) => {
