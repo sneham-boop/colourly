@@ -2,29 +2,23 @@ import styles from "../ShowPalettes.module.scss";
 import { useState, useEffect } from "react";
 
 export default function Color({ color }) {
-  const [copy, setCopy] = useState(false);
-  const [showCheck, setShowCheck] = useState(false);
+  const [showCheckmark, setShowCheckmark] = useState(false);
 
   const handleClick = (e) => {
     const colourValue = e.target.innerHTML;
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(colourValue).then(() => {
-        setShowCheck(true);
-        console.log("I copied!!!", colourValue);
-      });
-    } else {
-      console.log("Browser Not compatible");
-    }
+    navigator.clipboard.writeText(colourValue).then(() => {
+      setShowCheckmark(true);
+    });
   };
 
   useEffect(() => {
-    const resetColorTimer = setTimeout(() => {
-      setShowCheck(false);
+    const timer = setTimeout(() => {
+      setShowCheckmark(false);
     }, 1000);
     return () => {
-      clearTimeout(resetColorTimer);
+      clearTimeout(timer);
     };
-  }, [handleClick, showCheck]);
+  }, [handleClick, showCheckmark]);
 
   return (
     <>
@@ -33,8 +27,10 @@ export default function Color({ color }) {
         style={{ backgroundColor: `${color}` }}
         onClick={(e) => handleClick(e)}
       >
-        {!showCheck && color}
-        {showCheck && <span className="material-symbols-rounded">done</span>}
+        {!showCheckmark && color.toUpperCase()}
+        {showCheckmark && (
+          <span className="material-symbols-rounded">done</span>
+        )}
       </span>
     </>
   );
