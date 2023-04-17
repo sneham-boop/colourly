@@ -1,7 +1,7 @@
 import ShowPalettes from "@component/components/ShowPalettes";
 import clientPromise from "../../../lib/mongodb";
 
-export default function Home({ palettes }) {
+export default function Explore({ palettes }) {
   return (
     <>
       <ShowPalettes palettes={palettes} />

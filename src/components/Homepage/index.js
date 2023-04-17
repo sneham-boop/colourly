@@ -1,4 +1,3 @@
-import ShowPalettes from "../ShowPalettes";
 import styles from "./Homepage.module.scss";
 
 export default function Homepage() {
@@ -10,7 +9,6 @@ export default function Homepage() {
           Create your own palette or find inspiration for your next creative
           project.
         </p>
-        <ShowPalettes />
       </div>
     </section>
   );

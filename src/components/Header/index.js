@@ -10,8 +10,8 @@ export default function Header(props) {
         <Logo />
       </Link>
       <div className={styles['nav-right-group']}>
-        <Link href="/">
-          <Button btnText={"Home"} />
+        <Link href="/explore">
+          <Button btnText={"Explore Trends"} />
         </Link>
         <Link href="/test">
           <Button btnText={"Test Users"} />
