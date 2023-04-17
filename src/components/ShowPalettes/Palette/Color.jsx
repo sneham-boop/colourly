@@ -2,23 +2,34 @@ import styles from "../ShowPalettes.module.scss";
 import { useState, useEffect } from "react";
 
 export default function Color({ color }) {
-  const [showCheckmark, setShowCheckmark] = useState(false);
+  const [showColor, setShowColor] = useState(false);
+  const [showCheck, setShowCheck] = useState(false);
 
   const handleClick = (e) => {
     const colourValue = e.target.innerHTML;
     navigator.clipboard.writeText(colourValue).then(() => {
-      setShowCheckmark(true);
+      setShowCheck(true);
+      setShowColor(false);
     });
   };
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowCheckmark(false);
-    }, 1000);
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [handleClick, showCheckmark]);
+  const handleMouseEnter = () => {
+    setShowColor(true);
+  };
+
+  const handleMouseLeave = () => {
+    setShowColor(false);
+    setShowCheck(false);
+  };
+
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setShowCheck(false);
+  //   }, 1000);
+  //   return () => {
+  //     clearTimeout(timer);
+  //   };
+  // }, [handleClick, showColor]);
 
   return (
     <>
@@ -26,11 +37,11 @@ export default function Color({ color }) {
         className={styles.colour}
         style={{ backgroundColor: `${color}` }}
         onClick={(e) => handleClick(e)}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
-        {!showCheckmark && color.toUpperCase()}
-        {showCheckmark && (
-          <span className="material-symbols-rounded">done</span>
-        )}
+        {showColor && !showCheck && color.toUpperCase()}
+        {!showColor && showCheck && <span className="material-symbols-rounded">done</span>}
       </span>
     </>
   );
