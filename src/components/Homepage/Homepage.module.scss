@@ -1,0 +1,29 @@
+@import "../../sass/global";
+
+.home {
+  padding: 0 1em;
+  background-color: $white;
+  background-color: rgba(0, 0, 0, 0);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .intro {
+    padding-bottom: 10rem;
+  }
+  h3 {
+    margin: 0;
+    color: $black;
+    font-weight: $bold;
+    font-size: $font-size-h2;
+    text-align: center;
+  }
+  p {
+    margin: 0;
+    color: $black;
+    font-size: $font-size-p-lg;
+    font-weight: $extra-thin;
+    text-align: center;
+  }
+}
