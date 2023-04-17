@@ -2,10 +2,10 @@
   "name": "colourdb",
   "version": "1.0.0",
   "description": "",
-  "main": "express_server.js",
+  "main": "server.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha",
-    "start": "node express_server.js",
+    "start": "node server.js",
     "local": "./node_modules/.bin/nodemon -L --ignore public/",
     "db:reset": "node bin/resetdb.js"
   },
