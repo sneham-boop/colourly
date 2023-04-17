@@ -4,7 +4,7 @@ import styles from "./ShowPalettes.module.scss";
 export default function ShowPalettes({}) {
   return (
     <>
-      <div id="combinations-container">
+      <div id={styles["combinations-container"]}>
         <Palette />
         <Palette />
       </div>
