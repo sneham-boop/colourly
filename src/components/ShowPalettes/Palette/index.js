@@ -11,7 +11,11 @@ export default function Palette({}) {
           <Color color="Yellow" />
           <Color color="Black" />
         </section>
-        <div className={styles["combination-info"]}></div>
+        <div className={styles["combination-info"]}>
+          <span className="material-symbols-rounded">favorite</span>
+          <p className={styles["likes"]}>6786</p>
+          <span className="material-symbols-rounded">more_horiz</span>
+        </div>
       </div>
     </>
   );
