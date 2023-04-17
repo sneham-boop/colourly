@@ -1,16 +1,31 @@
 import styles from "../ShowPalettes.module.scss";
+import { useState, useEffect } from "react";
 
 export default function Color({ color }) {
+  const [copy, setCopy] = useState(false);
+  const [showCheck, setShowCheck] = useState(false);
+
   const handleClick = (e) => {
     const colourValue = e.target.innerHTML;
     if (navigator.clipboard) {
       navigator.clipboard.writeText(colourValue).then(() => {
-        console.log("I copied!!!");
+        setShowCheck(true);
+        console.log("I copied!!!", colourValue);
       });
     } else {
       console.log("Browser Not compatible");
     }
   };
+
+  useEffect(() => {
+    const resetColorTimer = setTimeout(() => {
+      setShowCheck(false);
+    }, 1000);
+    return () => {
+      clearTimeout(resetColorTimer);
+    };
+  }, [handleClick, showCheck]);
+
   return (
     <>
       <span
@@ -18,7 +33,8 @@ export default function Color({ color }) {
         style={{ backgroundColor: `${color}` }}
         onClick={(e) => handleClick(e)}
       >
-        {color}
+        {!showCheck && color}
+        {showCheck && <span className="material-symbols-rounded">done</span>}
       </span>
     </>
   );
