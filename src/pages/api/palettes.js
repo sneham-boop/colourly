@@ -1,4 +1,5 @@
 import clientPromise from "../../../lib/mongodb";
+import { ObjectId } from "mongodb";
 
 export default async function handler(req, res) {
   try {
@@ -12,17 +13,32 @@ export default async function handler(req, res) {
 
     // Process a POST request
     if (req.method === "POST") {
+      const { colors } = req.body;
+
+      if (!colors) {
+        console.log("No colors were found!");
+        res.json({
+          message: `Failed to add new palette`,
+          success: false,
+        });
+      }
+      // console.log("New palette received at server.", colors);
+
       const palette = {
-        colours: ["ffd60a", "ffc300", "003566", "f8ad9d", "e5989b"],
+        colours: colors,
+        likes: 0,
+        user_id: new ObjectId("643d9048adff9ee815ca93db"),
       };
       const result = await db.collection("palettes").insertOne(palette);
       if (result.insertedId)
         res.json({
           message: `Successfully added document with id ${result.insertedId}`,
+          success: true,
         });
       else
         res.json({
           message: `Failed to add new palette`,
+          success: false,
         });
     }
 
