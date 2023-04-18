@@ -4,7 +4,6 @@ import { useState } from "react";
 import Menu from "./Menu";
 import Favourite from "./Favourite";
 
-
 export default function Palette({ palette }) {
   const [showMenu, setShowMenu] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ x: "", y: "" });
@@ -25,7 +24,7 @@ export default function Palette({ palette }) {
       <div className={styles["single-combination"]}>
         <section className={styles.combination}>{showColours(palette)}</section>
         <div className={styles["combination-info"]}>
-          <Favourite/>
+          <Favourite />
           <p className={styles["likes"]}>6786</p>
           <span
             className="material-symbols-rounded"
