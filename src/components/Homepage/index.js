@@ -10,6 +10,14 @@ export default function Homepage() {
           project.
         </p>
       </div>
+      <div className={styles.base}>
+        <span style={{ backgroundColor: "#ff595e" }} />
+        <span style={{ backgroundColor: "#ffca3a" }} />
+        <span style={{ backgroundColor: "#124559" }} />
+        <span style={{ backgroundColor: "#f9c74f" }} />
+        <span style={{ backgroundColor: "#b56576" }} />
+        <span style={{ backgroundColor: "#f26419" }} />
+      </div>
     </section>
   );
 }

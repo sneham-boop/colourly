@@ -1,16 +1,16 @@
 @import "../../sass/global";
 
 .home {
-  padding: 0 1em;
   background-color: $white;
   background-color: rgba(0, 0, 0, 0);
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+
   .intro {
-    padding-bottom: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 55%;
   }
   h3 {
     margin: 0;
@@ -25,5 +25,16 @@
     font-size: $font-size-p-lg;
     font-weight: $extra-thin;
     text-align: center;
+  }
+  .base {
+    width: 100vw;
+    height: 45%;
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    span {
+      height: 100%;
+      width: 100%;
+    }
   }
 }
