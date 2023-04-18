@@ -2,10 +2,12 @@ import Color from "./Color";
 import styles from "../ShowPalettes.module.scss";
 import { useState } from "react";
 import Menu from "./Menu";
+import Favourite from "./Favourite";
+
 
 export default function Palette({ palette }) {
   const [showMenu, setShowMenu] = useState(false);
-  const [menuPosition, setMenuPosition] = useState({x: "", y: ""});
+  const [menuPosition, setMenuPosition] = useState({ x: "", y: "" });
   const showColours = (palette) => {
     return palette.map((colour, id) => {
       return <Color key={id} color={`#${colour}`} />;
@@ -13,7 +15,7 @@ export default function Palette({ palette }) {
   };
   const handleClick = (e) => {
     setShowMenu(true);
-    setMenuPosition({x: e.clientX, y: e.clientY})
+    setMenuPosition({ x: e.clientX, y: e.clientY });
   };
   const handleMouseDown = (e) => {
     setShowMenu(false);
@@ -23,7 +25,7 @@ export default function Palette({ palette }) {
       <div className={styles["single-combination"]}>
         <section className={styles.combination}>{showColours(palette)}</section>
         <div className={styles["combination-info"]}>
-          <span className="material-symbols-rounded">favorite</span>
+          <Favourite/>
           <p className={styles["likes"]}>6786</p>
           <span
             className="material-symbols-rounded"
@@ -31,7 +33,9 @@ export default function Palette({ palette }) {
           >
             more_horiz
           </span>
-          {showMenu && <Menu onSelect={handleMouseDown} position={menuPosition} />}
+          {showMenu && (
+            <Menu onSelect={handleMouseDown} position={menuPosition} />
+          )}
         </div>
       </div>
     </>
