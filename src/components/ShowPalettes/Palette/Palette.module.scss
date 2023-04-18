@@ -1,0 +1,31 @@
+.float-menu {
+  position: absolute;
+  list-style-type: none;
+  // height: 100%;
+  // width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin: 0px;
+  border-radius: 0.375rem;
+  border: 1px solid  #e6f0ff;
+  background-color: #FFF;
+  li {
+    width: 100%;
+    padding: 0.5em;
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+  }
+  li:hover {
+    background-color: #e6f0ff;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  p {
+    font-size: 16px;
+    margin: 0px;
+    padding-left: 0.5em;
+  }
+}

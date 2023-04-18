@@ -1,28 +1,11 @@
 import Color from "./Color";
 import styles from "../ShowPalettes.module.scss";
 import { useState } from "react";
-
-function Menu() {
-  return (
-    <ul>
-      <li>
-        <span className="material-symbols-rounded">open_in_full</span>
-        <p>View fullscreen</p>
-      </li>
-      <li>
-        <span className="material-symbols-rounded">favorite</span>
-        <span>Unsave</span>
-      </li>
-      <li>
-        <span className="material-symbols-rounded">delete</span>
-        <span>Delete</span>
-      </li>
-    </ul>
-  );
-}
+import Menu from "./Menu";
 
 export default function Palette({ palette }) {
   const [showMenu, setShowMenu] = useState(false);
+  const [menuPosition, setMenuPosition] = useState({x: "", y: ""});
   const showColours = (palette) => {
     return palette.map((colour, id) => {
       return <Color key={id} color={`#${colour}`} />;
@@ -30,6 +13,7 @@ export default function Palette({ palette }) {
   };
   const handleClick = (e) => {
     setShowMenu(true);
+    setMenuPosition({x: e.clientX, y: e.clientY})
   };
   const handleMouseDown = (e) => {
     setShowMenu(false);
@@ -44,11 +28,10 @@ export default function Palette({ palette }) {
           <span
             className="material-symbols-rounded"
             onClick={(e) => handleClick(e)}
-            onMouseDown={(e) => handleMouseDown(e)}
           >
             more_horiz
           </span>
-          {showMenu && <Menu />}
+          {showMenu && <Menu onSelect={handleMouseDown} position={menuPosition} />}
         </div>
       </div>
     </>
