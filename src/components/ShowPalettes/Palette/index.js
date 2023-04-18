@@ -4,7 +4,7 @@ import { useState } from "react";
 import Menu from "./Menu";
 import Favourite from "./Favourite";
 
-export default function Palette({ palette }) {
+export default function Palette({ palette, setPalette, openFullScreen }) {
   const [showMenu, setShowMenu] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ x: "", y: "" });
   const showColours = (palette) => {
@@ -16,7 +16,11 @@ export default function Palette({ palette }) {
     setShowMenu(true);
     setMenuPosition({ x: e.clientX, y: e.clientY });
   };
-  const handleMouseDown = (e) => {
+  const handleMouseDown = (selection) => {
+    if (selection === "full") {
+      setPalette(palette);
+      openFullScreen();
+    }
     setShowMenu(false);
   };
   return (

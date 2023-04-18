@@ -1,10 +1,25 @@
 import ShowPalettes from "@component/components/ShowPalettes";
 import clientPromise from "../../../lib/mongodb";
+import FullScreenPalette from "@component/components/FullScreenPalette";
+import { useState } from "react";
 
 export default function Explore({ palettes }) {
+  const [showFullScreen, setShowFullScreen] = useState(false);
+  const [palette, setPalette] = useState(null);
+
   return (
     <>
-      <ShowPalettes palettes={palettes} />
+      <ShowPalettes
+        palettes={palettes}
+        setPalette={setPalette}
+        openFullScreen={() => setShowFullScreen(true)}
+      />
+      {showFullScreen && (
+        <FullScreenPalette
+          closeFullScreen={() => setShowFullScreen(false)}
+          palette={palette}
+        />
+      )}
     </>
   );
 }
