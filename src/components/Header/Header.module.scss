@@ -1,0 +1,26 @@
+@import "../../sass/global";
+
+.nav {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0);
+  padding: 0.5em 1em;
+  .logo {
+    font-size: $font-size-p-m;
+    font-weight: $extra-bold;
+    color: $black;
+  }
+  a {
+    text-decoration: none;
+  }
+  .nav-right-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+  }
+}

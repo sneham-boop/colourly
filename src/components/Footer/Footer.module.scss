@@ -1,0 +1,13 @@
+@import "../../sass/global";
+
+.footer {
+  width: 100vw;
+  position: fixed;
+  bottom: 0px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: rgba(0,0,0,0);
+  color: $white;
+  padding: 0.5em 1em;
+}
