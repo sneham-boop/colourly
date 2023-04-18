@@ -11,6 +11,7 @@ export default function ShowPalettes({ palettes, setPalette, openFullScreen }) {
               <Palette
                 key={id}
                 palette={palette.colours}
+                likes={palette.likes}
                 setPalette={setPalette}
                 openFullScreen={openFullScreen}
               />
