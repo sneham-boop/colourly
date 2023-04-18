@@ -1,14 +1,61 @@
 // import clientPromise from "../../../lib/mongodb";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./Create.module.scss";
 import Button from "@component/components/Button";
 import { SketchPicker } from "react-color";
+import SelectedColor from "@component/components/SelectedColor";
+import axios from "axios";
+import { useRouter } from 'next/router'
 
 export default function Create({}) {
   const [background, setBackground] = useState("#FFF");
+  const [colors, setColors] = useState(new Array(10).fill("000"));
+  const router = useRouter()
+
   const handleChangeComplete = (color) => {
     setBackground(color.hex);
   };
+
+  const selectColors = () => {
+    return new Array(10).fill(1).map((el, id) => {
+      const newColor = background.slice(1);
+      return (
+        <SelectedColor
+          key={id}
+          id={id}
+          newColor={newColor}
+          color={colors[id]}
+          updatePalette={setColors}
+        />
+      );
+    });
+  };
+
+  const savePalette = async () => {
+    const nonBlackColors = colors.filter((el) => el !== "000");
+    try {
+      const { data, status } = await axios({
+        method: "post",
+        url: "/api/palettes",
+        data: {
+          colors: nonBlackColors,
+        },
+      });
+
+      const { success } = data;
+      if (success) console.log("Palette added!!!");
+
+      // // Unsuccessful
+      // if (status !== 200 || !userArray || error) return false;
+
+      // Success
+
+      router.push("/explore");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <div className={styles.newPaletteContainer}>
@@ -16,20 +63,14 @@ export default function Create({}) {
           <h4>Create your own palette</h4>
           <div className={styles["color-selections-container"]}>
             <section className={styles["selected-colors"]}>
-              <div>+</div>
-              <div>+</div>
-              <div>+</div>
-              <div>+</div>
-              <div>+</div>
-              <div>+</div>
-              <div>+</div>
-              <div>+</div>
-              <div>+</div>
-              <div>+</div>
+              {selectColors()}
             </section>
             <section className={styles["current-color"]}>
-              <h6>Selection</h6>
-              <div className={styles["colour-value"]}></div>
+              <h3>Selection</h3>
+              <div
+                className={styles["colour-value"]}
+                style={{ backgroundColor: background }}
+              ></div>
             </section>
           </div>
         </div>
@@ -37,7 +78,7 @@ export default function Create({}) {
           <SketchPicker
             color={background}
             onChangeComplete={handleChangeComplete}
-            width={500}
+            width={400}
             disableAlpha={false}
           />
           <div className={styles.instructions}>
@@ -54,20 +95,10 @@ export default function Create({}) {
                 Click on "Save to library" to add palette to your library.
               </li>
             </ol>
-            <Button btnText="Save To Library" />
+            <Button btnText="Save To Library" onClick={savePalette} />
           </div>
         </div>
       </div>
     </>
   );
 }
-
-// export async function getServerSideProps() {
-//   try {
-//     return {
-//       props: {},
-//     };
-//   } catch (e) {
-//     console.error("We couldn't connect to the database.", e);
-//   }
-// }
