@@ -1,4 +1,31 @@
-#combinations-container {
+@import "../../sass/global";
+
+.show-palettes {
+  padding-top: 5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .intro {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    h3 {
+      font-size: $font-size-h2;
+      font-weight: $extra-bold;
+    }
+    p {
+      font-weight: $thin;
+      font-size: $font-size-p-m;
+      text-align: center;
+    }
+  }
+}
+
+#palettes-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -59,7 +86,6 @@
 .combination-info i {
   padding-top: 4px;
 }
-
 
 .combination-info:hover {
   color: black;
