@@ -6,7 +6,7 @@ function Button(props) {
   return (
     <>
       <button
-        className={`${styles["button-default"]} ${styles[custom]}]`}
+        className={`${styles["button-default"]} ${styles[custom]}`}
         type="button"
         onClick={onClick}
       >
