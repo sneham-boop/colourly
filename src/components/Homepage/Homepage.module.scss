@@ -2,7 +2,6 @@
 
 .home {
   background-color: $white;
-  background-color: rgba(0, 0, 0, 0);
   height: 100vh;
 
   .intro {
@@ -10,6 +9,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 1em;
     height: 55%;
   }
   h3 {
@@ -25,6 +25,7 @@
     font-size: $font-size-p-lg;
     font-weight: $extra-thin;
     text-align: center;
+    width: 70%;
   }
   .base {
     width: 100vw;
