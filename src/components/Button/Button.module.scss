@@ -1,6 +1,7 @@
 @import "../../sass/global";
 
 .button-default {
+  color: $white;
   min-width: 4em;
   padding: 0.3em 0.5em;
   font-family: $font-family-default;
@@ -26,5 +27,18 @@
 
 .sign-in {
   background-color: $blue2;
+}
 
+.save-to-lib {
+padding: 1em 2em;
+background-color: $gray;
+font-size: $font-size-p-lg;
+font-weight: $extra-thin;
+border: 1px solid $gray;
+border-radius: 5rem;
+&:hover {
+  background-color: $white;
+  color: $gray;
+  border-radius: 5rem;
+}
 }
