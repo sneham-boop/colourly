@@ -2,13 +2,13 @@
 import { useState, useEffect } from "react";
 import styles from "./Create.module.scss";
 import Button from "@component/components/Button";
-import { SketchPicker } from "react-color";
+import { SketchPicker, BlockPicker, AlphaPicker } from "react-color";
 import SelectedColor from "@component/components/SelectedColor";
 import axios from "axios";
 import { useRouter } from 'next/router'
 
 export default function Create({}) {
-  const [background, setBackground] = useState("#FFF");
+  const [background, setBackground] = useState("#F9684F");
   const [colors, setColors] = useState(new Array(10).fill("000"));
   const router = useRouter()
 
@@ -33,6 +33,7 @@ export default function Create({}) {
 
   const savePalette = async () => {
     const nonBlackColors = colors.filter((el) => el !== "000");
+    console.log(nonBlackColors);
     try {
       const { data, status } = await axios({
         method: "post",
@@ -49,7 +50,6 @@ export default function Create({}) {
       // if (status !== 200 || !userArray || error) return false;
 
       // Success
-
       router.push("/explore");
     } catch (error) {
       console.log(error);
@@ -60,17 +60,14 @@ export default function Create({}) {
     <>
       <div className={styles.newPaletteContainer}>
         <div className={styles.selections}>
-          <h4>Create your own palette</h4>
+          <h4>CREATE</h4>
           <div className={styles["color-selections-container"]}>
             <section className={styles["selected-colors"]}>
               {selectColors()}
             </section>
             <section className={styles["current-color"]}>
-              <h3>Selection</h3>
-              <div
-                className={styles["colour-value"]}
-                style={{ backgroundColor: background }}
-              ></div>
+
+               <BlockPicker triangle="hide" color={background} onChangeComplete={handleChangeComplete}/>
             </section>
           </div>
         </div>
@@ -78,11 +75,11 @@ export default function Create({}) {
           <SketchPicker
             color={background}
             onChangeComplete={handleChangeComplete}
-            width={400}
-            disableAlpha={false}
+            width={350}
+            disableAlpha={true}
           />
           <div className={styles.instructions}>
-            <h3>Instructions:</h3>
+            <h3>Instructions</h3>
             <ol>
               <li>Move the selectors to adjust colour.</li>
               <li>Click on the "+" button to select.</li>
@@ -95,7 +92,7 @@ export default function Create({}) {
                 Click on "Save to library" to add palette to your library.
               </li>
             </ol>
-            <Button btnText="Save To Library" onClick={savePalette} />
+            <Button btnText="Save To Library" onClick={savePalette} custom="save-to-lib"/>
           </div>
         </div>
       </div>

@@ -33,7 +33,6 @@ export async function getServerSideProps() {
     const results = await db
       .collection("palettes")
       .find({})
-      .limit(10)
       .toArray();
     return {
       props: {

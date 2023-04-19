@@ -1,8 +1,7 @@
-import { useState } from "react";
-import Add from "@mui/icons-material/AddCircleRounded";
+import styles from "./SelectedColor.module.scss";
 
 export default function SelectedColor({ newColor, color, updatePalette, id }) {
-  const handleClick = (e) => {
+  const handleClick = () => {
     updatePalette((prev) => {
       let oldColors = [...prev];
       oldColors[id] = newColor;
@@ -10,5 +9,13 @@ export default function SelectedColor({ newColor, color, updatePalette, id }) {
     });
   };
 
-  return <Add onClick={handleClick} sx={{ color: `#${color}`, fontSize: 50 }} />;
+  return (
+    <>
+      <div
+        className={styles.add}
+        onClick={handleClick}
+        style={{ backgroundColor: `#${color}` }}
+      ></div>
+    </>
+  );
 }

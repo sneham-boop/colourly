@@ -1,7 +1,9 @@
+@import "../../sass/global";
+
 .newPaletteContainer {
   padding-top: 2em;
   width: 100%;
-  height: 100vh;
+  height: 120vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -16,23 +18,17 @@
   align-items: center;
   gap: 2em;
   h4 {
-    font-size: 2em;
+    font-size: $font-size-h2;
+    font-weight: $extra-bold;
+  }
+  p {
+    font-size: $font-size-p-m;
+    font-weight: $extra-thin;
   }
   .selected-colors {
     display: grid;
-    grid-template-columns: 50px 50px 50px 50px 50px;
-    grid-template-rows: 50px 50px;
-    gap: 10px 30px;
-    // div {
-    //   border-radius: 50%;
-    //   box-shadow: 0 0 2px rgb(110, 110, 110);
-    //   text-align: center;
-    //   padding: 10px;
-    //   font-size: 20px;
-    // }
-    svg:hover {
-      cursor: pointer;
-    }
+    grid-template-columns: 120px 120px 120px 120px 120px;
+    grid-template-rows: 120px 120px;
   }
 }
 
@@ -47,32 +43,26 @@
 
 .current-color {
   border-radius: 5px;
-  border: 1px solid rgb(198, 198, 198);
+  // border: 1px solid rgb(198, 198, 198);
   padding: 0.5em;
-  height: 100px;
+  // height: 120px;
   width: 200px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: space-between;
-  .colour-value {
-    height: 60%;
-    width: 100%;
-    /* border-radius: 5px; */
-    box-shadow: 0 0 2px rgb(110, 110, 110);
-    background-color: white;
-  }
 }
 
-.current-color h6 {
+.current-color h3 {
   text-align: center;
 }
 
 .picker {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: flex-start;
-  gap: 1em;
+  gap: 4em;
 }
 
 .instructions {
@@ -82,4 +72,12 @@
   align-items: flex-start;
   gap: 1em;
   width: 30%;
+  h3 {
+    font-size: $font-size-p-lg;
+    font-weight: $extra-bold;
+  }
+  li {
+    font-size: $font-size-p-m;
+    font-weight: $extra-thin;
+  }
 }

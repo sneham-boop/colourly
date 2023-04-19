@@ -1,0 +1,11 @@
+@import "../../sass/global";
+
+.add {
+  -webkit-mask: url(/add_circle_FILL1_wght100_GRAD-25_opsz48.svg) no-repeat
+    center;
+  mask: url(/add_circle_FILL1_wght100_GRAD-25_opsz48.svg) no-repeat center;
+  mask-size: contain;
+  &:hover {
+    cursor: pointer;
+  }
+}
