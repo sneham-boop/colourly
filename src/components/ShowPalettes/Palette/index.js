@@ -14,7 +14,7 @@ export default function Palette({ palette, setPalette, openFullScreen, likes }) 
   };
   const handleClick = (e) => {
     setShowMenu(true);
-    setMenuPosition({ x: e.clientX, y: e.clientY });
+    setMenuPosition({ x: e.pageX, y: e.pageY });
   };
   const handleMouseDown = (selection) => {
     if (selection === "full") {
