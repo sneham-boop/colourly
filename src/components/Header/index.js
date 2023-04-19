@@ -5,7 +5,7 @@ import styles from "./Header.module.scss";
 
 export default function Header(props) {
   return (
-    <nav className={styles.nav}>
+    <nav id="navbar" className={styles.nav}>
       <Link href="/">
         <Logo />
       </Link>

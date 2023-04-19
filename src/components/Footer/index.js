@@ -4,9 +4,9 @@ import styles from "./Footer.module.scss";
 export default function Footer() {
   const btnText = "GO UP";
   const handleScroll = () => {
-    const element = document.getElementsByClassName("nav");
+    const element = document.getElementById("navbar");
     if (element) {
-      element[0].scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
