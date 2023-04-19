@@ -13,20 +13,20 @@ export default async function handler(req, res) {
 
     // Process a POST request
     if (req.method === "POST") {
-      const { colors } = req.body;
+      const { colors: colours } = req.body;
 
-      if (!colors) {
+      if (!colours) {
         console.log("No colors were found!");
         res.json({
           message: `Failed to add new palette`,
           success: false,
         });
       }
-      // console.log("New palette received at server.", colors);
-
+      
+      const likes = Math.floor(Math.random() * 2000 + 100);
       const palette = {
-        colours: colors,
-        likes: 0,
+        colours,
+        likes,
         user_id: new ObjectId("643d9048adff9ee815ca93db"),
       };
       const result = await db.collection("palettes").insertOne(palette);
@@ -52,7 +52,6 @@ export default async function handler(req, res) {
 
       res.json(palettes);
     }
-
   } catch (e) {
     console.error("We couldn't connect to the database.", e);
   }
