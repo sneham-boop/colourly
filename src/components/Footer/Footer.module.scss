@@ -2,12 +2,41 @@
 
 .footer {
   width: 100vw;
-  position: fixed;
-  bottom: 0px;
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
   align-items: center;
-  background-color: rgba(0,0,0,0);
-  color: $white;
-  padding: 0.5em 1em;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-top: 1px solid $lightgray;
+  border-bottom: 1px solid $lightgray;
+}
+
+.made-by p,
+.coolers-text {
+  margin: 0px;
+}
+
+.coolers-text {
+  color: rgb(112, 112, 103);
+  font-size: 12px;
+  a {
+    padding: 2px 4px;
+    border-radius: 5px;
+    overflow: hidden;
+    color: white;
+    background-color: $coolersBlue;
+    &:hover {
+      color: white;
+      background-color: $black;
+      transition: 0.4s;
+    }
+  }
+}
+
+.made-by {
+  font-size: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3px;
 }
