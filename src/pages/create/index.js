@@ -5,12 +5,12 @@ import Button from "@component/components/Button";
 import { SketchPicker, BlockPicker, AlphaPicker } from "react-color";
 import SelectedColor from "@component/components/SelectedColor";
 import axios from "axios";
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 
 export default function Create({}) {
   const [background, setBackground] = useState("#F9684F");
   const [colors, setColors] = useState(new Array(10).fill("000"));
-  const router = useRouter()
+  const router = useRouter();
 
   const handleChangeComplete = (color) => {
     setBackground(color.hex);

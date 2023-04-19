@@ -1,4 +1,4 @@
-import clientPromise from "../../../lib/mongodb";
+import clientPromise from "../../../../lib/mongodb";
 import { ObjectId } from "mongodb";
 
 export default async function handler(req, res) {
@@ -52,6 +52,7 @@ export default async function handler(req, res) {
 
       res.json(palettes);
     }
+
   } catch (e) {
     console.error("We couldn't connect to the database.", e);
   }
