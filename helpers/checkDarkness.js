@@ -5,6 +5,6 @@ export default function checkDarkness(colour) {
   const g = (rgb >> 8) & 0xff; // extract green
   const b = (rgb >> 0) & 0xff; // extract blue
   const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b; // per ITU-R BT.709
-  if (luma < 100) return true;
+  if (luma < 150) return true;
   return false;
 }
