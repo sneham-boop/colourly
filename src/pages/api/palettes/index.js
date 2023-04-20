@@ -47,7 +47,6 @@ export default async function handler(req, res) {
       const palettes = await db
         .collection("palettes")
         .find({})
-        .limit(10)
         .toArray();
 
       res.json(palettes);

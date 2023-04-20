@@ -22,9 +22,9 @@ export default function Header({ user, login, logout }) {
       </Link>
       <div className={styles["nav-right-group"]}>
         <Link href="/explore">Explore Trends</Link>
-        <Link href="/test">Test Users</Link>
+        {/* <Link href="/test">Test Users</Link> */}
         {/* <Link href="/saved">Saved Palettes</Link> */}
-        {/* <Link href="/created">Your Creations</Link> */}
+        <Link href="/created">Your Palettes</Link>
         <Link href="/create">Create</Link>
         {/* <Link href="/sign-in"> */}
         {/* <Button btnText={"Sign In"} custom="sign-in" onClick={login}/> */}
