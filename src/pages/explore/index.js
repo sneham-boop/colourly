@@ -13,6 +13,9 @@ export default function Explore({ palettes }) {
         palettes={palettes}
         setPalette={setPalette}
         openFullScreen={() => setShowFullScreen(true)}
+        heading="EXPLORE"
+        description="Check out the palettes created by other awesome people like you. Hover
+        on a color to see its value and click on it to copy."
       />
       {showFullScreen && (
         <FullScreenPalette

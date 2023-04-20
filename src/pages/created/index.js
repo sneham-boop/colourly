@@ -22,6 +22,8 @@ export default function Created({ user_id }) {
         palettes={palettes}
         setPalette={setPalette}
         openFullScreen={() => setShowFullScreen(true)}
+        heading="YOUR CREATIONS"
+        description="You have created some amazing color palettes so far. Great job!"
       /> }
       {showFullScreen && (
         <FullScreenPalette

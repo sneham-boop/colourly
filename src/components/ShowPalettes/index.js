@@ -2,7 +2,7 @@ import Intro from "./Intro";
 import Palette from "./Palette";
 import styles from "./ShowPalettes.module.scss";
 
-export default function ShowPalettes({ palettes, setPalette, openFullScreen }) {
+export default function ShowPalettes({ palettes, setPalette, openFullScreen, heading, description }) {
   const displayPalettes = (palettes) => {
     return (
       // palettes &&
@@ -23,7 +23,7 @@ export default function ShowPalettes({ palettes, setPalette, openFullScreen }) {
   return (
     <>
       <div className={styles["show-palettes"]}>
-        <Intro />
+        <Intro heading={heading} description={description}/>
         <div id={styles["palettes-container"]}>{displayPalettes(palettes)}</div>
       </div>
     </>

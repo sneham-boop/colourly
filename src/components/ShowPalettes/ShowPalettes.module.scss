@@ -7,6 +7,7 @@
   justify-content: center;
   align-items: center;
   padding-bottom: 10em;
+  min-height: 90vh;
   .intro {
     width: 70%;
     display: flex;
@@ -64,15 +65,17 @@
   padding: 55px 0; /* to center text*/
   vertical-align: middle;
   font-family: "Ubuntu", sans-serif;
-  font-weight: bold;
-  font-size: 5px;
+  // font-weight: bold;
+  font-size: 0px;
+  transition: font-size 0.4s, flex-grow 0.4s, flex-shrink 0.4s;
 }
 
 .colour:hover {
   flex-grow: 2;
-  transition-duration: 0.4s;
+  // transition-duration: 0.4s;
   cursor: pointer;
-  font-size: 15px;
+  font-size: $font-size-p-m;
+  font-weight: $extra-thin;
 }
 
 .combination-info {
