@@ -5,7 +5,7 @@ import Button from "@component/components/Button";
 import { SketchPicker, BlockPicker, AlphaPicker } from "react-color";
 import SelectedColor from "@component/components/SelectedColor";
 import axios from "axios";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
 export default function Create({}) {
   const [background, setBackground] = useState("#F9684F");
@@ -65,10 +65,6 @@ export default function Create({}) {
             <section className={styles["selected-colors"]}>
               {selectColors()}
             </section>
-            <section className={styles["current-color"]}>
-
-               <BlockPicker triangle="hide" color={background} onChangeComplete={handleChangeComplete}/>
-            </section>
           </div>
         </div>
         <div className={styles.picker}>
@@ -78,22 +74,31 @@ export default function Create({}) {
             width={350}
             disableAlpha={true}
           />
-          <div className={styles.instructions}>
-            <h3>Instructions</h3>
-            <ol>
-              <li>Move the selectors to adjust colour.</li>
-              <li>Click on the "+" button to select.</li>
-              <li>
-                Colours can be overwritten by adjusting a new one and clicking
-                on "+" again.
-              </li>
-              <li>Up to 10 colours may be added to each palette.</li>
-              <li>
-                Click on "Save to library" to add palette to your library.
-              </li>
-            </ol>
-            <Button btnText="Save To Library" onClick={savePalette} custom="save-to-lib"/>
-          </div>
+          <section className={styles["current-color"]}>
+            <BlockPicker
+              // triangle="hide"
+              color={background}
+              onChangeComplete={handleChangeComplete}
+            />
+            <Button
+              btnText="Save To Library"
+              onClick={savePalette}
+              custom="save-to-lib"
+            />
+          </section>
+        </div>
+        <div className={styles.instructions}>
+          <h3>Instructions</h3>
+          <ol>
+            <li>Move the selectors to adjust colour.</li>
+            <li>Click on the "+" button to select.</li>
+            <li>
+              Colours can be overwritten by adjusting a new one and clicking on
+              "+" again.
+            </li>
+            <li>Up to 10 colours may be added to each palette.</li>
+            <li>Click on "Save to library" to add palette to your library.</li>
+          </ol>
         </div>
       </div>
     </>

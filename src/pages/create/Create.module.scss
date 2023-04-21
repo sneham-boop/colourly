@@ -27,8 +27,8 @@
   }
   .selected-colors {
     display: grid;
-    grid-template-columns: 120px 120px 120px 120px 120px;
-    grid-template-rows: 120px 120px;
+    grid-template-columns: 90px 90px 90px 90px 90px 90px 90px 90px 90px 90px;
+    grid-template-rows: 90px;
   }
 }
 
@@ -45,12 +45,12 @@
   border-radius: 5px;
   // border: 1px solid rgb(198, 198, 198);
   padding: 0.5em;
-  // height: 120px;
-  width: 200px;
+  // height: 90px;
+  // width: 200px;
+  gap: 3em;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
 }
 
 .current-color h3 {
@@ -69,15 +69,15 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   gap: 1em;
-  width: 30%;
+  width: 70%;
   h3 {
-    font-size: $font-size-p-lg;
-    font-weight: $extra-bold;
+    font-size: $font-size-h3;
+    // font-weight: $extra-bold;
   }
   li {
-    font-size: $font-size-p-m;
+    font-size: 18px;
     font-weight: $extra-thin;
   }
 }

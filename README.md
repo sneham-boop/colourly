@@ -37,16 +37,16 @@ Colourly was inspired by the amazing tool created by Coolers and only includes a
     
     <img src="./docs/images/palette-menu.png" alt="Palette menu" width="40%">
 
-5. Test users
-!["Test Users"](./docs/images/test-users.png)
+<!-- 5. Test users
+!["Test Users"](./docs/images/test-users.png) -->
 
-6. Sign In / Sign Up
+5. Sign In / Sign Up
 !["Sign In"](./docs/images/login.png)
 
-7. Menu options when signed in
-!["Menu options - signed in"](./docs/images/Menu%20-%201.png)
+<!-- 7. Menu options when signed in
+!["Menu options - signed in"](./docs/images/Menu%20-%201.png) -->
 
-4. Create new palette
+6. Create new palette
 !["Create"](./docs/images/new-palette-empty.png)
 
     !["Created"](./docs/images/new-palette-selected.png)

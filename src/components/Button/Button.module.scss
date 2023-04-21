@@ -31,15 +31,16 @@
 
 .save-to-lib {
 padding: 1em 2em;
-background-color: $gray;
-font-size: $font-size-p-lg;
+background-color: $coolersBlue;
+font-size: $font-size-p-m;
 font-weight: $extra-thin;
-border: 1px solid $gray;
+border: 1px solid $coolersBlue;
 border-radius: 5rem;
 &:hover {
   background-color: $white;
-  color: $gray;
+  color: $black;
   border-radius: 5rem;
+  border: 1px solid $black;
 }
 }
 

@@ -1,6 +1,7 @@
 import styles from "./SelectedColor.module.scss";
 
 export default function SelectedColor({ newColor, color, updatePalette, id }) {
+  
   const handleClick = () => {
     updatePalette((prev) => {
       let oldColors = [...prev];
