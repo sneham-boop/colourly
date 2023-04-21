@@ -2,12 +2,12 @@ import React from "react";
 import styles from "./Button.module.scss";
 
 function Button(props) {
-  const { btnText, onClick, custom, icon } = props;
+  const { btnText, onClick, custom, icon, type } = props;
   return (
     <>
       <button
         className={`${styles["button-default"]} ${styles[custom]}`}
-        type="button"
+        type={type ? type : "button"}
         onClick={onClick}
       >
         <span>{btnText}</span>

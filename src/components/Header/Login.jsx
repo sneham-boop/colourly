@@ -1,11 +1,19 @@
+import Button from "../Button";
 import styles from "./Header.module.scss";
 
-function Login() {
-  // console.log(styles);
+function Login({ login, setShowLogin }) {
+  const loginUser = () => {
+    login();
+    setShowLogin(false);
+  };
   return (
-    <div className="opaque">
-      <div className="sign-in-form">
-        <form action="/login" method="POST" className="form-container">
+    <div className={styles.opaque}>
+      <div className={styles["sign-in-form"]}>
+        <form
+          action="/api/login"
+          method="POST"
+          className={styles["form-container"]}
+        >
           <i className="fa-solid fa-xmark fa-xl"></i>
           <h1>HELLO!</h1>
           <p>Sign in with your email here.</p>
@@ -16,15 +24,13 @@ function Login() {
             name="password"
             required
           />
-          <p className="register-link-text">
+          <p className={styles["register-link-text"]}>
             Don't have an account?{" "}
-            <a className="sign-up-link" href="#">
+            <a className={styles["sign-up-link"]} href="#">
               Sign up
             </a>
           </p>
-          <button type="submit" className="btn">
-            Sign in
-          </button>
+          <Button btnText="Sign in" custom="sign-in" onClick={loginUser} />
         </form>
       </div>
     </div>
