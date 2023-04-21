@@ -35,6 +35,7 @@ export default function Header({ user, login, logout }) {
           {/* <Link href="/saved">Saved Palettes</Link> */}
           <Link href="/created">Your Palettes</Link>
           <Link href="/create">Create</Link>
+          <Link href="/faqs">FAQs</Link>
           {loginLogout()}
         </div>
         {showLogin && <Login login={login} setShowLogin={setShowLogin} />}

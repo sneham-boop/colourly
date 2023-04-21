@@ -16,6 +16,8 @@
   a {
     text-decoration: none;
     border-top: 1px solid $white;
+    font-size: $font-size-p-sm;
+    font-weight: $thin;
     &:hover {
       border-top: 1px solid $black;
       transition: 0.5s;
@@ -26,7 +28,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    gap: 1em;
+    gap: 2em;
   }
 }
 
