@@ -66,50 +66,36 @@
   border-radius: 15px;
   padding: 1em;
   background-color: $white;
+  h2 {
+    font-weight: $extra-bold;
+    font-size: $font-size-h2;
+  }
+  button {
+    font-family: $font-family-default;
+    background-color: #0066ff;
+    color: $white;
+    border-radius: 8px;
+    width: 70%;
+    height: 10%;
+  }
+  p {
+    text-align: center;
+    font-size: $font-size-p-m;
+    font-weight: $extra-thin;
+  }
+  input {
+    width: 90%;
+    height: 3em;
+    box-shadow: 0 0 1px rgb(110, 110, 110);
+    border: 0px;
+    border-radius: 8px;
+    padding-left: 1em;
+    font-size: $font-size-p-m;
+    font-weight: $extra-thin;
+    &:focus {
+      outline: none;
+      border: 1px solid #0066ff;
+    }
+  }
+
 }
-
-.form-container h1 {
-  font-weight: $extra-bold;
-  font-size: $font-size-h2;
-
-}
-
-.form-container label {
-  margin-right: 1em;
-}
-
-.form-container button {
-  background-color: #0066ff;
-  color: white;
-  border-radius: 8px;
-  width: 90%;
-}
-
-.form-container button:hover {
-  background-color: #0055ff;
-  color: white;
-}
-
-.form-container p {
-  text-align: center;
-}
-
-.form-container > h1 + p {
-color: #7d7c83;
-font-size: 18px;
-}
-
-.form-container input {
-  width: 90%;
-  height: 3em;
-  box-shadow: 0 0 1px rgb(110, 110, 110);
-  border: 0px;
-  border-radius: 8px;
-  padding-left: 1em;
-}
-
-.form-container input:focus {
-  outline: none;
-  border: 1px solid #0066ff;
-}
-

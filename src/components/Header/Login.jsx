@@ -7,15 +7,14 @@ function Login({ login, setShowLogin }) {
     setShowLogin(false);
   };
   return (
-    <div className={styles.opaque}>
+    <div className={styles.opaque} onClick={() => setShowLogin(false)}>
       <div className={styles["sign-in-form"]}>
         <form
           action="/api/login"
           method="POST"
           className={styles["form-container"]}
         >
-          <i className="fa-solid fa-xmark fa-xl"></i>
-          <h1>HELLO!</h1>
+          <h2>HELLO!</h2>
           <p>Sign in with your email here.</p>
           <input type="email" placeholder="Email" name="email" required />
           <input
@@ -30,7 +29,7 @@ function Login({ login, setShowLogin }) {
               Sign up
             </a>
           </p>
-          <Button btnText="Sign in" custom="sign-in" onClick={loginUser} />
+          <Button btnText="Sign in" custom="sign-in-popup" onClick={loginUser} />
         </form>
       </div>
     </div>
